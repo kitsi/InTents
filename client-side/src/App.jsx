@@ -1,12 +1,18 @@
 import "./App.css";
+
 import { BrowserRouter } from "react-router-dom";
 import Router from "./Router";
+import { ThemeProvider } from "@mui/material";
+import theme from "./theme";
+
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </ThemeProvider>
     </div>
   );
 }
