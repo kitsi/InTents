@@ -6,6 +6,9 @@ const theme = createTheme({
       // Default 3.75 rem
       fontSize: "3rem",
     },
+    h3: {
+      fontSize: "1.5rem",
+    },
   },
   palette: {
     primary: {
