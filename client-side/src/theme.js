@@ -3,7 +3,6 @@ import { createTheme } from "@mui/material";
 const theme = createTheme({
   typography: {
     h2: {
-      // Default 3.75 rem
       fontSize: "3rem",
     },
     h3: {
