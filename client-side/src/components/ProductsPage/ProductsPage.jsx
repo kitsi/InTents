@@ -1,11 +1,30 @@
 import "./ProductsPage.css";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Stack, Typography } from "@mui/material";
 
-import { Typography } from "@mui/material";
+import ProductTile from "../common/ProductTile";
+import productsjson from "../../products.json";
 
 function ProductsPage() {
-  const [products, setProducts] = useState([1]);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    setProducts(productsjson);
+    console.log(products);
+  }, []);
+
+  // const fetchProducts = () => {
+  //   fetch("../../products.json")
+  //   .then(res=> res.json())
+  //   .then(json => console.log(json))
+  // }
+
+  const productTiles = products.map((product) => {
+    return(
+      <ProductTile key={product.id} productData={product}/>
+    )
+  });
 
   return (
     <div id="products-page">
@@ -15,7 +34,12 @@ function ProductsPage() {
           No Products Available. Please check back again!
         </Typography>
       ) : (
-        <Typography variant="h3">Available Products</Typography>
+        <>
+          <Typography variant="h3">Available Products</Typography>
+          <Stack>
+            {productTiles}
+          </Stack>
+        </>
       )}
     </div>
   );
