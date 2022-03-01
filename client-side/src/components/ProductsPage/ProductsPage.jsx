@@ -19,6 +19,6 @@ function ProductsPage() {
       )}
     </div>
   );
-}
+} 
 
 export default ProductsPage;
