@@ -14,16 +14,8 @@ function ProductsPage() {
     console.log(products);
   }, []);
 
-  // const fetchProducts = () => {
-  //   fetch("../../products.json")
-  //   .then(res=> res.json())
-  //   .then(json => console.log(json))
-  // }
-
   const productTiles = products.map((product) => {
-    return(
-      <ProductTile key={product.id} productData={product}/>
-    )
+    return <ProductTile key={product.id} productData={product} />;
   });
 
   return (
@@ -36,13 +28,11 @@ function ProductsPage() {
       ) : (
         <>
           <Typography variant="h3">Available Products</Typography>
-          <Stack>
-            {productTiles}
-          </Stack>
+          <Stack>{productTiles}</Stack>
         </>
       )}
     </div>
   );
-} 
+}
 
 export default ProductsPage;
