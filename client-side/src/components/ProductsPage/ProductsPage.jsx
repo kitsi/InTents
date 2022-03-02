@@ -1,7 +1,7 @@
 import "./ProductsPage.css";
 
+import { Divider, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Stack, Typography } from "@mui/material";
 
 import ProductTile from "../common/ProductTile";
 import productsjson from "../../products.json";
@@ -21,15 +21,13 @@ function ProductsPage() {
   return (
     <div id="products-page">
       <Typography variant="h2">Products</Typography>
+      <Divider />
       {products.length === 0 ? (
         <Typography variant="h3">
           No Products Available. Please check back again!
         </Typography>
       ) : (
-        <>
-          <Typography variant="h3">Available Products</Typography>
-          <Stack>{productTiles}</Stack>
-        </>
+        <div className="product-tiles-container">{productTiles}</div>
       )}
     </div>
   );
