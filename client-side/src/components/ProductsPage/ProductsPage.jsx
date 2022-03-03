@@ -24,7 +24,7 @@ function ProductsPage() {
     <div id="products-page">
       <Typography variant="h2">Products</Typography>
       <Divider />
-      <Link to="/cart"> <ShoppingCartOutlinedIcon /></Link>
+      
       {products.length === 0 ? (
         <Typography variant="h3">
           No Products Available. Please check back again!
