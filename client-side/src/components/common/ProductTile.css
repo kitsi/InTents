@@ -1,0 +1,29 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+  gap: 1rem;
+}
+
+.product-image {
+  transition: all 0.15s;
+  object-fit: contain;
+  transform: scale(1.1);
+}
+
+.card:hover .product-image {
+  transform: scale(1.3);
+}
+
+.product-description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-actions {
+  justify-content: flex-end;
+  margin-right: 1rem;
+}
