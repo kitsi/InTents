@@ -2,6 +2,7 @@ import "./ProductsPage.css";
 
 import { Divider, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+
 import ProductTile from "../common/ProductTile";
 import productsjson from "../../products.json";
 

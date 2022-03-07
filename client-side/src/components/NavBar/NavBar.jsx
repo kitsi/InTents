@@ -1,3 +1,5 @@
+import "./NavBar.css";
+
 import {
   AppBar,
   Box,
@@ -7,15 +9,22 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import { Link, NavLink } from "react-router-dom";
 import React, { useState } from "react";
 
-import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import { ShoppingCartOutlined } from "@mui/icons-material";
 import SideDrawer from "./SideDrawer";
 
 // Add pages from wireframe
-const pages = ["Products", "Pricing", "Blog"];
+const pages = [
+  "All Products",
+  "Tents",
+  "Cookware",
+  "Sleeping Bags",
+  "Fans",
+  "Emergency",
+];
 
 const NavBar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -26,7 +35,11 @@ const NavBar = () => {
 
   return (
     <AppBar position="sticky">
-      <SideDrawer isOpen={drawerOpen} toggleDrawer={toggleDrawer} />
+      <SideDrawer
+        isOpen={drawerOpen}
+        toggleDrawer={toggleDrawer}
+        pages={pages}
+      />
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -57,19 +70,25 @@ const NavBar = () => {
           >
             InTents
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+            className="links-container"
+          >
             {pages.map((page) => (
-              <Button
+              <NavLink
+                to="/products"
                 key={page}
-                sx={{ my: 2, color: "white", display: "block" }}
+                className={({ isActive }) =>
+                  isActive ? `active link` : `link`
+                }
               >
-                {page}
-              </Button>
+                <Typography>{page}</Typography>
+              </NavLink>
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <IconButton>
-              <Link to="/cart">
+              <Link to="/cart" className="link">
                 <ShoppingCartOutlined />
               </Link>
             </IconButton>

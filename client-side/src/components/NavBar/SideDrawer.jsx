@@ -1,18 +1,21 @@
 import { Box, Drawer, Typography } from "@mui/material";
 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import React from "react";
 
-export default function SideDrawer({ isOpen, toggleDrawer }) {
+export default function SideDrawer({ isOpen, toggleDrawer, pages }) {
   return (
     <Drawer open={isOpen} onClose={toggleDrawer}>
       <Box onClick={toggleDrawer}>
-        <Link to="/">
-          <Typography>Link 1</Typography>
-        </Link>
-        <Link to="/">
-          <Typography>Link 2</Typography>
-        </Link>
+        {pages.map((page) => (
+          <NavLink
+            to="/products/"
+            key={page}
+            className={({ isActive }) => (isActive ? `active link` : `link`)}
+          >
+            <Typography>{page}</Typography>
+          </NavLink>
+        ))}
       </Box>
     </Drawer>
   );
