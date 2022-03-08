@@ -2,18 +2,18 @@ import "./ProductsPage.css";
 
 import { Divider, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-import { Link } from "react-router-dom";
 import ProductTile from "../common/ProductTile";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import productsjson from "../../products.json";
 
 function ProductsPage() {
   const [products, setProducts] = useState([]);
 
+  const { category } = useParams();
+
   useEffect(() => {
     setProducts(productsjson);
-    console.log(products);
   }, []);
 
   const productTiles = products.map((product) => {
@@ -22,9 +22,9 @@ function ProductsPage() {
 
   return (
     <div id="products-page">
-      <Typography variant="h2">Products</Typography>
+      <Typography variant="h2">{category ? category : "All Products"}</Typography>
       <Divider />
-      <Link to="/cart"> <ShoppingCartOutlinedIcon /></Link>
+
       {products.length === 0 ? (
         <Typography variant="h3">
           No Products Available. Please check back again!

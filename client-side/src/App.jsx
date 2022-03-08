@@ -1,6 +1,7 @@
 import "./App.css";
 
 import { BrowserRouter } from "react-router-dom";
+import NavBar from "./components/NavBar/NavBar";
 import Router from "./Router";
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme";
@@ -10,6 +11,7 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <BrowserRouter>
+          <NavBar />
           <Router />
         </BrowserRouter>
       </ThemeProvider>

@@ -1,0 +1,18 @@
+.drawer-container {
+  height: 100%;
+  width: 260px;
+  background-color: #DED9E2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  padding-top: 3rem;
+}
+
+.drawer-container .link {
+  color: #2F2F2F;
+}
+
+.drawer-container .active.link p {
+  font-weight: bold;
+}
