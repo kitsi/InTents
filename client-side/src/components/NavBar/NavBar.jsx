@@ -17,7 +17,6 @@ import SideDrawer from "./SideDrawer";
 
 // Add pages from wireframe
 const pages = [
-  "All Products",
   "Tents",
   "Cookware",
   "Sleeping Bags",
@@ -73,9 +72,17 @@ const NavBar = () => {
             sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
             className="links-container"
           >
+            <NavLink
+                to="/products/"
+                className={({ isActive }) =>
+                  isActive ? `active link` : `link`
+                }
+              >
+                <Typography>All Products</Typography>
+              </NavLink>
             {pages.map((page) => (
               <NavLink
-                to="/products"
+                to={`/products/categories/${page.split(' ').join('-').toLowerCase()}`}
                 key={page}
                 className={({ isActive }) =>
                   isActive ? `active link` : `link`

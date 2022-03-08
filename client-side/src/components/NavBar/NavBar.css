@@ -8,6 +8,6 @@
   color: #fff;
 }
 
-.active.link {
+.active.link p{
   font-weight: bold;
 }
