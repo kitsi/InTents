@@ -9,7 +9,7 @@ function Router() {
     <Routes>
       <Route path="/cart" element={<CartPage />} />
       <Route path="/products" element={<ProductsPage />} />
-      {/* <Route path="/products:q=category" element={<ProductsPage />} /> */}
+      <Route path="/products/categories/:category" element={<ProductsPage />} />
     </Routes>
   );
 }
