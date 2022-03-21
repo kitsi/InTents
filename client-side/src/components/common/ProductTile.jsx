@@ -11,8 +11,12 @@ import {
 
 import React from "react";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../CartPage/cartSlice";
 
 export default function ProductTile({ productData }) {
+  const dispatch = useDispatch;
+
   return (
     <Card className="card">
       <CardMedia
@@ -43,6 +47,7 @@ export default function ProductTile({ productData }) {
           variant="contained"
           color="primary"
           endIcon={<ShoppingCartOutlinedIcon />}
+          onClick={() => dispatch(addProduct(productData))}
         >
           Add to cart
         </Button>
