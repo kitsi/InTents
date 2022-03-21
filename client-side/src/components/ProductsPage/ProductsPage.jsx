@@ -6,14 +6,18 @@ import { useParams } from "react-router-dom";
 
 import ProductTile from "../common/ProductTile";
 import productsjson from "../../products.json";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "./productsSlice";
 
 function ProductsPage() {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
+  const { products } = useSelector((state) => state.products);
 
   const { category } = useParams();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setProducts(productsjson);
+    dispatch(fetchProducts(productsjson));
   }, []);
 
   const productTiles = products.map((product) => {
@@ -22,7 +26,9 @@ function ProductsPage() {
 
   return (
     <div id="products-page">
-      <Typography variant="h2">{category ? category : "All Products"}</Typography>
+      <Typography variant="h2">
+        {category ? category : "All Products"}
+      </Typography>
       <Divider />
 
       {products.length === 0 ? (
