@@ -7,6 +7,7 @@ import {
   IconButton,
   Toolbar,
   Typography,
+  Badge,
 } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
 import React, { useState } from "react";
@@ -14,6 +15,7 @@ import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { ShoppingCartOutlined } from "@mui/icons-material";
 import SideDrawer from "./SideDrawer";
+import {useSelector } from "react-redux";
 
 // Add pages from wireframe
 const pages = [
@@ -26,9 +28,18 @@ const pages = [
 
 const NavBar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const { cartItems } = useSelector((state) => state.cart);
 
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
+  };
+
+  const badgeCount = () => {
+    let count = 0;
+    cartItems.map(item => {
+      count += item.quantity
+    })
+    return count
   };
 
   return (
@@ -95,7 +106,9 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <IconButton>
               <Link to="/cart" className="link">
-                <ShoppingCartOutlined />
+                <Badge badgeContent={badgeCount()}>
+                  <ShoppingCartOutlined />
+                </Badge>
               </Link>
             </IconButton>
           </Box>
