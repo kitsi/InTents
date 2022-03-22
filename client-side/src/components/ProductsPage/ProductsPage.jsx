@@ -24,10 +24,18 @@ function ProductsPage() {
     return <ProductTile key={product.id} productData={product} />;
   });
 
+  const headingFormatter = (heading) => {
+    let title = "";
+    const headingArray = heading.split("-");
+    headingArray.forEach(word => title += word.substring(0, 1).toUpperCase() + word.substring(1) + " ");
+    
+    return title;
+  }
+
   return (
     <div id="products-page">
       <Typography variant="h2">
-        {category ? category : "All Products"}
+        {category ? headingFormatter(category) : "All Products"}
       </Typography>
       <Divider />
 
