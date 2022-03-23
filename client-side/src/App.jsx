@@ -1,14 +1,16 @@
 import "./App.css";
 
+import { CssBaseline, ThemeProvider } from "@mui/material";
+
 import { BrowserRouter } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import Router from "./Router";
-import { ThemeProvider } from "@mui/material";
 import theme from "./theme";
 
 function App() {
   return (
     <div className="App">
+      <CssBaseline />
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <NavBar />
