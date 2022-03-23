@@ -106,7 +106,7 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <IconButton>
               <Link to="/cart" className="link">
-                <Badge badgeContent={badgeCount()}>
+                <Badge badgeContent={badgeCount()} color="secondary">
                   <ShoppingCartOutlined />
                 </Badge>
               </Link>
