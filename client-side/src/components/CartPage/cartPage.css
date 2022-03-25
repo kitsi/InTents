@@ -1,0 +1,7 @@
+.cart-product-tiles-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 0 2rem;
+  margin-top: 3rem;
+}
