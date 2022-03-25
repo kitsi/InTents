@@ -1,7 +1,7 @@
 import "./cartPage.css";
 
 import { Divider, Typography } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import CartProductTile from "./CartProductTile";
 import React from "react";

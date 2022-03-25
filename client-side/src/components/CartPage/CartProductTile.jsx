@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { incrementProduct, decrementProduct } from "./cartSlice";
+import { incrementProduct, decrementProduct, removeProduct } from "./cartSlice";
 
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -21,12 +21,16 @@ function CartProductTile({ product }) {
   const dispatch = useDispatch();
 
   const addOne = () => {
-    dispatch(incrementProduct());
-  }
+    dispatch(incrementProduct(product));
+  };
 
   const subtractOne = () => {
-    dispatch(decrementProduct());
-  }
+    dispatch(decrementProduct(product));
+  };
+
+  const removeItem = () => {
+    dispatch(removeProduct(product));
+  };
 
   return (
     <Card className="card">
@@ -62,7 +66,7 @@ function CartProductTile({ product }) {
             <AddIcon />
           </IconButton>
         </div>
-        <IconButton size="large" className="delete-icon">
+        <IconButton size="large" className="delete-icon" onClick={removeItem}>
           <DeleteIcon />
         </IconButton>
       </CardActions>

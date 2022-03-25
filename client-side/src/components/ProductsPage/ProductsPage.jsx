@@ -1,7 +1,7 @@
 import "./ProductsPage.css";
 
 import { Divider, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import ProductTile from "../common/ProductTile";
@@ -18,7 +18,7 @@ function ProductsPage() {
 
   useEffect(() => {
     dispatch(fetchProducts(productsjson));
-  }, []);
+  }, [dispatch]);
 
   const productTiles = products.map((product) => {
     return <ProductTile key={product.id} productData={product} />;
@@ -27,10 +27,13 @@ function ProductsPage() {
   const headingFormatter = (heading) => {
     let title = "";
     const headingArray = heading.split("-");
-    headingArray.forEach(word => title += word.substring(0, 1).toUpperCase() + word.substring(1) + " ");
-    
+    headingArray.forEach(
+      (word) =>
+        (title += word.substring(0, 1).toUpperCase() + word.substring(1) + " ")
+    );
+
     return title;
-  }
+  };
 
   return (
     <div id="products-page">
