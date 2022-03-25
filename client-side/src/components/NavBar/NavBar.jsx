@@ -15,16 +15,10 @@ import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { ShoppingCartOutlined } from "@mui/icons-material";
 import SideDrawer from "./SideDrawer";
-import {useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 // Add pages from wireframe
-const pages = [
-  "Tents",
-  "Cookware",
-  "Sleeping Bags",
-  "Fans",
-  "Emergency",
-];
+const pages = ["Tents", "Cookware", "Sleeping Bags", "Fans", "Emergency"];
 
 const NavBar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -36,10 +30,8 @@ const NavBar = () => {
 
   const badgeCount = () => {
     let count = 0;
-    cartItems.map(item => {
-      count += item.quantity
-    })
-    return count
+    cartItems.map((item) => (count += item.quantity));
+    return count;
   };
 
   return (
@@ -84,16 +76,17 @@ const NavBar = () => {
             className="links-container"
           >
             <NavLink
-                to="/products/"
-                className={({ isActive }) =>
-                  isActive ? `active link` : `link`
-                }
-              >
-                <Typography>All Products</Typography>
-              </NavLink>
+              to="/products/"
+              className={({ isActive }) => (isActive ? `active link` : `link`)}
+            >
+              <Typography>All Products</Typography>
+            </NavLink>
             {pages.map((page) => (
               <NavLink
-                to={`/products/categories/${page.split(' ').join('-').toLowerCase()}`}
+                to={`/products/categories/${page
+                  .split(" ")
+                  .join("-")
+                  .toLowerCase()}`}
                 key={page}
                 className={({ isActive }) =>
                   isActive ? `active link` : `link`
@@ -106,7 +99,7 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <IconButton>
               <Link to="/cart" className="link">
-                <Badge badgeContent={badgeCount()}>
+                <Badge badgeContent={badgeCount()} color="secondary">
                   <ShoppingCartOutlined />
                 </Badge>
               </Link>

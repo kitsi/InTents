@@ -1,0 +1,26 @@
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 0;
+}
+
+.qty-label {
+  width: 50px;
+  text-align: center;
+}
+
+.quantity-change {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.delete-icon {
+  padding: 0;
+}
+
+.delete-icon svg {
+  width: 35px;
+  height: 35px;
+}
