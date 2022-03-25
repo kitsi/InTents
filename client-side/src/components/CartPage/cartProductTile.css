@@ -24,3 +24,29 @@
   width: 35px;
   height: 35px;
 }
+
+@media screen and (min-width: 1000px) {
+  .cart-card {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  .cart-card .product-image {
+    width: 200px;
+    object-fit: contain;
+    margin-left: 1rem;
+  }
+
+  .product-details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .cart-product-description {
+    white-space: wrap;
+    overflow: visible;
+    text-overflow: initial;
+  }
+}
