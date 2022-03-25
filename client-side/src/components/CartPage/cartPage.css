@@ -5,3 +5,15 @@
   padding: 0 2rem;
   margin-top: 3rem;
 }
+
+.button-container {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: space-around;
+  gap: 5rem;
+}
+
+.button-container a {
+  text-decoration: none;
+  color: white;
+}
