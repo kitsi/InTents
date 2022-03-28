@@ -12,27 +12,29 @@ export default function CartPage() {
   const { cartItems } = useSelector((state) => state.cart);
 
   const cartList = cartItems.map((item) => {
-    return <CartProductTile key={item.id} product={item} />;
+    return <CartProductTile key={item.product.id} product={item} />;
   });
 
   return (
     <div className="cart-page">
       <Typography variant="h2">Cart</Typography>
       <Divider />
-      <div className="button-container">
-        <Link to={"/products"}>
-          <Button size="large" variant="contained" color="primary">
-            Continue Shopping
-          </Button>
-        </Link>
-        <Link to={"/checkout"}>
-          <Button size="large" variant="contained" color="primary">
-            Proceed to Checkout
-          </Button>
-        </Link>
+      <div className="cart-content-container">
+        <div className="button-container">
+          <Link to={"/products"}>
+            <Button size="large" variant="contained" color="primary">
+              Continue Shopping
+            </Button>
+          </Link>
+          <Link to={"/checkout"}>
+            <Button size="large" variant="contained" color="primary">
+              Proceed to Checkout
+            </Button>
+          </Link>
+        </div>
+        <div className="cart-controls"></div>
+        <div className="cart-product-tiles-container">{cartList}</div>
       </div>
-      <div className="cart-controls"></div>
-      <div className="cart-product-tiles-container">{cartList}</div>
     </div>
   );
 }

@@ -3,18 +3,21 @@
   flex-direction: column;
   gap: 3rem;
   margin-top: 3rem;
-  max-width: 1000px;
-  margin: 0 auto;
 }
 
 .button-container {
   margin: 2rem auto;
   display: flex;
   justify-content: space-between;
-  max-width: 1000px;
 }
 
 .button-container a {
   text-decoration: none;
   color: white;
+}
+
+.cart-content-container {
+  padding: 0 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
 }

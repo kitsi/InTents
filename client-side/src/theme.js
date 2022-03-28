@@ -4,6 +4,9 @@ const theme = createTheme({
   typography: {
     h2: {
       fontSize: "3rem",
+      "@media (max-width:600px)": {
+        fontSize: "1.5rem",
+      },
     },
     h3: {
       fontSize: "1.5rem",

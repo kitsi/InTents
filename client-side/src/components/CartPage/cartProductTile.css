@@ -2,6 +2,8 @@
   display: flex;
   justify-content: space-between;
   margin-right: 0;
+  margin-top: auto;
+  flex-shrink: 0;
 }
 
 .qty-label {
@@ -25,7 +27,11 @@
   height: 35px;
 }
 
-@media screen and (min-width: 1000px) {
+.product-details {
+  flex-grow: 1;
+}
+
+@media screen and (min-width: 900px) {
   .cart-card {
     display: flex;
     flex-direction: row;
@@ -45,7 +51,7 @@
   }
 
   .cart-product-description {
-    white-space: wrap;
+    white-space: normal;
     overflow: visible;
     text-overflow: initial;
   }
