@@ -8,6 +8,8 @@ import CartProductTile from "./CartProductTile";
 import React from "react";
 import { Link } from "react-router-dom";
 
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+
 export default function CartPage() {
   const { cartItems } = useSelector((state) => state.cart);
 
@@ -17,21 +19,27 @@ export default function CartPage() {
 
   return (
     <div className="cart-page">
-      <Typography variant="h2">Cart</Typography>
-      <Divider />
-      <div className="cart-content-container">
-        <div className="button-container">
+      <div className="button-container">
+        <div className="buttons">
           <Link to={"/products"}>
-            <Button size="large" variant="contained" color="primary">
-              Continue Shopping
+            <Button
+              className="continue-shopping-mobile"
+              size="large"
+              variant="contained"
+              color="primary"
+            >
+              <ArrowBackIosNewIcon />
             </Button>
           </Link>
+          <Typography variant="h2">Cart</Typography>
           <Link to={"/checkout"}>
             <Button size="large" variant="contained" color="primary">
-              Proceed to Checkout
+              Checkout
             </Button>
           </Link>
         </div>
+      </div>
+      <div className="cart-content-container">
         <div className="cart-controls"></div>
         <div className="cart-product-tiles-container">{cartList}</div>
       </div>

@@ -58,7 +58,7 @@ function CartProductTile({ product }) {
       </CardContent>
       <CardActions className="card-actions">
         <div className="quantity-change">
-          <IconButton onClick={subtractOne}>
+          <IconButton onClick={subtractOne} disabled={product.quantity <= 1}>
             <RemoveIcon />
           </IconButton>
           <Typography className="qty-label">{product.quantity}</Typography>

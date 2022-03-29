@@ -3,12 +3,12 @@ h3 {
   text-align: center;
 }
 
-h2 {
+.products-page-header {
   font-weight: bold;
+  padding: 1rem 0;
 }
 
 #products-page {
-  margin-top: 1rem;
 }
 
 .product-tiles-container {
