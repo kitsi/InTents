@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
+import { Container, Grid } from "@mui/material";
 
 function AddressForm() {
   const [shippingInfo, setShippingInfo] = new useState({
@@ -24,66 +22,77 @@ function AddressForm() {
 
   return (
     <Container>
-      <Box
-        component="form"
-        noValidate
-        autoComplete="off"
-        sx={{
-          "& .MuiTextField-root": { m: 1 },
-        }}
-      >
-        <div>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={6}>
           <TextField
+            fullWidth
             label="First Name"
             name="firstName"
             onChange={(e) => handleChange(e)}
             value={shippingInfo.firstName}
           />
-          <TextField label="Last Name" value={shippingInfo.lastName} />
-        </div>
-        <Box
-          sx={{
-            maxWidth: "50%",
-          }}
-        >
+        </Grid>
+
+        <Grid item xs={12} md={6}>
           <TextField
-            label="Address"
             fullWidth
+            label="Last Name"
+            name="lastName"
+            onChange={(e) => handleChange(e)}
+            value={shippingInfo.lastName}
+          />
+        </Grid>
+
+        <Grid item xs={12} md={12}>
+          <TextField
+            fullWidth
+            label="Address"
+            name="addressLineOne"
             onChange={(e) => handleChange(e)}
             value={shippingInfo.addressLineOne}
           />
-        </Box>
+        </Grid>
 
-        <Box
-          sx={{
-            maxWidth: "50%",
-          }}
-        >
+        <Grid item xs={12} md={12}>
           <TextField
-            label="Address 2"
             fullWidth
+            label="Address 2"
+            name="addressLineTwo"
             value={shippingInfo.addressLineTwo}
             onChange={(e) => handleChange(e)}
           />
-        </Box>
-        <div>
+        </Grid>
+
+        <Grid item xs={4} md={4}>
           <TextField
+            fullWidth
             label="City"
+            name="city"
             value={shippingInfo.city}
             onChange={(e) => handleChange(e)}
           />
+        </Grid>
+
+        <Grid item xs={4} md={4}>
           <TextField
+            fullWidth
             label="State"
+            name="state"
             value={shippingInfo.state}
             onChange={(e) => handleChange(e)}
           />
+        </Grid>
+
+        <Grid item xs={4} md={4}>
           <TextField
+            fullWidth
             label="Zip Code"
+            name="zip"
             value={shippingInfo.zip}
             onChange={(e) => handleChange(e)}
           />
-        </div>
-      </Box>
+        </Grid>
+      </Grid>
     </Container>
   );
 }
