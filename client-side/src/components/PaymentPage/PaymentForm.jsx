@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import { Container, Grid } from "@mui/material";
 
 function PaymentForm() {
   const [paymentInfo, setPaymentInfo] = new useState({
@@ -19,46 +19,46 @@ function PaymentForm() {
   };
 
   return (
-    <div>
-      <Box
-        component="form"
-        sx={{
-          "& .MuiTextField-root": { m: 1 },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <div>
+    <Container>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={12}>
           <TextField
+            fullWidth
             label="Name On Card"
             name="nameOnCard"
             onChange={(e) => handleChange(e)}
             value={paymentInfo.nameOnCard}
           />
-        </div>
-        <div>
+        </Grid>
+
+        <Grid item xs={12} md={12}>
           <TextField
             label="Card Number"
             fullWidth
             onChange={(e) => handleChange(e)}
             value={paymentInfo.cardNumber}
           />
-        </div>
+        </Grid>
 
-        <div>
+        <Grid item xs={6} md={6}>
           <TextField
+            fullWidth
             label="Expiration"
             value={paymentInfo.expiration}
             onChange={(e) => handleChange(e)}
           />
+        </Grid>
+
+        <Grid item xs={6} md={6}>
           <TextField
+            fullWidth
             label="CVC"
             value={paymentInfo.cvc}
             onChange={(e) => handleChange(e)}
           />
-        </div>
-      </Box>
-    </div>
+        </Grid>
+      </Grid>
+    </Container>
   );
 }
 
