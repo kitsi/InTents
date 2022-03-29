@@ -6,6 +6,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PaymentForm from "./PaymentForm";
 import React from "react";
 import Typography from "@mui/material/Typography";
+import * as yup from "yup";
 
 function PaymentPage() {
   return (
