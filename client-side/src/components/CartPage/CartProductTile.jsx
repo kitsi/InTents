@@ -33,7 +33,7 @@ function CartProductTile({ product }) {
   };
 
   return (
-    <Card className="card">
+    <Card className="cart-card">
       <CardMedia
         component="img"
         height="200"
@@ -41,7 +41,7 @@ function CartProductTile({ product }) {
         alt={item.name}
         className="product-image"
       />
-      <CardContent>
+      <CardContent className="product-details">
         <Typography gutterBottom variant="h5" component="div">
           {item.name}
         </Typography>
@@ -51,14 +51,14 @@ function CartProductTile({ product }) {
         <Typography
           variant="body2"
           color="text.secondary"
-          className="product-description"
+          className="cart-product-description"
         >
           {item.description}
         </Typography>
       </CardContent>
       <CardActions className="card-actions">
         <div className="quantity-change">
-          <IconButton onClick={subtractOne}>
+          <IconButton onClick={subtractOne} disabled={product.quantity <= 1}>
             <RemoveIcon />
           </IconButton>
           <Typography className="qty-label">{product.quantity}</Typography>

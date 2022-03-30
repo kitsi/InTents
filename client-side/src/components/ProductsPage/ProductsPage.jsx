@@ -37,7 +37,7 @@ function ProductsPage() {
 
   return (
     <div id="products-page">
-      <Typography variant="h2">
+      <Typography variant="h2" className="products-page-header">
         {category ? headingFormatter(category) : "All Products"}
       </Typography>
       <Divider />

@@ -18,10 +18,12 @@ export default function ProductTile({ productData }) {
   const dispatch = useDispatch();
 
   function addToCart() {
-    dispatch(addProduct({
-      quantity: 1,
-      product: productData
-    }))
+    dispatch(
+      addProduct({
+        quantity: 1,
+        product: productData,
+      })
+    );
   }
 
   return (
@@ -33,7 +35,7 @@ export default function ProductTile({ productData }) {
         alt={productData.name}
         className="product-image"
       />
-      <CardContent>
+      <CardContent className="product-details">
         <Typography gutterBottom variant="h5" component="div">
           {productData.name}
         </Typography>
