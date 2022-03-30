@@ -4,17 +4,17 @@
   width: 100%;
   overflow: hidden;
   cursor: pointer;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
-.product-image {
+img.product-image {
   transition: all 0.15s;
   object-fit: contain;
-  transform: scale(1.1);
+  margin: auto;
 }
 
-.card:hover .product-image {
-  transform: scale(1.3);
+img.product-image:hover {
+  transform: scale(1.2);
 }
 
 .product-description {
@@ -23,6 +23,27 @@
   text-overflow: ellipsis;
 }
 
+.product-details {
+  z-index: 1;
+}
+
 .card-actions {
   justify-content: flex-end;
+}
+
+@media screen and (min-width: 900px) {
+  .card {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .card .product-image {
+    width: 200px;
+    object-fit: contain;
+    margin-left: 1rem;
+  }
+
+  .product-description {
+    white-space: normal;
+  }
 }
