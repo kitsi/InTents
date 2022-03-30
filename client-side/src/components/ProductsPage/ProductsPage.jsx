@@ -5,19 +5,19 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import ProductTile from "../common/ProductTile";
-import productsjson from "../../products.json";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "./productsSlice";
+import Loading from "../common/Loading";
 
 function ProductsPage() {
   // const [products, setProducts] = useState([]);
-  const { products } = useSelector((state) => state.products);
+  const { products, loading } = useSelector((state) => state.products);
 
   const { category } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProducts(productsjson));
+    dispatch(fetchProducts());
   }, [dispatch]);
 
   const productTiles = products.map((product) => {
@@ -42,13 +42,17 @@ function ProductsPage() {
       </Typography>
       <Divider />
 
-      {products.length === 0 ? (
-        <Typography variant="h3">
-          No Products Available. Please check back again!
-        </Typography>
-      ) : (
-        <div className="product-tiles-container">{productTiles}</div>
-      )}
+      <div className="product-tiles-container">
+        {loading ? (
+          <Loading />
+        ) : products.length === 0 ? (
+          <Typography variant="h3">
+            No Products Available. Please check back again!
+          </Typography>
+        ) : (
+          <>{productTiles}</>
+        )}
+      </div>
     </div>
   );
 }
