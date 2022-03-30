@@ -1,18 +1,9 @@
-import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
 import { Container, Grid } from "@mui/material";
+import React, { useState } from "react";
 
-function AddressForm() {
-  const [shippingInfo, setShippingInfo] = new useState({
-    firstName: "",
-    lastName: "",
-    addressLineOne: "",
-    addressLineTwo: "",
-    city: "",
-    state: "",
-    zip: "",
-  });
+import TextField from "@mui/material/TextField";
 
+function AddressForm({ shippingInfo, setShippingInfo }) {
   const handleChange = (e) => {
     setShippingInfo({
       ...shippingInfo,
