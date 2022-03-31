@@ -14,29 +14,6 @@ import PaymentForm from "./PaymentForm";
 import Typography from "@mui/material/Typography";
 
 function PaymentPage() {
-  const [shippingInfo, setShippingInfo] = new useState({
-    firstName: "",
-    lastName: "",
-    addressLineOne: "",
-    addressLineTwo: "",
-    city: "",
-    state: "",
-    zip: "",
-  });
-
-  const handleSubmit = () => {
-    console.log("submit");
-    // handle form submission
-    addressFormSchema.isValid(shippingInfo).then((valid) => {
-      // if valid == true post form to api lead to purchase complete page.
-      if (valid) {
-        console.log("Valid Address");
-      } else {
-        console.log("Invalid Address");
-      }
-    });
-  };
-
   return (
     <Box
       sx={{
@@ -54,12 +31,7 @@ function PaymentPage() {
             <Typography>1. Shipping Address</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            {
-              <AddressForm
-                shippingInfo={shippingInfo}
-                setShippingInfo={setShippingInfo}
-              />
-            }
+            <AddressForm />
           </AccordionDetails>
         </Accordion>
         <Accordion>
@@ -73,9 +45,7 @@ function PaymentPage() {
           <AccordionDetails>{<PaymentForm />}</AccordionDetails>
         </Accordion>
       </Box>
-      <Button variant="contained" onClick={() => handleSubmit()}>
-        Place an Order
-      </Button>
+      <Button variant="contained">Place an Order</Button>
     </Box>
   );
 }
