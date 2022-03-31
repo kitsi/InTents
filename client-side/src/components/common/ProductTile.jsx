@@ -13,6 +13,7 @@ import React from "react";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../CartPage/cartSlice";
+import { Link } from "react-router-dom";
 
 export default function ProductTile({ productData }) {
   const dispatch = useDispatch();
@@ -28,17 +29,21 @@ export default function ProductTile({ productData }) {
 
   return (
     <Card className="card">
-      <CardMedia
-        component="img"
-        height="200"
-        image={productData.image}
-        alt={productData.name}
-        className="product-image"
-      />
+      <Link to={`/product/${productData.sku}`}>
+        <CardMedia
+          component="img"
+          height="200"
+          image={productData.image}
+          alt={productData.name}
+          className="product-image"
+        />
+      </Link>
       <CardContent className="product-details">
-        <Typography gutterBottom variant="h5" component="div">
-          {productData.name}
-        </Typography>
+        <Link to={`/product/${productData.sku}`}>
+          <Typography gutterBottom variant="h5" component="div">
+            {productData.name}
+          </Typography>
+        </Link>
         <Typography variant="body1" color="text.secondary">
           ${productData.price}
         </Typography>
