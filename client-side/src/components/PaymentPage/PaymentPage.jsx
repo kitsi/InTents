@@ -6,7 +6,7 @@ import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AddressForm from "./AddressForm";
-import AddressFormSchema from "./AddressFormSchema";
+import addressFormSchema from "./AddressFormSchema";
 import { Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -27,16 +27,14 @@ function PaymentPage() {
   const handleSubmit = () => {
     console.log("submit");
     // handle form submission
-    AddressFormSchema()
-      .isValid(shippingInfo)
-      .then((valid) => {
-        // if valid == true post form to api lead to purchase complete page.
-        if (valid) {
-          console.log("Valid Address");
-        } else {
-          console.log("Invalid Address");
-        }
-      });
+    addressFormSchema.isValid(shippingInfo).then((valid) => {
+      // if valid == true post form to api lead to purchase complete page.
+      if (valid) {
+        console.log("Valid Address");
+      } else {
+        console.log("Invalid Address");
+      }
+    });
   };
 
   return (
