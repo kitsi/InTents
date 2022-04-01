@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 import React, { useState } from "react";
-
+import OrderSummary from "./OrderSummary/OrderSummary";
 import {
   Box,
   Accordion,
@@ -9,6 +9,8 @@ import {
   AccordionSummary,
   Button,
   Typography,
+  Paper,
+  Divider,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
@@ -21,10 +23,14 @@ function PaymentPage() {
     <Box
       sx={{
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
       }}
     >
-      <Box>
+      <Box
+        sx={{
+          width: "60vw",
+        }}
+      >
         <Accordion defaultExpanded={true}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Typography>1. Shipping Address</Typography>
@@ -40,7 +46,7 @@ function PaymentPage() {
           <AccordionDetails>{<PaymentForm />}</AccordionDetails>
         </Accordion>
       </Box>
-      <Button variant="contained">Place an Order</Button>
+      <OrderSummary />
     </Box>
   );
 }
