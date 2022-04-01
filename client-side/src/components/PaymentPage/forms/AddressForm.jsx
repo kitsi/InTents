@@ -118,37 +118,40 @@ function form(props) {
   );
 }
 
-const AddressForm = withFormik({
-  mapPropsToValues: ({
-    firstName,
-    lastName,
-    addressLineOne,
-    addressLineTwo,
-    city,
-    state,
-    zip,
-  }) => {
-    return {
-      firstName: firstName || "",
-      lastName: lastName || "",
-      addressLineOne: addressLineOne || "",
-      addressLineTwo: addressLineTwo || "",
-      city: city || "",
-      state: state || "",
-      zip: zip || "",
-    };
-  },
+const AddressForm = (props) => {
+  const { setPaymentDisabled } = props;
 
-  validationSchema: addressFormSchema,
+  const MyFormWithFormik = withFormik({
+    mapPropsToValues: ({
+      firstName,
+      lastName,
+      addressLineOne,
+      addressLineTwo,
+      city,
+      state,
+      zip,
+    }) => {
+      return {
+        firstName: firstName || "",
+        lastName: lastName || "",
+        addressLineOne: addressLineOne || "",
+        addressLineTwo: addressLineTwo || "",
+        city: city || "",
+        state: state || "",
+        zip: zip || "",
+      };
+    },
 
-  handleSubmit: (values, { setSubmitting }) => {
-    // execute async function to send to backend
-    setTimeout(() => {
-      // submit to the server
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 1000);
-  },
-})(form);
+    validationSchema: addressFormSchema,
+
+    handleSubmit: (values, { setSubmitting }) => {
+      // execute async function to send to backend
+      setPaymentDisabled(false);
+      console.log(values);
+    },
+  })(form);
+
+  return <MyFormWithFormik />;
+};
 
 export default AddressForm;

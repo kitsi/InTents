@@ -16,6 +16,7 @@ import AddressForm from "./forms/AddressForm";
 import PaymentForm from "./forms/PaymentForm";
 
 function PaymentPage() {
+  const [paymentDisabled, setPaymentDisabled] = useState(true);
   return (
     <Box
       sx={{
@@ -25,23 +26,15 @@ function PaymentPage() {
     >
       <Box>
         <Accordion defaultExpanded={true}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
-          >
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Typography>1. Shipping Address</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <AddressForm />
+            <AddressForm setPaymentDisabled={setPaymentDisabled} />
           </AccordionDetails>
         </Accordion>
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
-          >
+        <Accordion disabled={paymentDisabled}>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Typography>2. Payment Information</Typography>
           </AccordionSummary>
           <AccordionDetails>{<PaymentForm />}</AccordionDetails>
