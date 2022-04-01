@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-import TextField from "@mui/material/TextField";
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, TextField } from "@mui/material";
 
 function PaymentForm() {
   const [paymentInfo, setPaymentInfo] = new useState({

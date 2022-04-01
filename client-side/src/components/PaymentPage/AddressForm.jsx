@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Container, Grid, TextField, Button } from "@mui/material";
 import addressFormSchema from "./AddressFormSchema";
 import { withFormik } from "formik";
-import * as yup from "yup";
 
 function form(props) {
   const {
@@ -18,7 +17,7 @@ function form(props) {
 
   return (
     <Container>
-      <form>
+      <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <TextField
@@ -112,7 +111,7 @@ function form(props) {
           </Grid>
         </Grid>
         <Button type="submit" color="primary" disabled={isSubmitting}>
-          SUBMIT
+          Continue
         </Button>
       </form>
     </Container>

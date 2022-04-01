@@ -2,16 +2,18 @@ import * as yup from "yup";
 
 import React, { useState } from "react";
 
-import Accordion from "@mui/material/Accordion";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AddressForm from "./AddressForm";
-import addressFormSchema from "./AddressFormSchema";
-import { Box } from "@mui/material";
-import Button from "@mui/material/Button";
+import {
+  Box,
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Button,
+  Typography,
+} from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
+import AddressForm from "./AddressForm";
 import PaymentForm from "./PaymentForm";
-import Typography from "@mui/material/Typography";
 
 function PaymentPage() {
   return (
