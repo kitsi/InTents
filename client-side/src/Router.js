@@ -11,7 +11,7 @@ function Router() {
       <Route path="/cart" element={<CartPage />} />
       <Route path="/products" element={<ProductsPage />} />
       <Route path="/products/categories/:category" element={<ProductsPage />} />
-      <Route path="/payment" element={<PaymentPage />} />
+      <Route path="/checkout" element={<PaymentPage />} />
     </Routes>
   );
 }

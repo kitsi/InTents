@@ -1,6 +1,16 @@
 import React from "react";
+
 import { Box, Paper, Typography, Button, Divider } from "@mui/material";
+import SummaryProductTile from "./SummaryProductTile";
+import { useSelector } from "react-redux";
+
 function OrderSummary() {
+  const { cartItems } = useSelector((state) => state.cart);
+
+  const cartList = cartItems.map((item) => {
+    return <SummaryProductTile key={item.product.id} product={item} />;
+  });
+
   return (
     <Box
       sx={{
@@ -21,7 +31,7 @@ function OrderSummary() {
       >
         <Typography>Order Summary</Typography>
         <Divider />
-        <p>cart items</p>
+        {cartList}
         <Divider />
 
         <Typography>Subtotal: </Typography>
