@@ -29,6 +29,7 @@ function PaymentPage() {
       <Box
         sx={{
           width: "60vw",
+          margin: "1rem",
         }}
       >
         <Accordion defaultExpanded={true}>
