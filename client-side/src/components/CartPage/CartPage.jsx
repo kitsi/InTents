@@ -1,6 +1,6 @@
 import "./cartPage.css";
 
-import { Divider, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { Button } from "@mui/material";
 
@@ -16,6 +16,14 @@ export default function CartPage() {
   const cartList = cartItems.map((item) => {
     return <CartProductTile key={item.product.id} product={item} />;
   });
+
+  function getSubtotal() {
+    let total = 0;
+    for (let i = 0; i < cartItems.length; i++) {
+      total += cartItems[i].product.price * cartItems[i].quantity;
+    }
+    return total;
+  }
 
   return (
     <div className="cart-page">
@@ -38,6 +46,9 @@ export default function CartPage() {
             </Button>
           </Link>
         </div>
+        <p className="subtotal">
+          <strong>Subtotal:</strong> ${getSubtotal().toFixed(2)}
+        </p>
       </div>
       <div className="cart-content-container">
         <div className="cart-controls"></div>

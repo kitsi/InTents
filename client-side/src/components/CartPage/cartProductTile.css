@@ -31,6 +31,16 @@
   flex-grow: 1;
 }
 
+.cart-card {
+  position: relative;
+}
+
+.card-total {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+}
+
 @media screen and (min-width: 900px) {
   .cart-card {
     display: flex;
