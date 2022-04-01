@@ -1,0 +1,29 @@
+.product-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.product-image {
+  width: 50%;
+}
+
+.product-details-img {
+  width: 50%;
+  justify-content: center;
+}
+
+@media screen and (min-width: 900px) {
+  .product-details {
+    flex-direction: row;
+  }
+}

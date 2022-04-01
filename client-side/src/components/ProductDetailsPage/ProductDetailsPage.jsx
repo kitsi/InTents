@@ -4,6 +4,8 @@ import axios from "axios";
 import Loading from "../common/Loading";
 import ProductDetails from "../ProductDetails/ProductDetails";
 
+import "./ProductDetailsPage.css";
+
 function ProductDetailsPage() {
   const { sku } = useParams();
 
@@ -18,7 +20,6 @@ function ProductDetailsPage() {
       .catch((err) => setError(err));
     setLoading(false);
     setProduct(data[0]);
-    console.log(data);
   }
 
   useEffect(() => {
@@ -27,7 +28,9 @@ function ProductDetailsPage() {
 
   return (
     <div className="product-details-page">
-      {loading ? <Loading /> : <ProductDetails product={product} />}
+      <div className="product-details-wrapper">
+        {loading ? <Loading /> : <ProductDetails product={product} />}
+      </div>
     </div>
   );
 }
