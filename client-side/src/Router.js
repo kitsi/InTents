@@ -4,6 +4,7 @@ import CartPage from "./components/CartPage/CartPage";
 import ProductsPage from "./components/ProductsPage/ProductsPage";
 import PaymentPage from "./components/PaymentPage/PaymentPage";
 import React from "react";
+import ProductDetailsPage from "./components/ProductDetailsPage/ProductDetailsPage";
 
 function Router() {
   return (
@@ -12,6 +13,7 @@ function Router() {
       <Route path="/products" element={<ProductsPage />} />
       <Route path="/products/categories/:category" element={<ProductsPage />} />
       <Route path="/checkout" element={<PaymentPage />} />
+      <Route path="/product/:id" exact element={<ProductDetailsPage />} />
     </Routes>
   );
 }

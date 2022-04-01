@@ -34,6 +34,9 @@ function CartProductTile({ product }) {
 
   return (
     <Card className="cart-card">
+      <p className="card-total">
+        ${(item.price * product.quantity).toFixed(2)}
+      </p>
       <CardMedia
         component="img"
         height="200"
