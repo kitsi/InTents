@@ -1,15 +1,10 @@
 import * as yup from "yup";
 
-function PaymentFormSchema() {
-  const schema = yup.object().shape({
-    firstName: yup.string().required("First name is required"),
-    lastName: yup.string().required("Last name is required"),
-    cardNumber: yup.string().max(16).required("Card number is required"),
-    expirationCheck: yup.string().required("Expiration is required"),
-    cvcCheck: yup.string().required("CVC is required"),
-  });
-
-  return schema;
-}
+const PaymentFormSchema = yup.object().shape({
+  nameOnCard: yup.string().required("Name on card is required"),
+  cardNumber: yup.string().max(16).required("Card number is required"),
+  expiration: yup.string().required("Card expiration is required"),
+  cvc: yup.string().required("CVC is required"),
+});
 
 export default PaymentFormSchema;
