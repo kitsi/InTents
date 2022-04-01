@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Grid, TextField, Button } from "@mui/material";
-import addressFormSchema from "./AddressFormSchema";
+import addressFormSchema from "../validations/AddressFormSchema";
 import { withFormik } from "formik";
 
 function form(props) {

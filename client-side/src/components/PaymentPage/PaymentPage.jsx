@@ -12,8 +12,8 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import AddressForm from "./AddressForm";
-import PaymentForm from "./PaymentForm";
+import AddressForm from "./forms/AddressForm";
+import PaymentForm from "./forms/PaymentForm";
 
 function PaymentPage() {
   return (
