@@ -8,30 +8,50 @@ import {
   Paper,
 } from "@mui/material";
 import React, { useState } from "react";
-
-import "./ProductDetails.css";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../CartPage/cartSlice";
 
 function ProductDetails({ product }) {
   const [qtyValue, setQtyValue] = useState(1);
+  const dispatch = useDispatch();
 
   const changeQty = (event) => {
     setQtyValue(event.target.value);
   };
 
+  function addToCart() {
+    dispatch(
+      addProduct({
+        quantity: qtyValue,
+        product: product,
+      })
+    );
+  }
+
+  const headingFormatter = (heading) => {
+    return heading.substring(0, 1).toUpperCase() + heading.substring(1);
+  };
+
   return (
     <div className="product-details-page-wrapper">
       <div className="product-header">
-        <Typography className="product-name-left" variant="h3">
-          {product.name}
-        </Typography>
         <Box className="image-wrapper">
-          <Box component="img" src={product.image} className="product-image" />
+          <Box
+            component="img"
+            src={product.image}
+            className="product-details-image"
+          />
         </Box>
       </div>
       <Box className="details-wrapper">
-        <Typography className="product-name-right" variant="h3">
-          {product.name}
-        </Typography>
+        <div>
+          <Typography className="product-name-right" variant="h3">
+            {product.name}
+          </Typography>
+          <Typography className="category">
+            {product.category && headingFormatter(product.category)}
+          </Typography>
+        </div>
         <Box className="details">
           <Box className="price-and-sku">
             <Typography>${product.price}</Typography>
@@ -52,7 +72,12 @@ function ProductDetails({ product }) {
                 <MenuItem value={10}>10</MenuItem>
               </Select>
             </FormControl>
-            <Button size="large" variant="contained" color="primary">
+            <Button
+              size="large"
+              variant="contained"
+              color="primary"
+              onClick={addToCart}
+            >
               Add to cart
             </Button>
           </Box>
