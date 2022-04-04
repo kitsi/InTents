@@ -17,6 +17,7 @@ function ProductsPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (products.length > 0) return;
     dispatch(fetchProducts());
   }, [dispatch]);
 

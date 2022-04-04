@@ -1,3 +1,8 @@
+.product-details-page-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .product-details {
   display: flex;
   flex-direction: column;
@@ -23,7 +28,11 @@
 }
 
 @media screen and (min-width: 900px) {
-  .product-details {
+  .product-details-page-wrapper {
     flex-direction: row;
+  }
+
+  .product-header {
+    width: 50%;
   }
 }
