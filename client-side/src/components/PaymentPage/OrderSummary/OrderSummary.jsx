@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Box, Paper, Typography, Button, Divider } from "@mui/material";
 import SummaryProductTile from "./SummaryProductTile";
@@ -10,6 +10,15 @@ function OrderSummary() {
   const cartList = cartItems.map((item) => {
     return <SummaryProductTile key={item.product.id} product={item} />;
   });
+  const [subTotalPrice, setSubTotalPrice] = useState(0);
+  useEffect(() => {
+    let price = 0;
+    cartItems.forEach((item) => {
+      console.log(item);
+      price += item.quantity * item.product.price;
+    });
+    setSubTotalPrice(price);
+  }, [cartItems, subTotalPrice, setSubTotalPrice]);
 
   return (
     <Box
@@ -34,12 +43,14 @@ function OrderSummary() {
         {cartList}
         <Divider />
 
-        <Typography>Subtotal: </Typography>
+        <Typography>Subtotal: ${subTotalPrice.toFixed(2)}</Typography>
         <Typography>Shipping: FREE</Typography>
-        <Typography>Tax: </Typography>
+        <Typography>Tax: ${(0.08 * subTotalPrice).toFixed(2)}</Typography>
 
         <Divider />
-        <Typography>Total: </Typography>
+        <Typography>
+          Total: ${(subTotalPrice + 0.08 * subTotalPrice).toFixed(2)}
+        </Typography>
       </Paper>
       <Button variant="contained">Place an Order</Button>
     </Box>

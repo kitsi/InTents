@@ -13,6 +13,7 @@ function SummaryProductTile({ product }) {
         marginBottom: "1rem",
       }}
     >
+      <Typography>{product.quantity}</Typography>
       <CardMedia
         component="img"
         image={item.image}
