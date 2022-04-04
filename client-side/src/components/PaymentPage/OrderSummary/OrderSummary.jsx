@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { Box, Button, Divider, Paper, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 
-import { Box, Paper, Typography, Button, Divider } from "@mui/material";
 import SummaryProductTile from "./SummaryProductTile";
 import { useSelector } from "react-redux";
 
@@ -11,13 +11,15 @@ function OrderSummary() {
     return <SummaryProductTile key={item.product.id} product={item} />;
   });
   const [subTotalPrice, setSubTotalPrice] = useState(0);
+  const [tax, setTax] = useState(0);
+
   useEffect(() => {
     let price = 0;
     cartItems.forEach((item) => {
-      console.log(item);
       price += item.quantity * item.product.price;
     });
     setSubTotalPrice(price);
+    setTax(0.08 * subTotalPrice);
   }, [cartItems, subTotalPrice, setSubTotalPrice]);
 
   return (
@@ -45,12 +47,10 @@ function OrderSummary() {
 
         <Typography>Subtotal: ${subTotalPrice.toFixed(2)}</Typography>
         <Typography>Shipping: FREE</Typography>
-        <Typography>Tax: ${(0.08 * subTotalPrice).toFixed(2)}</Typography>
+        <Typography>Tax: ${tax.toFixed(2)}</Typography>
 
         <Divider />
-        <Typography>
-          Total: ${(subTotalPrice + 0.08 * subTotalPrice).toFixed(2)}
-        </Typography>
+        <Typography>Total: ${(subTotalPrice + tax).toFixed(2)}</Typography>
       </Paper>
       <Button variant="contained">Place an Order</Button>
     </Box>

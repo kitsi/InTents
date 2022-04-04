@@ -1,5 +1,6 @@
+import { Button, Container, Grid, TextField } from "@mui/material";
 import React, { useState } from "react";
-import { Container, Grid, TextField, Button } from "@mui/material";
+
 import addressFormSchema from "../validations/AddressFormSchema";
 import { withFormik } from "formik";
 
@@ -17,7 +18,12 @@ function form(props) {
 
   return (
     <Container>
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit();
+        }}
+      >
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <TextField
@@ -147,6 +153,7 @@ const AddressForm = (props) => {
     handleSubmit: (values, { setSubmitting }) => {
       // execute async function to send to backend
       setPaymentDisabled(false);
+
       console.log(values);
     },
   })(form);

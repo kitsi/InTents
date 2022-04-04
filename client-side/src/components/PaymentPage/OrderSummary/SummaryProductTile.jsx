@@ -8,7 +8,7 @@ function SummaryProductTile({ product }) {
     <Card
       sx={{
         display: "flex",
-        flexDirection: "row ",
+        flexDirection: "row",
         height: "100px",
         marginBottom: "1rem",
       }}
