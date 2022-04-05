@@ -17,8 +17,9 @@ function ProductsPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (products.length > 0) return;
     dispatch(fetchProducts());
-  }, [dispatch]);
+  }, [dispatch, products]);
 
   const productTiles = products.map((product) => {
     return <ProductTile key={product.id} productData={product} />;
