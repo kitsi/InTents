@@ -1,0 +1,14 @@
+.admin-product-tiles-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  margin-top: 2rem;
+}
+
+.admin-page-header {
+  padding: 1rem 0;
+}
