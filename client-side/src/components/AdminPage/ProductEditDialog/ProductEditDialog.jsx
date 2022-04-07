@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   Dialog,
@@ -17,9 +17,22 @@ export default function ProductEditDialog({ isOpen, toggleModal, product }) {
     sku: "",
   });
 
+  const setFormDataToProductData = () => {
+    setFormState({
+      name: product.name,
+      sku: product.sku,
+    });
+  }
+
   const changeValue = (event) => {
     setFormState({ ...formState, [event.target.name]: event.target.value });
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      setFormDataToProductData();
+    }
+  }, [isOpen]);
 
   return (
     <Dialog maxWidth="lg" fullWidth open={isOpen} onClose={toggleModal}>
