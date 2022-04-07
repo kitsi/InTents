@@ -25,7 +25,7 @@ function OrderSummary() {
   return (
     <Box
       sx={{
-        width: "60vw",
+        minWidth: "60vw",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
