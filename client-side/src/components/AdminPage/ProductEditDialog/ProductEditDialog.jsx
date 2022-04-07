@@ -20,7 +20,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product }) {
   };
 
   return (
-    <Dialog maxWidth="xl" open={isOpen} onClose={toggleModal}>
+    <Dialog maxWidth="lg" fullWidth open={isOpen} onClose={toggleModal}>
       <DialogTitle>Edit Product</DialogTitle>
       <DialogContent>
         <Grid container>
