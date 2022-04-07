@@ -9,22 +9,7 @@ import {
   TextField,
 } from "@mui/material";
 
-const labelContainerStyles = {
-  display: "flex",
-  alignItems: "center",
-};
-const labelStyles = {
-  width: "100%",
-  textAlign: {
-    xs: "left",
-    md: "right",
-  },
-  paddingRight: "1rem",
-  marginBottom: "1.5rem",
-};
-const textBoxStyles = {
-  marginBottom: "1.5rem",
-};
+import * as styles from "./ProductEditDialogStyles";
 
 export default function ProductEditDialog({ isOpen, toggleModal, product }) {
   const [formState, setFormState] = useState({
@@ -41,8 +26,8 @@ export default function ProductEditDialog({ isOpen, toggleModal, product }) {
       <DialogTitle>Edit Product</DialogTitle>
       <DialogContent>
         <Grid container>
-          <Grid item xs={12} md={1} sx={labelContainerStyles}>
-            <Typography sx={labelStyles}>Name</Typography>
+          <Grid item xs={12} md={1} sx={styles.labelContainerStyles}>
+            <Typography sx={styles.labelStyles}>Name</Typography>
           </Grid>
           <Grid item xs={12} md={5}>
             <TextField
@@ -51,11 +36,11 @@ export default function ProductEditDialog({ isOpen, toggleModal, product }) {
               value={formState.name}
               onChange={changeValue}
               fullWidth
-              sx={textBoxStyles}
+              sx={styles.textBoxStyles}
             />
           </Grid>
-          <Grid item xs={12} md={1} sx={labelContainerStyles}>
-            <Typography sx={labelStyles}>SKU</Typography>
+          <Grid item xs={12} md={1} sx={styles.labelContainerStyles}>
+            <Typography sx={styles.labelStyles}>SKU</Typography>
           </Grid>
           <Grid item xs={12} md={5}>
             <TextField
@@ -64,7 +49,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product }) {
               value={formState.sku}
               onChange={changeValue}
               fullWidth
-              sx={textBoxStyles}
+              sx={styles.textBoxStyles}
             />
           </Grid>
         </Grid>
