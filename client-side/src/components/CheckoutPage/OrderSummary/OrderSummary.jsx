@@ -52,7 +52,6 @@ function OrderSummary() {
         <Divider />
         <Typography>Total: ${(subTotalPrice + tax).toFixed(2)}</Typography>
       </Paper>
-      <Button variant="contained">Place an Order</Button>
     </Box>
   );
 }

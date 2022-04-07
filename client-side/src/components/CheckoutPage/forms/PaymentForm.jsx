@@ -35,7 +35,6 @@ const PaymentForm = (props) => {
     handleChange,
     handleBlur,
     handleSubmit,
-    handleReset,
   } = formik;
 
   return (
@@ -94,8 +93,17 @@ const PaymentForm = (props) => {
             />
           </Grid>
         </Grid>
-        <Button type="submit" color="primary" disabled={isSubmitting}>
-          Continue
+
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          disabled={isSubmitting}
+          sx={{
+            marginTop: "1rem",
+          }}
+        >
+          Place Order
         </Button>
       </form>
     </Container>

@@ -6,7 +6,7 @@ import addressFormSchema from "../validations/AddressFormSchema";
 import { useFormik } from "formik";
 
 const AddressForm = (props) => {
-  const { setPaymentDisabled } = props;
+  const { openPaymentAccordion } = props;
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -24,7 +24,7 @@ const AddressForm = (props) => {
 
     onSubmit: (values) => {
       // execute async function to send to backend
-      setPaymentDisabled(false);
+      openPaymentAccordion();
       dispatch(setAddressForm(values));
     },
   });
@@ -135,7 +135,7 @@ const AddressForm = (props) => {
           </Grid>
         </Grid>
         <Button type="submit" color="primary" disabled={isSubmitting}>
-          Continue
+          Next
         </Button>
       </form>
     </Container>
