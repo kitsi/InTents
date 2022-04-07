@@ -9,7 +9,7 @@ export const label = {
     xs: "left",
     md: "right",
   },
-  paddingRight: "1rem",
+  paddingRight: "0.25rem",
   marginBottom: {
     xs: 0,
     md: "1.5rem",
