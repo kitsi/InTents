@@ -1,11 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { Container, Grid, TextField, Button } from "@mui/material";
-import { useSelector } from "react-redux";
-import paymentFormSchema from "../validations/PaymentFormSchema";
-import { withFormik } from "formik";
+import { useDispatch } from "react-redux";
+import { setPaymentForm } from "../checkoutSlice";
 
-function form(props) {
+import paymentFormSchema from "../validations/PaymentFormSchema";
+import { useFormik } from "formik";
+
+const PaymentForm = (props) => {
+  const dispatch = useDispatch();
+
+  const formik = useFormik({
+    initialValues: {
+      nameOnCard: "",
+      cardNumber: "",
+      expiration: "",
+      cvc: "",
+    },
+
+    validationSchema: paymentFormSchema,
+
+    onSubmit: (values) => {
+      // execute async function to send to backend
+      // setPaymentDisabled(false);
+      dispatch(setPaymentForm(values));
+    },
+  });
+
   const {
     values,
     touched,
@@ -15,7 +36,7 @@ function form(props) {
     handleBlur,
     handleSubmit,
     handleReset,
-  } = props;
+  } = formik;
 
   return (
     <Container>
@@ -79,47 +100,6 @@ function form(props) {
       </form>
     </Container>
   );
-}
-
-// function PaymentForm() {
-//   const [paymentInfo, setPaymentInfo] = new useState({
-//     nameOnCard: "",
-//     cardNumber: "",
-//     expiration: "",
-//     cvc: "",
-//   });
-
-//   const handleChange = (e) => {
-//     setPaymentInfo({
-//       ...paymentInfo,
-//       [e.target.name]: e.target.value,
-//     });
-//   };
-// }
-
-const PaymentForm = (props) => {
-  // const { setPaymentDisabled } = props;
-
-  const MyFormWithFormik = withFormik({
-    mapPropsToValues: ({ nameOnCard, cardNumber, expiration, cvc }) => {
-      return {
-        nameOnCard: nameOnCard || "",
-        cardNumber: cardNumber || "",
-        expiration: expiration || "",
-        cvc: cvc || "",
-      };
-    },
-
-    validationSchema: paymentFormSchema,
-
-    handleSubmit: (values, { setSubmitting }) => {
-      // execute async function to send to backend
-      // setPaymentDisabled(false);
-      console.log(values);
-    },
-  })(form);
-
-  return <MyFormWithFormik />;
 };
 
 export default PaymentForm;

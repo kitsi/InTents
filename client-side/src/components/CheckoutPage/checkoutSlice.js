@@ -30,9 +30,13 @@ export const checkoutSlice = createSlice({
       const { payload } = action;
       state.formData.addressFormData = payload;
     },
+    setPaymentForm: (state, action) => {
+      const { payload } = action;
+      state.formData.paymentFormData = payload;
+    },
   },
 });
 
-export const { setAddressForm } = checkoutSlice.actions;
+export const { setAddressForm, setPaymentForm } = checkoutSlice.actions;
 
 export default checkoutSlice.reducer;
