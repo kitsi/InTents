@@ -7,6 +7,7 @@ import {
   Grid,
   Typography,
   TextField,
+  Button,
 } from "@mui/material";
 
 import * as styles from "./ProductEditDialogStyles";
@@ -36,9 +37,10 @@ export default function ProductEditDialog({ isOpen, toggleModal, product }) {
 
   return (
     <Dialog maxWidth="lg" fullWidth open={isOpen} onClose={toggleModal}>
-      <DialogTitle>Edit Product</DialogTitle>
+      <DialogTitle>Edit {product ? product.name : ""}</DialogTitle>
       <DialogContent>
         <Grid container>
+
           <Grid item xs={12} md={1} sx={styles.labelContainerStyles}>
             <Typography sx={styles.labelStyles}>Name</Typography>
           </Grid>
@@ -52,6 +54,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product }) {
               sx={styles.textBoxStyles}
             />
           </Grid>
+
           <Grid item xs={12} md={1} sx={styles.labelContainerStyles}>
             <Typography sx={styles.labelStyles}>SKU</Typography>
           </Grid>
@@ -64,6 +67,11 @@ export default function ProductEditDialog({ isOpen, toggleModal, product }) {
               fullWidth
               sx={styles.textBoxStyles}
             />
+          </Grid>
+
+          <Grid item xs={12} sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button sx={{ marginX: "0.5rem" }} variant="contained" size="large" color="error" onClick={setFormDataToProductData}>Reset</Button>
+            <Button sx={{ marginX: "0.5rem" }} variant="contained" size="large">Save</Button>
           </Grid>
         </Grid>
       </DialogContent>
