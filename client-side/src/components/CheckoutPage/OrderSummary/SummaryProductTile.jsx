@@ -13,7 +13,26 @@ function SummaryProductTile({ product }) {
         marginBottom: "1rem",
       }}
     >
-      <Typography>{product.quantity}</Typography>
+      <Typography
+        sx={{
+          position: "relative",
+          top: 5,
+          left: "1rem",
+          transform: "translateX(-50%)",
+          fontSize: "0.75rem",
+          backgroundColor: "#2F2F2F",
+          color: "#fff",
+          minWidth: "20px",
+          padding: "0 6px",
+          height: "20px",
+          borderRadius: "10px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        {product.quantity}
+      </Typography>
       <CardMedia
         component="img"
         image={item.image}
