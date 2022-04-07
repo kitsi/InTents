@@ -61,7 +61,7 @@ function SummaryProductTile({ product }) {
           {item.name}
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          ${item.price}
+          ${item.price * product.quantity}
         </Typography>
       </CardContent>
     </Card>
