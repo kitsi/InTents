@@ -10,7 +10,10 @@ export const labelStyles = {
     md: "right",
   },
   paddingRight: "1rem",
-  marginBottom: "1.5rem",
+  marginBottom: {
+    xs: 0,
+    md: "1.5rem",
+  },
 };
 
 export const textBoxStyles = {
