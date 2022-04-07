@@ -52,7 +52,13 @@ export default function CartPage() {
       </div>
       <div className="cart-content-container">
         <div className="cart-controls"></div>
-        <div className="cart-product-tiles-container">{cartList}</div>
+        <div className="cart-product-tiles-container">
+          {cartItems.length > 0 ? (
+            cartList
+          ) : (
+            <Typography variant="h3">No items in your cart</Typography>
+          )}
+        </div>
       </div>
     </div>
   );

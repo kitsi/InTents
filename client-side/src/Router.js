@@ -14,6 +14,7 @@ function Router() {
       <Route path="/products/categories/:category" element={<ProductsPage />} />
       <Route path="/checkout" element={<CheckoutPage />} />
       <Route path="/product/:id" exact element={<ProductDetailsPage />} />
+      <Route path="/product/:sku" exact element={<ProductDetailsPage />} />
     </Routes>
   );
 }
