@@ -37,6 +37,13 @@ function CheckoutPage() {
 
   const isDesktop = useMediaQuery("(min-width:900px)");
 
+  const styles = {
+    largeIcon: {
+      width: "2.5rem",
+      height: "2.5rem",
+    },
+  };
+
   return (
     <>
       {/* Desktop View */}
@@ -57,7 +64,9 @@ function CheckoutPage() {
               expanded={expandedAddress}
               onChange={handleAccordionChange("address")}
             >
-              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon style={styles.largeIcon} />}
+              >
                 <Typography>1. Shipping Address</Typography>
               </AccordionSummary>
               <AccordionDetails>
@@ -65,11 +74,14 @@ function CheckoutPage() {
               </AccordionDetails>
             </Accordion>
             <Accordion
+              defaultExpanded={false}
               expanded={expandedPayment}
               onChange={handleAccordionChange("payment")}
               disabled={paymentDisabled}
             >
-              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon style={styles.largeIcon} />}
+              >
                 <Typography>2. Payment Information</Typography>
               </AccordionSummary>
               <AccordionDetails>

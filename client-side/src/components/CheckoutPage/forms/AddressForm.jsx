@@ -29,15 +29,8 @@ const AddressForm = (props) => {
     },
   });
 
-  const {
-    values,
-    touched,
-    errors,
-    isSubmitting,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-  } = formik;
+  const { values, touched, errors, handleChange, handleBlur, handleSubmit } =
+    formik;
 
   return (
     <Container>
