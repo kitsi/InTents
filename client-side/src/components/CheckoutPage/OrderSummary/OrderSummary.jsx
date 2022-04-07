@@ -25,7 +25,7 @@ function OrderSummary() {
   return (
     <Box
       sx={{
-        minWidth: "60vw",
+        minWidth: "40vw",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -44,13 +44,22 @@ function OrderSummary() {
         <Divider />
         {cartList}
         <Divider />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            height: "150px",
+            marginTop: "1rem",
+          }}
+        >
+          <Typography>Subtotal: ${subTotalPrice.toFixed(2)}</Typography>
+          <Typography>Shipping: FREE</Typography>
+          <Typography>Tax: ${tax.toFixed(2)}</Typography>
 
-        <Typography>Subtotal: ${subTotalPrice.toFixed(2)}</Typography>
-        <Typography>Shipping: FREE</Typography>
-        <Typography>Tax: ${tax.toFixed(2)}</Typography>
-
-        <Divider />
-        <Typography>Total: ${(subTotalPrice + tax).toFixed(2)}</Typography>
+          <Divider />
+          <Typography>Total: ${(subTotalPrice + tax).toFixed(2)}</Typography>
+        </Box>
       </Paper>
     </Box>
   );

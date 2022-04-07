@@ -35,7 +35,7 @@ function CheckoutPage() {
     setExpandedAddress(false);
   };
 
-  const isDesktop = useMediaQuery("(min-width:600px)");
+  const isDesktop = useMediaQuery("(min-width:900px)");
 
   return (
     <>
@@ -49,7 +49,7 @@ function CheckoutPage() {
         >
           <Box
             sx={{
-              width: "60vw",
+              width: "70vw",
               margin: "1rem",
             }}
           >
