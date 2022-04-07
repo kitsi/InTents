@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Container, Grid, TextField, Button } from "@mui/material";
+import { Container, Grid, TextField, Button, Box } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { setPaymentForm } from "../checkoutSlice";
 
@@ -93,18 +93,24 @@ const PaymentForm = (props) => {
             />
           </Grid>
         </Grid>
-
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          disabled={isSubmitting}
+        <Box
           sx={{
-            marginTop: "1rem",
+            display: "flex",
+            justifyContent: "flex-end",
           }}
         >
-          Place Order
-        </Button>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            disabled={isSubmitting}
+            sx={{
+              marginTop: "1rem",
+            }}
+          >
+            Place Order
+          </Button>
+        </Box>
       </form>
     </Container>
   );

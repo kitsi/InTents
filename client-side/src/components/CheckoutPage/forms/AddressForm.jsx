@@ -1,5 +1,5 @@
-import { Button, Container, Grid, TextField } from "@mui/material";
-import React from "react";
+import { Button, Container, Grid, TextField, Box } from "@mui/material";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setAddressForm } from "../checkoutSlice";
 import addressFormSchema from "../validations/AddressFormSchema";
@@ -8,7 +8,7 @@ import { useFormik } from "formik";
 const AddressForm = (props) => {
   const { openPaymentAccordion } = props;
   const dispatch = useDispatch();
-
+  const [buttonText, setButtonText] = useState("Next");
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -134,9 +134,27 @@ const AddressForm = (props) => {
             />
           </Grid>
         </Grid>
-        <Button type="submit" color="primary" disabled={isSubmitting}>
-          Next
-        </Button>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+          }}
+        >
+          <Button
+            type="submit"
+            size="large"
+            color="primary"
+            variant="contained"
+            sx={{
+              marginTop: "1rem",
+            }}
+            onClick={() => {
+              setButtonText("Update");
+            }}
+          >
+            {buttonText}
+          </Button>
+        </Box>
       </form>
     </Container>
   );
