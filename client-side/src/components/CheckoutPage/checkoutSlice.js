@@ -1,11 +1,22 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import axios from "axios";
-
 const initialState = {
   formData: {
-    addressFormData: {},
-    paymentFormData: {},
+    addressFormData: {
+      firstName: "",
+      lastName: "",
+      addressLineOne: "",
+      addressLineTwo: "",
+      city: "",
+      state: "",
+      zip: "",
+    },
+    paymentFormData: {
+      nameOnCard: "",
+      cardNumber: "",
+      expiration: "",
+      cvc: "",
+    },
   },
   loading: true,
   disablePayment: true,
@@ -15,12 +26,13 @@ export const checkoutSlice = createSlice({
   name: "checkout",
   initialState,
   reducers: {
-    // fetchProducts: (state, action) => {
-    //   state.products = action.payload;
-    // },
+    setAddressForm: (state, action) => {
+      const { payload } = action;
+      state.formData.addressFormData = payload;
+    },
   },
 });
 
-export const {} = checkoutSlice.actions;
+export const { setAddressForm } = checkoutSlice.actions;
 
 export default checkoutSlice.reducer;

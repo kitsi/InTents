@@ -1,10 +1,34 @@
 import { Button, Container, Grid, TextField } from "@mui/material";
-import React, { useState } from "react";
-
+import React from "react";
+import { useDispatch } from "react-redux";
+import { setAddressForm } from "../checkoutSlice";
 import addressFormSchema from "../validations/AddressFormSchema";
-import { withFormik } from "formik";
+import { useFormik } from "formik";
 
-function form(props) {
+const AddressForm = (props) => {
+  const { setPaymentDisabled } = props;
+  const dispatch = useDispatch();
+
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      addressLineOne: "",
+      addressLineTwo: "",
+      city: "",
+      state: "",
+      zip: "",
+    },
+
+    validationSchema: addressFormSchema,
+
+    onSubmit: (values) => {
+      // execute async function to send to backend
+      setPaymentDisabled(false);
+      dispatch(setAddressForm(values));
+    },
+  });
+
   const {
     values,
     touched,
@@ -13,17 +37,11 @@ function form(props) {
     handleChange,
     handleBlur,
     handleSubmit,
-    handleReset,
-  } = props;
+  } = formik;
 
   return (
     <Container>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmit();
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <TextField
@@ -122,43 +140,6 @@ function form(props) {
       </form>
     </Container>
   );
-}
-
-const AddressForm = (props) => {
-  const { setPaymentDisabled } = props;
-
-  const MyFormWithFormik = withFormik({
-    mapPropsToValues: ({
-      firstName,
-      lastName,
-      addressLineOne,
-      addressLineTwo,
-      city,
-      state,
-      zip,
-    }) => {
-      return {
-        firstName: firstName || "",
-        lastName: lastName || "",
-        addressLineOne: addressLineOne || "",
-        addressLineTwo: addressLineTwo || "",
-        city: city || "",
-        state: state || "",
-        zip: zip || "",
-      };
-    },
-
-    validationSchema: addressFormSchema,
-
-    handleSubmit: (values, { setSubmitting }) => {
-      // execute async function to send to backend
-      setPaymentDisabled(false);
-
-      console.log(values);
-    },
-  })(form);
-
-  return <MyFormWithFormik />;
 };
 
 export default AddressForm;
