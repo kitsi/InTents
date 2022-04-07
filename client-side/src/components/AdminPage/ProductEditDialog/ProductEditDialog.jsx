@@ -19,6 +19,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product }) {
     description: "",
     price: 0,
     quantity: 0,
+    image: "",
     category: "",
   });
 
@@ -29,6 +30,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product }) {
       description: product.description,
       price: product.price,
       quantity: product.quantity,
+      image: product.image,
       category: product.category,
     });
   }
@@ -131,6 +133,20 @@ export default function ProductEditDialog({ isOpen, toggleModal, product }) {
               fullWidth
               multiline
               rows={5}
+              sx={styles.textBox}
+            />
+          </Grid>
+
+          <Grid item xs={12} sx={styles.labelContainer}>
+            <Typography sx={{...styles.label, ...styles.descriptionLabel}}>Image</Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              name="image"
+              variant="outlined"
+              value={formState.image}
+              onChange={changeValue}
+              fullWidth
               sx={styles.textBox}
             />
           </Grid>
