@@ -41,8 +41,8 @@ export default function ProductEditDialog({ isOpen, toggleModal, product }) {
       <DialogContent>
         <Grid container>
 
-          <Grid item xs={12} md={1} sx={styles.labelContainerStyles}>
-            <Typography sx={styles.labelStyles}>Name</Typography>
+          <Grid item xs={12} md={1} sx={styles.labelContainer}>
+            <Typography sx={styles.label}>Name</Typography>
           </Grid>
           <Grid item xs={12} md={5}>
             <TextField
@@ -51,12 +51,12 @@ export default function ProductEditDialog({ isOpen, toggleModal, product }) {
               value={formState.name}
               onChange={changeValue}
               fullWidth
-              sx={styles.textBoxStyles}
+              sx={styles.textBox}
             />
           </Grid>
 
-          <Grid item xs={12} md={1} sx={styles.labelContainerStyles}>
-            <Typography sx={styles.labelStyles}>SKU</Typography>
+          <Grid item xs={12} md={1} sx={styles.labelContainer}>
+            <Typography sx={styles.label}>SKU</Typography>
           </Grid>
           <Grid item xs={12} md={5}>
             <TextField
@@ -65,13 +65,13 @@ export default function ProductEditDialog({ isOpen, toggleModal, product }) {
               value={formState.sku}
               onChange={changeValue}
               fullWidth
-              sx={styles.textBoxStyles}
+              sx={styles.textBox}
             />
           </Grid>
 
-          <Grid item xs={12} sx={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button sx={{ marginX: "0.5rem" }} variant="contained" size="large" color="error" onClick={setFormDataToProductData}>Reset</Button>
-            <Button sx={{ marginX: "0.5rem" }} variant="contained" size="large">Save</Button>
+          <Grid item xs={12} sx={styles.buttonContainer}>
+            <Button sx={styles.button} variant="contained" size="large" color="error" onClick={setFormDataToProductData}>Reset</Button>
+            <Button sx={styles.button} variant="contained" size="large">Save</Button>
           </Grid>
         </Grid>
       </DialogContent>

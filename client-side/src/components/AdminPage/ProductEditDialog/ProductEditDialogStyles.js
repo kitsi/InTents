@@ -1,9 +1,9 @@
-export const labelContainerStyles = {
+export const labelContainer = {
   display: "flex",
   alignItems: "center",
 };
 
-export const labelStyles = {
+export const label = {
   width: "100%",
   textAlign: {
     xs: "left",
@@ -16,6 +16,15 @@ export const labelStyles = {
   },
 };
 
-export const textBoxStyles = {
+export const textBox = {
   marginBottom: "1.5rem",
+};
+
+export const buttonContainer = {
+  display: "flex",
+  justifyContent: "flex-end"
+};
+
+export const button = {
+  marginX: "0.5rem"
 };
