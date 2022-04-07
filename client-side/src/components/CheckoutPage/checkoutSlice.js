@@ -17,6 +17,7 @@ const initialState = {
       expiration: "",
       cvc: "",
     },
+    orderTotal: 0,
   },
   loading: true,
   disablePayment: true,
