@@ -16,6 +16,11 @@ export const label = {
   },
 };
 
+export const descriptionLabel = {
+  textAlign: "left",
+  marginBottom: 0,
+};
+
 export const textBox = {
   marginBottom: "1.5rem",
 };
