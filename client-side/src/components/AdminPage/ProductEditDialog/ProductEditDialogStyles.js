@@ -1,3 +1,10 @@
+export const closeButton = {
+  position: 'absolute',
+  right: 8,
+  top: 8,
+  color: (theme) => theme.palette.grey[500],
+};
+
 export const labelContainer = {
   display: "flex",
   alignItems: "center",
@@ -5,19 +12,8 @@ export const labelContainer = {
 
 export const label = {
   width: "100%",
-  textAlign: {
-    xs: "left",
-    md: "right",
-  },
-  paddingRight: "0.25rem",
-  marginBottom: {
-    xs: 0,
-    md: "1.5rem",
-  },
-};
-
-export const descriptionLabel = {
   textAlign: "left",
+  paddingRight: "0.25rem",
   marginBottom: 0,
 };
 

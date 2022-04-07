@@ -8,11 +8,13 @@ import {
   Typography,
   TextField,
   Button,
+  IconButton,
 } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
 
 import * as styles from "./ProductEditDialogStyles";
 
-export default function ProductEditDialog({ isOpen, toggleModal, product }) {
+export default function ProductEditDialog({ isOpen,toggleModal, product }) {
   const [formState, setFormState] = useState({
     name: "",
     sku: "",
@@ -47,82 +49,97 @@ export default function ProductEditDialog({ isOpen, toggleModal, product }) {
 
   return (
     <Dialog maxWidth="lg" fullWidth open={isOpen} onClose={toggleModal}>
-      <DialogTitle>Edit {product ? product.name : ""}</DialogTitle>
+      <DialogTitle>
+        Edit {product ? product.name : ""}
+        <IconButton sx={styles.closeButton} onClick={toggleModal}>
+          <CloseIcon />
+        </IconButton>
+      </DialogTitle>
       <DialogContent>
-        <Grid container>
+        <Grid container columnSpacing={2}>
 
-          <Grid item xs={12} md={1} sx={styles.labelContainer}>
-            <Typography sx={styles.label}>Name</Typography>
-          </Grid>
-          <Grid item xs={12} md={5}>
-            <TextField
-              name="name"
-              variant="outlined"
-              value={formState.name}
-              onChange={changeValue}
-              fullWidth
-              sx={styles.textBox}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={1} sx={styles.labelContainer}>
-            <Typography sx={styles.label}>SKU</Typography>
-          </Grid>
-          <Grid item xs={12} md={5}>
-            <TextField
-              name="sku"
-              variant="outlined"
-              value={formState.sku}
-              onChange={changeValue}
-              fullWidth
-              sx={styles.textBox}
-            />
+          <Grid item xs={12} md={6}>
+            <Grid item xs={12} sx={styles.labelContainer}>
+              <Typography sx={styles.label}>Name</Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                name="name"
+                variant="outlined"
+                value={formState.name}
+                onChange={changeValue}
+                fullWidth
+                sx={styles.textBox}
+              />
+            </Grid>
           </Grid>
 
-          <Grid item xs={12} md={1} sx={styles.labelContainer}>
-            <Typography sx={styles.label}>Price</Typography>
-          </Grid>
-          <Grid item xs={12} md={3}>
-            <TextField
-              name="price"
-              variant="outlined"
-              value={formState.price}
-              onChange={changeValue}
-              fullWidth
-              sx={styles.textBox}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={1} sx={styles.labelContainer}>
-            <Typography sx={styles.label}>Quantity</Typography>
-          </Grid>
-          <Grid item xs={12} md={3}>
-            <TextField
-              name="quantity"
-              variant="outlined"
-              value={formState.quantity}
-              onChange={changeValue}
-              fullWidth
-              sx={styles.textBox}
-            />
+          <Grid item xs={12} md={6}>
+            <Grid item xs={12} sx={styles.labelContainer}>
+              <Typography sx={styles.label}>SKU</Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                name="sku"
+                variant="outlined"
+                value={formState.sku}
+                onChange={changeValue}
+                fullWidth
+                sx={styles.textBox}
+              />
+            </Grid>
           </Grid>
 
-          <Grid item xs={12} md={1} sx={styles.labelContainer}>
-            <Typography sx={styles.label}>Category</Typography>
+          <Grid item xs={12} md={4}>
+            <Grid item xs={12} sx={styles.labelContainer}>
+              <Typography sx={styles.label}>Price</Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                name="price"
+                variant="outlined"
+                value={formState.price}
+                onChange={changeValue}
+                fullWidth
+                sx={styles.textBox}
+              />
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={3}>
-            <TextField
-              name="category"
-              variant="outlined"
-              value={formState.category}
-              onChange={changeValue}
-              fullWidth
-              sx={styles.textBox}
-            />
+
+          <Grid item xs={12} md={4}>
+            <Grid item xs={12} sx={styles.labelContainer}>
+              <Typography sx={styles.label}>Quantity</Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                name="quantity"
+                variant="outlined"
+                value={formState.quantity}
+                onChange={changeValue}
+                fullWidth
+                sx={styles.textBox}
+              />
+            </Grid>
+          </Grid>
+
+          <Grid item xs={12} md={4}>
+            <Grid item xs={12} sx={styles.labelContainer}>
+              <Typography sx={styles.label}>Category</Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                name="category"
+                variant="outlined"
+                value={formState.category}
+                onChange={changeValue}
+                fullWidth
+                sx={styles.textBox}
+              />
+            </Grid>
           </Grid>
 
           <Grid item xs={12} sx={styles.labelContainer}>
-            <Typography sx={{...styles.label, ...styles.descriptionLabel}}>Description</Typography>
+            <Typography sx={styles.label}>Description</Typography>
           </Grid>
           <Grid item xs={12}>
             <TextField
@@ -138,7 +155,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product }) {
           </Grid>
 
           <Grid item xs={12} sx={styles.labelContainer}>
-            <Typography sx={{...styles.label, ...styles.descriptionLabel}}>Image</Typography>
+            <Typography sx={styles.label}>Image</Typography>
           </Grid>
           <Grid item xs={12}>
             <TextField
