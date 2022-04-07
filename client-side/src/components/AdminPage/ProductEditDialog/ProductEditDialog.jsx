@@ -15,7 +15,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import * as styles from "./ProductEditDialogStyles";
 
-export default function ProductEditDialog({ isOpen, toggleModal, product }) {
+export default function ProductEditDialog({ isOpen, toggleModal, product, newProduct }) {
   const [formState, setFormState] = useState({
     name: "",
     sku: "",

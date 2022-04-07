@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./adminPage.css";
 import AdminProduct from "./AdminProduct";
-import ProductTile from "../common/ProductTile";
 import { fetchProducts } from "../ProductsPage/productsSlice";
-import { Divider, Typography } from "@mui/material";
+import { Divider, Typography, Button, Box } from "@mui/material";
 import Loading from "../common/Loading";
 import ProductEditDialog from "./ProductEditDialog/ProductEditDialog";
+
+import * as styles from "./AdminPageStyles";
 
 function AdminPage() {
   const { products, loading } = useSelector((state) => state.products);
@@ -14,6 +15,7 @@ function AdminPage() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState();
+  const [newProduct, setnewProduct] = useState(false);
 
   useEffect(() => {
     if (products.length > 0) return;
@@ -45,11 +47,25 @@ function AdminPage() {
         isOpen={modalOpen}
         toggleModal={toggleModal}
         product={selectedProduct}
+        newProduct={newProduct}
       />
       <Typography variant="h2" className="admin-page-header">
         Admin
       </Typography>
+      
       <Divider />
+
+      <Box sx={styles.addButton}>
+        <Button 
+          size="large"
+          variant="contained"
+          color="primary"
+          onClick={() => setnewProduct(true)}
+        >
+          Add Item
+        </Button>
+      </Box>
+      
       <div className="admin-product-tiles-container">
         {loading ? (
           <Loading />
