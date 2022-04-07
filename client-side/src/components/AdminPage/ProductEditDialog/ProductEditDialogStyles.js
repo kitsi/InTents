@@ -5,6 +5,15 @@ export const closeButton = {
   color: (theme) => theme.palette.grey[500],
 };
 
+export const imageContainer = {
+  display: "flex",
+};
+
+export const image = {
+  width: "30%",
+  margin: "auto",
+};
+
 export const labelContainer = {
   display: "flex",
   alignItems: "center",

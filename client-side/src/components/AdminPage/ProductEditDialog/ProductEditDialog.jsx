@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import {
+  Box,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -14,7 +15,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import * as styles from "./ProductEditDialogStyles";
 
-export default function ProductEditDialog({ isOpen,toggleModal, product }) {
+export default function ProductEditDialog({ isOpen, toggleModal, product }) {
   const [formState, setFormState] = useState({
     name: "",
     sku: "",
@@ -56,6 +57,11 @@ export default function ProductEditDialog({ isOpen,toggleModal, product }) {
         </IconButton>
       </DialogTitle>
       <DialogContent>
+
+        <Box sx={styles.imageContainer}>
+          <Box component="img" src={formState.image} sx={styles.image} />
+        </Box>
+
         <Grid container columnSpacing={2}>
 
           <Grid item xs={12} md={6}>
