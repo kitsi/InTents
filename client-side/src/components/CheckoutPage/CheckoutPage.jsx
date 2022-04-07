@@ -17,7 +17,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AddressForm from "./forms/AddressForm";
 import PaymentForm from "./forms/PaymentForm";
 
-function PaymentPage() {
+function CheckoutPage() {
   const [paymentDisabled, setPaymentDisabled] = useState(true);
   return (
     <Box
@@ -52,4 +52,4 @@ function PaymentPage() {
   );
 }
 
-export default PaymentPage;
+export default CheckoutPage;
