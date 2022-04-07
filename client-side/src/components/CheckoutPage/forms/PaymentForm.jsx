@@ -22,7 +22,6 @@ const PaymentForm = (props) => {
 
     onSubmit: (values) => {
       // execute async function to send to backend
-      // setPaymentDisabled(false);
       dispatch(setPaymentForm(values));
     },
   });
