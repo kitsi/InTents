@@ -10,7 +10,6 @@ import { fetchProducts } from "./productsSlice";
 import Loading from "../common/Loading";
 
 function ProductsPage() {
-  // const [products, setProducts] = useState([]);
   const { products, loading } = useSelector((state) => state.products);
 
   const { category } = useParams();
@@ -21,7 +20,7 @@ function ProductsPage() {
     dispatch(fetchProducts());
   }, [dispatch, products]);
 
-  const productTiles = products.map((product) => {
+  const productTiles = products.filter(product => category ? product.category == category : true).map((product) => {
     return <ProductTile key={product.id} productData={product} />;
   });
 

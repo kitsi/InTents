@@ -8,7 +8,7 @@
       "price": 149.99,
       "quantity": 42,
       "image": "https://www.campingworld.com/dw/image/v2/BCJK_PRD/on/demandware.static/-/Sites-global-master-catalog/default/dw32700d0f/images/large/655035_1.jpg?sw=800&sh=800",
-      "category": "grills"
+      "category": "cookware"
     },
     {
       "id": "1",
@@ -19,6 +19,66 @@
       "quantity": 2,
       "image": "https://www.campingworld.com/dw/image/v2/BCJK_PRD/on/demandware.static/-/Sites-global-master-catalog/default/dw61c309b9/images/large/731913_1.jpg?sw=800&sh=800",
       "category": "tents"
+    },
+    {
+      "id": "2",
+      "sku": "89432145",
+      "name": "Venture Forward 5-Person Cabin Tent",
+      "description": "The Venture Forward Cabin Tent sleeps up to 5 and has a straight side wall design with a 6'10\" center height so there's plenty of room for even the tallest campers. Its durable, watertight construction includes taped seams on the rain fly, no-wick technology, and a welded tub-style floor. The sturdy X-Frame steel and fiberglass frame design and ring-and-pin anchoring system provide fast and easy setup.",
+      "price": "999999.99",
+      "quantity": 2,
+      "image": "https://www.campingworld.com/dw/image/v2/BCJK_PRD/on/demandware.static/-/Sites-global-master-catalog/default/dw61c309b9/images/large/731913_1.jpg?sw=800&sh=800",
+      "category": "cookware"
+    },
+    {
+      "id": "3",
+      "sku": "89432145",
+      "name": "Venture Forward 5-Person Cabin Tent",
+      "description": "The Venture Forward Cabin Tent sleeps up to 5 and has a straight side wall design with a 6'10\" center height so there's plenty of room for even the tallest campers. Its durable, watertight construction includes taped seams on the rain fly, no-wick technology, and a welded tub-style floor. The sturdy X-Frame steel and fiberglass frame design and ring-and-pin anchoring system provide fast and easy setup.",
+      "price": "999999.99",
+      "quantity": 2,
+      "image": "https://www.campingworld.com/dw/image/v2/BCJK_PRD/on/demandware.static/-/Sites-global-master-catalog/default/dw61c309b9/images/large/731913_1.jpg?sw=800&sh=800",
+      "category": "sleeping-bags"
+    },
+    {
+      "id": "4",
+      "sku": "89432145",
+      "name": "Venture Forward 5-Person Cabin Tent",
+      "description": "The Venture Forward Cabin Tent sleeps up to 5 and has a straight side wall design with a 6'10\" center height so there's plenty of room for even the tallest campers. Its durable, watertight construction includes taped seams on the rain fly, no-wick technology, and a welded tub-style floor. The sturdy X-Frame steel and fiberglass frame design and ring-and-pin anchoring system provide fast and easy setup.",
+      "price": "999999.99",
+      "quantity": 2,
+      "image": "https://www.campingworld.com/dw/image/v2/BCJK_PRD/on/demandware.static/-/Sites-global-master-catalog/default/dw61c309b9/images/large/731913_1.jpg?sw=800&sh=800",
+      "category": "fans"
+    },
+    {
+      "id": "5",
+      "sku": "89432145",
+      "name": "Venture Forward 5-Person Cabin Tent",
+      "description": "The Venture Forward Cabin Tent sleeps up to 5 and has a straight side wall design with a 6'10\" center height so there's plenty of room for even the tallest campers. Its durable, watertight construction includes taped seams on the rain fly, no-wick technology, and a welded tub-style floor. The sturdy X-Frame steel and fiberglass frame design and ring-and-pin anchoring system provide fast and easy setup.",
+      "price": "999999.99",
+      "quantity": 2,
+      "image": "https://www.campingworld.com/dw/image/v2/BCJK_PRD/on/demandware.static/-/Sites-global-master-catalog/default/dw61c309b9/images/large/731913_1.jpg?sw=800&sh=800",
+      "category": "emergency"
+    },
+    {
+      "id": "6",
+      "sku": "89432145",
+      "name": "Venture Forward 5-Person Cabin Tent",
+      "description": "The Venture Forward Cabin Tent sleeps up to 5 and has a straight side wall design with a 6'10\" center height so there's plenty of room for even the tallest campers. Its durable, watertight construction includes taped seams on the rain fly, no-wick technology, and a welded tub-style floor. The sturdy X-Frame steel and fiberglass frame design and ring-and-pin anchoring system provide fast and easy setup.",
+      "price": "999999.99",
+      "quantity": 2,
+      "image": "https://www.campingworld.com/dw/image/v2/BCJK_PRD/on/demandware.static/-/Sites-global-master-catalog/default/dw61c309b9/images/large/731913_1.jpg?sw=800&sh=800",
+      "category": "fans"
+    },
+    {
+      "id": "7",
+      "sku": "89432145",
+      "name": "Venture Forward 5-Person Cabin Tent",
+      "description": "The Venture Forward Cabin Tent sleeps up to 5 and has a straight side wall design with a 6'10\" center height so there's plenty of room for even the tallest campers. Its durable, watertight construction includes taped seams on the rain fly, no-wick technology, and a welded tub-style floor. The sturdy X-Frame steel and fiberglass frame design and ring-and-pin anchoring system provide fast and easy setup.",
+      "price": "999999.99",
+      "quantity": 2,
+      "image": "https://www.campingworld.com/dw/image/v2/BCJK_PRD/on/demandware.static/-/Sites-global-master-catalog/default/dw61c309b9/images/large/731913_1.jpg?sw=800&sh=800",
+      "category": "cookware"
     }
   ]
 }
