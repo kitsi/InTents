@@ -35,9 +35,14 @@ export const checkoutSlice = createSlice({
       const { payload } = action;
       state.formData.paymentFormData = payload;
     },
+    setOrderTotal: (state, action) => {
+      const { payload } = action;
+      state.formData.orderTotal = payload;
+    },
   },
 });
 
-export const { setAddressForm, setPaymentForm } = checkoutSlice.actions;
+export const { setAddressForm, setPaymentForm, setOrderTotal } =
+  checkoutSlice.actions;
 
 export default checkoutSlice.reducer;

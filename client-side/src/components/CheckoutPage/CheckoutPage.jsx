@@ -1,20 +1,17 @@
-import * as yup from "yup";
-
 import React, { useState } from "react";
+import * as yup from "yup";
 import OrderSummary from "./OrderSummary/OrderSummary";
+import AddressForm from "./Forms/AddressForm";
+import PaymentForm from "./Forms/PaymentForm";
 import {
   Box,
   Accordion,
   AccordionDetails,
   AccordionSummary,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
-import AddressForm from "./forms/AddressForm";
-import PaymentForm from "./forms/PaymentForm";
-
-import { useMediaQuery } from "@mui/material";
 
 function CheckoutPage() {
   const [paymentDisabled, setPaymentDisabled] = useState(true);
