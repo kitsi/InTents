@@ -14,6 +14,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 
 import * as styles from "./ProductEditDialogStyles";
+import axios from 'axios'
 
 export default function ProductEditDialog({ isOpen, toggleModal, product, newProduct }) {
   const [formState, setFormState] = useState({
@@ -39,6 +40,16 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
       setFormDataToProductData();
     }
   }, [isOpen]);
+
+  const sendProductToServer = async() => {
+      if(newProduct) {
+        await axios.post("http://localhost:3001/products", formState);
+      } else {
+        await axios.put(`http://localhost:3001/products/${product.id}`, formState);
+      }
+
+    toggleModal();
+  }
 
   return (
     <Dialog maxWidth="lg" fullWidth open={isOpen} onClose={toggleModal}>
@@ -168,7 +179,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
 
           <Grid item xs={12} sx={styles.buttonContainer}>
             <Button sx={styles.button} variant="contained" size="large" color="error" onClick={setFormDataToProductData} disabled={newProduct}>Reset</Button>
-            <Button sx={styles.button} variant="contained" size="large">Save</Button>
+            <Button sx={styles.button} variant="contained" size="large" onClick={sendProductToServer}>Save</Button>
           </Grid>
 
         </Grid>
