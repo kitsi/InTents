@@ -3,7 +3,7 @@ import React from "react";
 import { Container, Grid, TextField, Button, Box } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { setPaymentForm } from "../checkoutSlice";
-
+import { clearCart } from "../../CartPage/cartSlice";
 import paymentFormSchema from "../validations/PaymentFormSchema";
 import { useFormik } from "formik";
 
@@ -23,6 +23,7 @@ const PaymentForm = ({ handleModalOpen }) => {
     onSubmit: (values) => {
       // execute async function to send to backend
       dispatch(setPaymentForm(values));
+      dispatch(clearCart());
       handleModalOpen();
     },
   });

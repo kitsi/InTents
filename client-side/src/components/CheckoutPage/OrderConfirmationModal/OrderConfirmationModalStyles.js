@@ -42,7 +42,3 @@ export const subHeaderStyle = {
   marginTop: "1rem",
   fontWeight: "bold",
 };
-
-export const noTextDecoration = {
-  textDecoration: "none",
-};

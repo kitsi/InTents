@@ -7,17 +7,18 @@ import {
   footerStyle,
   continueButtonStyle,
   subHeaderStyle,
-  noTextDecoration,
 } from "./OrderConfirmationModalStyles";
 import { Link } from "react-router-dom";
 
-function OrderConfirmationModal({
-  handleModalClose,
-  openModal,
-  orderNumber,
-  shippingAddress,
-  orderTotal,
-}) {
+function OrderConfirmationModal(props) {
+  const {
+    handleModalClose,
+    openModal,
+    orderNumber,
+    shippingAddress,
+    orderTotal,
+  } = props;
+
   return (
     <div>
       <Modal open={openModal} onClose={handleModalClose}>

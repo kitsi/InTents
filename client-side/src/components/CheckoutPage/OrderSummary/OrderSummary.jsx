@@ -25,13 +25,13 @@ function OrderSummary() {
     });
 
     setSubTotalPrice(price);
-    setTax(0.08 * subTotalPrice);
-    setTotal(subTotalPrice + tax);
+    setTax(0.08 * price);
+    setTotal(price + 0.08 * price);
   };
 
   useEffect(() => {
     calculateTotal();
-  }, [cartItems, subTotalPrice, setSubTotalPrice]);
+  }, [subTotalPrice, setSubTotalPrice]);
 
   useEffect(() => {
     dispatch(setOrderTotal(total));
