@@ -1,3 +1,5 @@
+import { fontWeight } from "@mui/system";
+
 export const modalStyle = {
   position: "absolute",
   top: "50%",
@@ -34,4 +36,13 @@ export const continueButtonStyle = {
   width: "80%",
   height: "3rem",
   marginBottom: "1rem",
+};
+
+export const subHeaderStyle = {
+  marginTop: "1rem",
+  fontWeight: "bold",
+};
+
+export const noTextDecoration = {
+  textDecoration: "none",
 };

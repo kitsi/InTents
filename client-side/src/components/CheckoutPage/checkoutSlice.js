@@ -17,8 +17,8 @@ const initialState = {
       expiration: "",
       cvc: "",
     },
-    orderTotal: 0,
   },
+  orderTotal: 0,
   loading: true,
   disablePayment: true,
 };
@@ -37,7 +37,7 @@ export const checkoutSlice = createSlice({
     },
     setOrderTotal: (state, action) => {
       const { payload } = action;
-      state.formData.orderTotal = payload;
+      state.orderTotal = payload;
     },
   },
 });

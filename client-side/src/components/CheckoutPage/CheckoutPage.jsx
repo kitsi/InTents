@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import * as yup from "yup";
 import OrderSummary from "./OrderSummary/OrderSummary";
 import AddressForm from "./Forms/AddressForm";
 import PaymentForm from "./Forms/PaymentForm";
 import OrderConfirmationModal from "./OrderConfirmationModal/OrderConfirmationModal";
-
+import { useSelector } from "react-redux";
 import {
   Box,
   Accordion,
@@ -19,7 +18,7 @@ function CheckoutPage() {
   const [paymentDisabled, setPaymentDisabled] = useState(true);
   const [expandedAddress, setExpandedAddress] = useState(true);
   const [expandedPayment, setExpandedPayment] = useState(false);
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
 
   const handleAccordionChange = (panel) => (isExpanded) => {
     if (panel == "address") {
@@ -28,6 +27,9 @@ function CheckoutPage() {
       setExpandedPayment(!expandedPayment);
     }
   };
+
+  // use select to be replaced with data from backend after post request is made
+  const { orderTotal, formData } = useSelector((state) => state.checkout);
 
   const handleModalOpen = () => setOpenModal(true);
   const handleModalClose = () => setOpenModal(false);
@@ -52,6 +54,9 @@ function CheckoutPage() {
       <OrderConfirmationModal
         handleModalClose={handleModalClose}
         openModal={openModal}
+        orderTotal={orderTotal}
+        shippingAddress={formData.addressFormData}
+        orderNumber={1}
       />
       {/* Desktop View */}
       {isDesktop ? (
