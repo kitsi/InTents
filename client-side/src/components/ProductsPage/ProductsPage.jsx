@@ -10,7 +10,6 @@ import { fetchProducts } from "./productsSlice";
 import Loading from "../common/Loading";
 
 function ProductsPage() {
-  // const [products, setProducts] = useState([]);
   const { products, loading } = useSelector((state) => state.products);
 
   const { category } = useParams();
