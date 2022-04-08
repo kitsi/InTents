@@ -15,7 +15,7 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 function CheckoutPage() {
-  const [paymentDisabled, setPaymentDisabled] = useState(true);
+  const [paymentDisabled, setPaymentDisabled] = useState(false);
   const [expandedAddress, setExpandedAddress] = useState(true);
   const [expandedPayment, setExpandedPayment] = useState(false);
   const [openModal, setOpenModal] = useState(false);
