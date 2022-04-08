@@ -8,11 +8,15 @@ import {
   Typography,
 } from "@mui/material";
 import axios from 'axios';
+import { useDispatch } from "react-redux";
+import { fetchProducts } from "../ProductsPage/productsSlice"
 
 function AdminProduct({ productData, editProduct }) {
+  const dispatch = useDispatch();
 
   const deleteProduct = async () => {
     await axios.delete(`http://localhost:3001/products/${productData.id}`);
+    dispatch(fetchProducts());
   }
 
   return (
