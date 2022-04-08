@@ -26,8 +26,23 @@ function AdminPage() {
     setModalOpen(!modalOpen);
   };
 
+  const createProduct = () => {
+    setSelectedProduct({
+      name: "",
+      sku: "",
+      description: "",
+      price: 0,
+      quantity: 0,
+      image: "",
+      category: "",
+    });
+    setnewProduct(true);
+    toggleModal();
+  }
+
   const editProduct = (product) => {
     setSelectedProduct(product);
+    setnewProduct(false);
     toggleModal();
   };
 
@@ -60,7 +75,7 @@ function AdminPage() {
           size="large"
           variant="contained"
           color="primary"
-          onClick={() => setnewProduct(true)}
+          onClick={createProduct}
         >
           Add Item
         </Button>

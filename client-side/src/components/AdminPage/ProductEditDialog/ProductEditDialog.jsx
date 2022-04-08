@@ -51,7 +51,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
   return (
     <Dialog maxWidth="lg" fullWidth open={isOpen} onClose={toggleModal}>
       <DialogTitle>
-        Edit {product ? product.name : ""}
+        {newProduct ? "Create New Product" : `Edit ${product?.name}`}
         <IconButton sx={styles.closeButton} onClick={toggleModal}>
           <CloseIcon />
         </IconButton>
