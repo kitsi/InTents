@@ -19,7 +19,7 @@ function CheckoutPage() {
   const [paymentDisabled, setPaymentDisabled] = useState(true);
   const [expandedAddress, setExpandedAddress] = useState(true);
   const [expandedPayment, setExpandedPayment] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(true);
 
   const handleAccordionChange = (panel) => (isExpanded) => {
     if (panel == "address") {
