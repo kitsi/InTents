@@ -1,5 +1,3 @@
-import { fontWeight } from "@mui/system";
-
 export const modalStyle = {
   position: "absolute",
   top: "50%",
