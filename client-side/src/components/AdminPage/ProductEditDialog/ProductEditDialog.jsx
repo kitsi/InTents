@@ -80,7 +80,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
             </Grid>
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={6}>
             <Grid item xs={12} sx={styles.labelContainer}>
               <Typography sx={styles.label}>SKU</Typography>
             </Grid>
@@ -96,7 +96,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
             </Grid>
           </Grid>
 
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <Grid item xs={12} sx={styles.labelContainer}>
               <Typography sx={styles.label}>Price</Typography>
             </Grid>
@@ -112,7 +112,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
             </Grid>
           </Grid>
 
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <Grid item xs={12} sx={styles.labelContainer}>
               <Typography sx={styles.label}>Quantity</Typography>
             </Grid>
@@ -128,7 +128,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
             </Grid>
           </Grid>
 
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <Grid item xs={12} sx={styles.labelContainer}>
               <Typography sx={styles.label}>Category</Typography>
             </Grid>
@@ -175,7 +175,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
           </Grid>
 
           <Grid item xs={12} sx={styles.buttonContainer}>
-            <Button sx={styles.button} variant="contained" size="large" color="error" onClick={setFormDataToProductData}>Reset</Button>
+            <Button sx={styles.button} variant="contained" size="large" color="error" onClick={setFormDataToProductData} disabled={newProduct}>Reset</Button>
             <Button sx={styles.button} variant="contained" size="large">Save</Button>
           </Grid>
 
