@@ -18,6 +18,7 @@ const initialState = {
       cvc: "",
     },
   },
+  orderTotal: 0,
   loading: true,
   disablePayment: true,
 };
@@ -34,9 +35,14 @@ export const checkoutSlice = createSlice({
       const { payload } = action;
       state.formData.paymentFormData = payload;
     },
+    setOrderTotal: (state, action) => {
+      const { payload } = action;
+      state.orderTotal = payload;
+    },
   },
 });
 
-export const { setAddressForm, setPaymentForm } = checkoutSlice.actions;
+export const { setAddressForm, setPaymentForm, setOrderTotal } =
+  checkoutSlice.actions;
 
 export default checkoutSlice.reducer;
