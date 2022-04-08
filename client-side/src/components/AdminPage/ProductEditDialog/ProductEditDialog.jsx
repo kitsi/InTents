@@ -10,6 +10,8 @@ import {
   TextField,
   Button,
   IconButton,
+  Select,
+  MenuItem
 } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -38,6 +40,10 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
     setFormState({ ...formState, [event.target.name]: event.target.value });
   };
 
+  const changeValueCategory = (event) => {
+    setFormState({ ...formState, "category": event.target.value });
+  };
+
   useEffect(() => {
     if (isOpen) {
       setFormDataToProductData();
@@ -54,6 +60,8 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
     dispatch(fetchProducts());
     toggleModal();
   }
+
+  const categories = ["tents", "cookware", "sleeping-bags", "fans", "emergency"];
 
   return (
     <Dialog maxWidth="lg" fullWidth open={isOpen} onClose={toggleModal}>
@@ -140,14 +148,11 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
               <Typography sx={styles.label}>Category</Typography>
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                name="category"
-                variant="outlined"
-                value={formState.category}
-                onChange={changeValue}
-                fullWidth
-                sx={styles.textBox}
-              />
+              <Select fullWidth value={formState.category} onChange={changeValueCategory}>
+                {categories.map(category => 
+                  <MenuItem key={category} value={category}>{category}</MenuItem>
+                )}
+              </Select>
             </Grid>
           </Grid>
 
