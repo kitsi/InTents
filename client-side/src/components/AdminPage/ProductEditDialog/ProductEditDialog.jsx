@@ -27,15 +27,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
   });
 
   const setFormDataToProductData = () => {
-    setFormState({
-      name: product.name,
-      sku: product.sku,
-      description: product.description,
-      price: product.price,
-      quantity: product.quantity,
-      image: product.image,
-      category: product.category,
-    });
+    setFormState({...product});
   }
 
   const changeValue = (event) => {
