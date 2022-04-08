@@ -51,7 +51,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
   return (
     <Dialog maxWidth="lg" fullWidth open={isOpen} onClose={toggleModal}>
       <DialogTitle>
-        {newProduct ? "Create New Product" : `Edit ${product?.name}`}
+        {newProduct ? "Create New Product" : `Edit "${formState.name}"`}
         <IconButton sx={styles.closeButton} onClick={toggleModal}>
           <CloseIcon />
         </IconButton>
@@ -161,7 +161,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
           </Grid>
 
           <Grid item xs={12} sx={styles.labelContainer}>
-            <Typography sx={styles.label}>Image</Typography>
+            <Typography sx={styles.label}>Image URL</Typography>
           </Grid>
           <Grid item xs={12}>
             <TextField
