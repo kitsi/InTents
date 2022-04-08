@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import Router from "./Router";
 import theme from "./theme";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <BrowserRouter>
           <NavBar />
           <Router />
+          <Footer />
         </BrowserRouter>
       </ThemeProvider>
     </div>
