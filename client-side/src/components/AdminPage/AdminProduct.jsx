@@ -7,8 +7,14 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import axios from 'axios';
 
 function AdminProduct({ productData, editProduct }) {
+
+  const deleteProduct = async () => {
+    await axios.delete(`http://localhost:3001/products/${productData.id}`);
+  }
+
   return (
     <Card className="card">
       <CardMedia
@@ -42,7 +48,7 @@ function AdminProduct({ productData, editProduct }) {
         >
           Edit
         </Button>
-        <Button size="small" variant="contained" color="primary">
+        <Button size="small" variant="contained" color="primary" onClick={deleteProduct}>
           Remove
         </Button>
       </CardActions>
