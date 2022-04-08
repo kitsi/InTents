@@ -7,7 +7,7 @@ import { setPaymentForm } from "../checkoutSlice";
 import paymentFormSchema from "../validations/PaymentFormSchema";
 import { useFormik } from "formik";
 
-const PaymentForm = (props) => {
+const PaymentForm = ({ handleModalOpen }) => {
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -23,6 +23,7 @@ const PaymentForm = (props) => {
     onSubmit: (values) => {
       // execute async function to send to backend
       dispatch(setPaymentForm(values));
+      handleModalOpen();
     },
   });
 

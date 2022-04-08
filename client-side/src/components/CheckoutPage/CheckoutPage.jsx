@@ -3,6 +3,8 @@ import * as yup from "yup";
 import OrderSummary from "./OrderSummary/OrderSummary";
 import AddressForm from "./Forms/AddressForm";
 import PaymentForm from "./Forms/PaymentForm";
+import OrderConfirmationModal from "./OrderConfirmationModal/OrderConfirmationModal";
+
 import {
   Box,
   Accordion,
@@ -17,6 +19,7 @@ function CheckoutPage() {
   const [paymentDisabled, setPaymentDisabled] = useState(true);
   const [expandedAddress, setExpandedAddress] = useState(true);
   const [expandedPayment, setExpandedPayment] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   const handleAccordionChange = (panel) => (isExpanded) => {
     if (panel == "address") {
@@ -25,6 +28,9 @@ function CheckoutPage() {
       setExpandedPayment(!expandedPayment);
     }
   };
+
+  const handleModalOpen = () => setOpenModal(true);
+  const handleModalClose = () => setOpenModal(false);
 
   const openPaymentAccordion = () => {
     setPaymentDisabled(false);
@@ -43,6 +49,10 @@ function CheckoutPage() {
 
   return (
     <>
+      <OrderConfirmationModal
+        handleModalClose={handleModalClose}
+        openModal={openModal}
+      />
       {/* Desktop View */}
       {isDesktop ? (
         <Box
@@ -82,7 +92,7 @@ function CheckoutPage() {
                 <Typography>2. Payment Information</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <PaymentForm />
+                <PaymentForm handleModalOpen={handleModalOpen} />
               </AccordionDetails>
             </Accordion>
           </Box>
