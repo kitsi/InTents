@@ -30,13 +30,14 @@ const PaymentForm = (props, { handleModalOpen }) => {
     cvc: "",
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     // submit
+    e.preventDefault();
   };
 
   return (
     <Container>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={12}>
             <TextField
