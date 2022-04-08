@@ -7,6 +7,11 @@ import NavBar from "./components/NavBar/NavBar";
 import Router from "./Router";
 import theme from "./theme";
 
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
+
 function App() {
   return (
     <div className="App">
@@ -14,7 +19,9 @@ function App() {
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <NavBar />
-          <Router />
+          <Elements stripe={stripePromise}>
+            <Router />
+          </Elements>
         </BrowserRouter>
       </ThemeProvider>
     </div>

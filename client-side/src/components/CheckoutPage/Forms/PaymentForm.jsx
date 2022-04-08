@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Container, Grid, TextField, Button, Box } from "@mui/material";
 import { useDispatch } from "react-redux";
@@ -7,36 +7,32 @@ import { clearCart } from "../../CartPage/cartSlice";
 import paymentFormSchema from "../validations/PaymentFormSchema";
 import { useFormik } from "formik";
 
-const PaymentForm = ({ handleModalOpen }) => {
+import {
+  CardCvcElement,
+  CardExpiryElement,
+  CardNumberElement,
+} from "@stripe/react-stripe-js";
+import StripeInput from "../StripeInput";
+
+const PaymentForm = (props, { handleModalOpen }) => {
   const dispatch = useDispatch();
 
-  const formik = useFormik({
-    initialValues: {
-      nameOnCard: "",
-      cardNumber: "",
-      expiration: "",
-      cvc: "",
-    },
-
-    validationSchema: paymentFormSchema,
-
-    onSubmit: (values) => {
-      // execute async function to send to backend
-      dispatch(setPaymentForm(values));
-      dispatch(clearCart());
-      handleModalOpen();
-    },
+  const [paymentFormData, setPaymentFormData] = useState({
+    nameOnCard: "",
+    cardNumber: "",
+    expiration: "",
+    cvc: "",
   });
+  const initialpaymentFormData = {
+    nameOnCard: "",
+    cardNumber: "",
+    expiration: "",
+    cvc: "",
+  };
 
-  const {
-    values,
-    touched,
-    errors,
-    isSubmitting,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-  } = formik;
+  const handleSubmit = () => {
+    // submit
+  };
 
   return (
     <Container>
@@ -47,24 +43,28 @@ const PaymentForm = ({ handleModalOpen }) => {
               fullWidth
               label="Name On Card"
               name="nameOnCard"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              helperText={touched.nameOnCard ? errors.nameOnCard : ""}
-              error={touched.nameOnCard && Boolean(errors.nameOnCard)}
-              value={values.nameOnCard}
+              value={paymentFormData.nameOnCard}
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
           </Grid>
 
           <Grid item xs={12} md={12}>
             <TextField
+              fullWidth
               label="Card Number"
               name="cardNumber"
-              fullWidth
-              onChange={handleChange}
-              onBlur={handleBlur}
-              helperText={touched.cardNumber ? errors.cardNumber : ""}
-              error={touched.cardNumber && Boolean(errors.cardNumber)}
-              value={values.cardNumber}
+              InputProps={{
+                inputComponent: StripeInput,
+                inputProps: {
+                  component: CardNumberElement,
+                },
+              }}
+              value={paymentFormData.cardNumber}
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
           </Grid>
 
@@ -73,11 +73,15 @@ const PaymentForm = ({ handleModalOpen }) => {
               fullWidth
               label="Expiration"
               name="expiration"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              helperText={touched.expiration ? errors.expiration : ""}
-              error={touched.expiration && Boolean(errors.expiration)}
-              value={values.expiration}
+              InputProps={{
+                inputComponent: StripeInput,
+                inputProps: {
+                  component: CardExpiryElement,
+                },
+              }}
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
           </Grid>
 
@@ -86,11 +90,16 @@ const PaymentForm = ({ handleModalOpen }) => {
               fullWidth
               label="CVC"
               name="cvc"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              helperText={touched.cvc ? errors.cvc : ""}
-              error={touched.cvc && Boolean(errors.cvc)}
-              value={values.cvc}
+              InputProps={{
+                inputComponent: StripeInput,
+                inputProps: {
+                  component: CardCvcElement,
+                },
+              }}
+              value={paymentFormData.cvc}
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
           </Grid>
         </Grid>
@@ -104,7 +113,6 @@ const PaymentForm = ({ handleModalOpen }) => {
             type="submit"
             variant="contained"
             color="primary"
-            disabled={isSubmitting}
             sx={{
               marginTop: "1rem",
             }}
