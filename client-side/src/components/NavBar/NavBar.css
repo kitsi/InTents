@@ -11,3 +11,30 @@
 .active.link p{
   font-weight: bold;
 }
+
+/* https://codepen.io/maheshambure21/pen/QwXaRw */
+.links-container a {
+  position: relative;
+}
+.links-container a:after{
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  content: '.';
+  color: transparent;
+  background: white;
+  height: 2px;
+}
+.links-container a:hover:after {
+  width: 100%;
+}
+
+.links-container,
+.links-container a:after,
+.links-container a:before {
+  transition: all .5s;
+}
+
