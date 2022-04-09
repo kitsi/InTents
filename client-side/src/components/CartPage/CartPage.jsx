@@ -2,7 +2,7 @@ import React from "react";
 import * as styles from "./CartPageStyles.js";
 
 import { useSelector } from "react-redux";
-import { Button, Box, useMediaQuery, Typography } from "@mui/material";
+import { Button, Box, Typography } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { Link } from "react-router-dom";
 
@@ -15,8 +15,6 @@ export default function CartPage() {
     return <CartProductTile key={item.product.id} product={item} />;
   });
 
-  const isMobile = useMediaQuery("(max-width:600px)");
-
   function getSubtotal() {
     let total = 0;
     for (let i = 0; i < cartItems.length; i++) {
@@ -27,13 +25,7 @@ export default function CartPage() {
 
   return (
     <Box>
-      <Box
-        sx={
-          isMobile
-            ? { ...styles.buttonContainer, ...styles.buttonContainerMobile }
-            : styles.buttonContainer
-        }
-      >
+      <Box sx={styles.buttonContainer}>
         <Box sx={styles.buttons}>
           <Button
             size="large"
