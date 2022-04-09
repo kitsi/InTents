@@ -15,9 +15,11 @@ export const cardTotal = {
 };
 
 export const productImage = {
-  width: "200px",
-  objectFit: "contain",
-  marginLeft: "1rem",
+  ["@media (min-width:900px)"]: {
+    width: "200px",
+    objectFit: "contain",
+    marginLeft: "1rem",
+  },
 };
 
 export const productDetails = {
