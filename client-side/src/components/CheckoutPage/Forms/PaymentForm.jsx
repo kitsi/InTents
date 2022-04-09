@@ -6,6 +6,7 @@ import { setPaymentForm } from "../checkoutSlice";
 import { clearCart } from "../../CartPage/cartSlice";
 import paymentFormSchema from "../validations/PaymentFormSchema";
 import { useFormik } from "formik";
+import * as styles from "./FormStyles";
 
 const PaymentForm = ({ handleModalOpen }) => {
   const dispatch = useDispatch();
@@ -94,20 +95,13 @@ const PaymentForm = ({ handleModalOpen }) => {
             />
           </Grid>
         </Grid>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "flex-end",
-          }}
-        >
+        <Box sx={styles.submitButtonWrapper}>
           <Button
             type="submit"
             variant="contained"
             color="primary"
             disabled={isSubmitting}
-            sx={{
-              marginTop: "1rem",
-            }}
+            sx={styles.submitButton}
           >
             Place Order
           </Button>

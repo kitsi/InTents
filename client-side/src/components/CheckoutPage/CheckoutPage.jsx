@@ -13,6 +13,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import * as styles from "./CheckoutPageStyles";
 
 function CheckoutPage() {
   const [paymentDisabled, setPaymentDisabled] = useState(true);
@@ -42,13 +43,6 @@ function CheckoutPage() {
 
   const isDesktop = useMediaQuery("(min-width:900px)");
 
-  const styles = {
-    largeIcon: {
-      width: "2.5rem",
-      height: "2.5rem",
-    },
-  };
-
   return (
     <>
       <OrderConfirmationModal
@@ -60,24 +54,14 @@ function CheckoutPage() {
       />
       {/* Desktop View */}
       {isDesktop ? (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
-          <Box
-            sx={{
-              width: "70vw",
-              margin: "1rem",
-            }}
-          >
+        <Box sx={styles.desktopContentContainer}>
+          <Box sx={styles.desktopAccordionContainer}>
             <Accordion
               expanded={expandedAddress}
               onChange={handleAccordionChange("address")}
             >
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon style={styles.largeIcon} />}
+                expandIcon={<ExpandMoreIcon style={styles.expandIcon} />}
               >
                 <Typography>1. Shipping Address</Typography>
               </AccordionSummary>
@@ -92,7 +76,7 @@ function CheckoutPage() {
               disabled={paymentDisabled}
             >
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon style={styles.largeIcon} />}
+                expandIcon={<ExpandMoreIcon style={styles.expandIcon} />}
               >
                 <Typography>2. Payment Information</Typography>
               </AccordionSummary>
@@ -105,19 +89,8 @@ function CheckoutPage() {
         </Box>
       ) : (
         // Mobile View
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Box
-            sx={{
-              width: "100vw",
-              margin: "1rem",
-            }}
-          >
+        <Box sx={styles.mobileContentContainer}>
+          <Box sx={styles.mobileAccordionContainer}>
             <OrderSummary />
             <Accordion
               expanded={expandedAddress}
