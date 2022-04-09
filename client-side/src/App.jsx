@@ -14,8 +14,10 @@ function App() {
       <CssBaseline />
       <ThemeProvider theme={theme}>
         <BrowserRouter>
-          <NavBar />
-          <Router />
+          <div style={{ minHeight: "calc(100vh - 100px)" }}>
+            <NavBar />
+            <Router />
+          </div>
           <Footer />
         </BrowserRouter>
       </ThemeProvider>

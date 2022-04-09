@@ -8,9 +8,9 @@ h3 {
   padding: 1rem 0;
 }
 
-#products-page {
+/* #products-page {
   min-height: calc(100vh - 120px);
-}
+} */
 
 .product-tiles-container {
   display: flex;

@@ -40,10 +40,6 @@
   margin: 0 auto;
 }
 
-.cart-page {
-  min-height: calc(100vh - 112px);
-}
-
 .subtotal {
   text-align: right;
   margin: 0;
@@ -55,9 +51,5 @@
 @media screen and (min-width: 600px) {
   .button-container {
     top: 64px;
-  }
-
-  .cart-page {
-    min-height: calc(100vh - 120px);
   }
 }

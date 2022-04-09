@@ -19,7 +19,7 @@ export default function Footer() {
         <InstagramIcon />
       </Box>
       <Typography>
-      &copy; 2022
+        &copy; 2022 InTents
       </Typography>
     </Box>
   )
