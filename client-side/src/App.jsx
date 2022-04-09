@@ -1,12 +1,8 @@
 import "./App.css";
-
 import { CssBaseline, ThemeProvider } from "@mui/material";
-
 import { BrowserRouter } from "react-router-dom";
-import NavBar from "./components/NavBar/NavBar";
-import Router from "./Router";
 import theme from "./theme";
-import Footer from "./components/Footer/Footer";
+import PageContainer from "./PageContainer";
 
 function App() {
   return (
@@ -14,11 +10,7 @@ function App() {
       <CssBaseline />
       <ThemeProvider theme={theme}>
         <BrowserRouter>
-          <div style={{ minHeight: "calc(100vh - 100px)" }}>
-            <NavBar />
-            <Router />
-          </div>
-          <Footer />
+          <PageContainer />
         </BrowserRouter>
       </ThemeProvider>
     </div>
