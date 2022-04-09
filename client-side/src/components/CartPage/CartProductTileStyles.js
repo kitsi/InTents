@@ -15,6 +15,7 @@ export const cardTotal = {
 };
 
 export const productImage = {
+  objectFit: "contain",
   ["@media (min-width:900px)"]: {
     width: "200px",
     objectFit: "contain",
