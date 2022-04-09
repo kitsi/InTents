@@ -11,6 +11,7 @@ export const cardTotal = {
   position: "absolute",
   top: "0",
   right: "1rem",
+  margin: "1rem",
 };
 
 export const productImage = {
