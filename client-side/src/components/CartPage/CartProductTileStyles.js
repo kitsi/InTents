@@ -58,7 +58,6 @@ export const qtyLabel = {
 };
 
 export const deleteIcon = {
-  padding: "0",
   svg: {
     width: "35px",
     height: "35px",
