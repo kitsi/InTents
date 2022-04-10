@@ -10,7 +10,6 @@ import {
   AccordionDetails,
   AccordionSummary,
   Typography,
-  useMediaQuery,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import * as styles from "./CheckoutPageStyles";
@@ -41,8 +40,6 @@ function CheckoutPage() {
     setExpandedAddress(false);
   };
 
-  const isDesktop = useMediaQuery("(min-width:900px)");
-
   return (
     <>
       <OrderConfirmationModal
@@ -52,72 +49,39 @@ function CheckoutPage() {
         shippingAddress={formData.addressFormData}
         orderNumber={1}
       />
-      {/* Desktop View */}
-      {isDesktop ? (
-        <Box sx={styles.desktopContentContainer}>
-          <Box sx={styles.desktopAccordionContainer}>
-            <Accordion
-              expanded={expandedAddress}
-              onChange={handleAccordionChange("address")}
+      <Box sx={styles.desktopContentContainer}>
+        <Box sx={styles.desktopAccordionContainer}>
+          <Accordion
+            expanded={expandedAddress}
+            onChange={handleAccordionChange("address")}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon style={styles.expandIcon} />}
             >
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon style={styles.expandIcon} />}
-              >
-                <Typography>1. Shipping Address</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <AddressForm openPaymentAccordion={openPaymentAccordion} />
-              </AccordionDetails>
-            </Accordion>
-            <Accordion
-              defaultExpanded={false}
-              expanded={expandedPayment}
-              onChange={handleAccordionChange("payment")}
-              disabled={paymentDisabled}
+              <Typography>1. Shipping Address</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <AddressForm openPaymentAccordion={openPaymentAccordion} />
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            defaultExpanded={false}
+            expanded={expandedPayment}
+            onChange={handleAccordionChange("payment")}
+            disabled={paymentDisabled}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon style={styles.expandIcon} />}
             >
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon style={styles.expandIcon} />}
-              >
-                <Typography>2. Payment Information</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <PaymentForm handleModalOpen={handleModalOpen} />
-              </AccordionDetails>
-            </Accordion>
-          </Box>
-          <OrderSummary />
+              <Typography>2. Payment Information</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <PaymentForm handleModalOpen={handleModalOpen} />
+            </AccordionDetails>
+          </Accordion>
         </Box>
-      ) : (
-        // Mobile View
-        <Box sx={styles.mobileContentContainer}>
-          <Box sx={styles.mobileAccordionContainer}>
-            <OrderSummary />
-            <Accordion
-              expanded={expandedAddress}
-              onChange={handleAccordionChange("address")}
-            >
-              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography>1. Shipping Address</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <AddressForm openPaymentAccordion={openPaymentAccordion} />
-              </AccordionDetails>
-            </Accordion>
-            <Accordion
-              expanded={expandedPayment}
-              onChange={handleAccordionChange("payment")}
-              disabled={paymentDisabled}
-            >
-              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography>2. Payment Information</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <PaymentForm />
-              </AccordionDetails>
-            </Accordion>
-          </Box>
-        </Box>
-      )}
+        <OrderSummary />
+      </Box>
     </>
   );
 }
