@@ -2,9 +2,7 @@ import cartReducer from "../components/CartPage/cartSlice";
 import checkoutReducer from "../components/CheckoutPage/checkoutSlice";
 import productsReducer from "../components/ProductsPage/productsSlice";
 import { configureStore } from "@reduxjs/toolkit";
-
 import {
-  persistStore,
   persistReducer,
   FLUSH,
   REHYDRATE,
@@ -13,7 +11,6 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-
 import storage from "redux-persist/lib/storage";
 
 const persistConfig = {
