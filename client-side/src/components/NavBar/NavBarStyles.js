@@ -39,3 +39,21 @@ export const linksContainer = {
 export const headerTitle = {
   fontSize: "1.5rem",
 };
+
+export const darkFont = {
+  color: "#2F2F2F",
+  "&:before": {
+    backgroundColor: "#2F2F2F",
+  },
+};
+
+export const drawerContainer = {
+  height: "100%",
+  width: "260px",
+  backgroundColor: "#DED9E2",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: "3rem",
+  paddingTop: "3rem",
+};
