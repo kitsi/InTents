@@ -1,5 +1,3 @@
-import "./ProductTile.css";
-
 import {
   Button,
   Card,
