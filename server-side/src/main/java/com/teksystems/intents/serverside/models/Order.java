@@ -30,64 +30,8 @@ public class Order {
     @Getter @Setter
     private List<OrderProduct> orderProducts;
 
-    @Column(name = "subtotal", columnDefinition = "DECIMAL UNSIGNED")
-    private BigDecimal subtotal;
+    @OneToOne(mappedBy = "order")
+    @JoinColumn(name = "billing_id")
+    private Billing billing;
 
-    @Column(name = "tax", columnDefinition = "DECIMAL UNSIGNED")
-    private BigDecimal tax;
-
-    @Column(name = "total", columnDefinition = "DECIMAL UNSIGNED")
-    private BigDecimal total;
-
-    @Column(name = "is_paid")
-    @Getter
-    private boolean isPaid;
-
-    @Getter
-    private String paymentMethod;
-
-    public void setPaymentMethod(String paymentMethod) {
-        for(PaymentMethod method : PaymentMethod.values()) {
-            if(method.name.equals(paymentMethod)) {
-                this.paymentMethod = paymentMethod;
-                isPaid = true;
-            } else {
-                isPaid = false;
-            }
-        }
-    }
-
-    public BigDecimal getSubtotal() {
-        calculateSubtotal();
-        return subtotal;
-    }
-
-    public void calculateSubtotal() {
-        String quantity;
-        BigDecimal productPrice;
-        for(OrderProduct product : orderProducts) {
-            quantity = String.valueOf(product.getQuantity());
-            productPrice = product.getProduct().getPrice();
-            subtotal = subtotal.add(productPrice.multiply(new BigDecimal(quantity)));
-        }
-    }
-    BigDecimal TAX_RATE = new BigDecimal("0.08");
-
-    public BigDecimal getTax() {
-        calculateTax();
-        return tax;
-    }
-
-    public void calculateTax() {
-       tax = TAX_RATE.multiply(getSubtotal());
-    }
-
-    public BigDecimal getTotal() {
-        calculateTotal();
-        return total;
-    }
-
-    public void calculateTotal() {
-        getSubtotal().add(getTax());
-    }
 }
