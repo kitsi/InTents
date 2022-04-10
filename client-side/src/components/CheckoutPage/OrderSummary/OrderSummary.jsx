@@ -18,24 +18,24 @@ function OrderSummary() {
     return <SummaryProductTile key={item.product.id} product={item} />;
   });
 
-  const calculateTotal = () => {
-    let price = 0;
-
-    cartItems.forEach((item) => {
-      price += item.quantity * item.product.price;
-    });
-
-    setSubTotalPrice(price);
-    setTax(0.08 * price);
-    setTotal(price + 0.08 * price);
-  };
-
   useEffect(() => {
+    const calculateTotal = () => {
+      let price = 0;
+
+      cartItems.forEach((item) => {
+        price += item.quantity * item.product.price;
+      });
+
+      setSubTotalPrice(price);
+      setTax(0.08 * price);
+      setTotal(price + 0.08 * price);
+    };
     calculateTotal();
-  }, [subTotalPrice, setSubTotalPrice]);
+  }, [subTotalPrice, setSubTotalPrice, cartItems]);
 
   useEffect(() => {
     dispatch(setOrderTotal(total));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [total]);
 
   return (

@@ -13,18 +13,18 @@ function ProductDetailsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
 
-  async function getProduct() {
-    setLoading(true);
-    const { data } = await axios
-      .get(`http://localhost:3001/products?sku=${sku}`)
-      .catch((err) => setError(err));
-    setLoading(false);
-    setProduct(data[0]);
-  }
-
   useEffect(() => {
+    async function getProduct() {
+      setLoading(true);
+      const { data } = await axios
+        .get(`http://localhost:3001/products?sku=${sku}`)
+        .catch((err) => setError(err));
+      setLoading(false);
+      setProduct(data[0]);
+    }
+
     getProduct();
-  }, []);
+  }, [sku]);
 
   return (
     <Box sx={styles.productDetailsPage}>
