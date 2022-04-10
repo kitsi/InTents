@@ -36,11 +36,6 @@ public class Product {
     @Getter @Setter
     private BigDecimal price;
 
-//    @OneToOne
-//    @JoinColumn(name = "inventory_id")
-//    @Getter @Setter
-//    private Inventory inventory;
-
     @Column(name = "image")
     @Getter @Setter
     private String image;
