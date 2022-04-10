@@ -1,18 +1,32 @@
+/* https://stackoverflow.com/questions/69730677/underline-animation-on-hover-mui */
 export const link = {
   textDecoration: "none",
   color: "#fff",
   textTransform: "none",
+  position: "relative",
   fontSize: "1rem",
+
   "&.active": {
     p: {
       fontWeight: "bold",
     },
   },
-  "&::after": {
-    transition: "all .5s",
+
+  "&:before": {
+    visibility: "hidden",
+    content: "''",
+    position: "absolute",
+    width: "0",
+    height: "2px",
+    bottom: "-3px",
+    left: "50%",
+    transform: "translate(-50%,0%)",
+    backgroundColor: "white",
+    transition: "all 0.3s ease-in-out",
   },
-  "&::before": {
-    transition: "all .5s",
+  "&:hover:before": {
+    visibility: "visible",
+    width: "100%",
   },
 };
 
@@ -20,22 +34,4 @@ export const linksContainer = {
   gap: "2rem",
   justifyContent: "center",
   transition: "all .5s",
-  a: {
-    position: "relative",
-    "&::after": {
-      position: "absolute",
-      bottom: -"2px",
-      left: "0",
-      right: "0",
-      margin: "auto",
-      width: "0%",
-      content: "'.'",
-      color: "transparent",
-      background: "white",
-      height: "2px",
-      "&::hover": {
-        width: "100%",
-      },
-    },
-  },
 };

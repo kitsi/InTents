@@ -1,5 +1,3 @@
-import "./NavBar.css";
-
 import {
   AppBar,
   Box,
@@ -79,7 +77,6 @@ const NavBar = () => {
               display: { xs: "none", md: "flex" },
               ...styles.linksContainer,
             }}
-            //className="links-container"
           >
             <Button to="/products/" component={NavLink} sx={styles.link}>
               All Products
