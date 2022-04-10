@@ -35,3 +35,7 @@ export const linksContainer = {
   justifyContent: "center",
   transition: "all .5s",
 };
+
+export const headerTitle = {
+  fontSize: "1.5rem",
+};
