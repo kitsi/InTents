@@ -56,7 +56,9 @@ export default function CartPage() {
           {cartItems.length > 0 ? (
             cartList
           ) : (
-            <Typography variant="h3">No items in your cart</Typography>
+            <Typography variant="h3" sx={{ textAlign: "center" }}>
+              No items in your cart
+            </Typography>
           )}
         </Box>
       </Box>
