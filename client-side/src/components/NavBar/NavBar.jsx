@@ -16,7 +16,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { ShoppingCartOutlined } from "@mui/icons-material";
 import SideDrawer from "./SideDrawer";
 import { useSelector } from "react-redux";
-
+import * as styles from "./NavBarStyles";
 // Add pages from wireframe
 const pages = ["Tents", "Cookware", "Sleeping Bags", "Fans", "Emergency"];
 
@@ -43,16 +43,15 @@ const NavBar = () => {
       />
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Link to="/" className="link">
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
-            >
-              InTents
-            </Typography>
-          </Link>
+          <Typography
+            variant="h6"
+            noWrap
+            sx={{ mr: 2, display: { xs: "none", md: "flex" }, ...styles.link }}
+            component={Link}
+            to="/"
+          >
+            InTents
+          </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -74,7 +73,11 @@ const NavBar = () => {
             InTents
           </Typography>
           <Box
-            sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              ...styles.linksContainer,
+            }}
             className="links-container"
           >
             <NavLink
@@ -100,11 +103,15 @@ const NavBar = () => {
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <IconButton>
-              <Link to="/cart" className="link">
-                <Badge badgeContent={badgeCount()} color="secondary">
-                  <ShoppingCartOutlined />
-                </Badge>
-              </Link>
+              <Badge
+                badgeContent={badgeCount()}
+                color="secondary"
+                component={Link}
+                sx={styles.link}
+                to={"/cart"}
+              >
+                <ShoppingCartOutlined />
+              </Badge>
             </IconButton>
           </Box>
         </Toolbar>
