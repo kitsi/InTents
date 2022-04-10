@@ -1,5 +1,5 @@
 export const productDetailsPage = {
-  ["@media (min-width:900px)"]: {
+  "@media (min-width:900px)": {
     marginTop: "2rem",
   },
 };
@@ -8,7 +8,7 @@ export const productDetailsPageWrapper = {
   display: "flex",
   flexDirection: "column",
   gap: "3rem",
-  ["@media (min-width:900px)"]: {
+  "@media (min-width:900px)": {
     flexDirection: "row",
   },
 };
@@ -38,7 +38,7 @@ export const detailsWrapper = {
   flexDirection: "column",
   padding: "1rem",
   gap: "1rem",
-  ["@media (min-width:900px)"]: {
+  "@media (min-width:900px)": {
     height: "100%",
     paddingRight: "1rem",
   },
@@ -47,7 +47,7 @@ export const detailsWrapper = {
 export const productNameRight = {
   display: "block",
   textAlign: "left",
-  ["@media (min-width:900px)"]: {
+  "@media (min-width:900px)": {
     display: "block",
     textAlign: "left",
   },
@@ -61,7 +61,7 @@ export const category = {
 export const details = {
   display: "flex",
   justifyContent: "space-between",
-  ["@media (min-width:900px)"]: {
+  "@media (min-width:900px)": {
     justifyContent: "space-between",
     padding: "0",
   },
@@ -80,7 +80,7 @@ export const controls = {
 export const descriptionText = {
   padding: "0.5rem",
   marginTop: "1rem",
-  ["@media (min-width:900px)"]: {
+  "@media (min-width:900px)": {
     margin: "1rem 0",
   },
 };

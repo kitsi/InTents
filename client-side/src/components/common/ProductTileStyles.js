@@ -10,7 +10,7 @@ export const card = {
     color: "black",
   },
 
-  ["@media (min-width:900px)"]: {
+  "@media (min-width:900px)": {
     display: "flex",
     flexDirection: "row",
   },
@@ -20,7 +20,7 @@ export const productImage = {
   transition: "all 0.15s",
   objectFit: "contain",
   margin: "auto",
-  ["@media (min-width:900px)"]: {
+  "@media (min-width:900px)": {
     width: "200px",
     objectFit: "contain",
     marginLeft: "1rem",
@@ -33,7 +33,7 @@ export const productImage = {
 
 export const productDetails = {
   zIndex: "1",
-  ["@media (min-width:900px)"]: {
+  "@media (min-width:900px)": {
     display: "flex",
     flexDirection: "column",
     flexGrow: "1",
@@ -44,7 +44,7 @@ export const productDescription = {
   whiteSpace: "nowrap",
   overflow: "hidden",
   textOverflow: "ellipsis",
-  ["@media (min-width:900px)"]: {
+  "@media (min-width:900px)": {
     whiteSpace: "normal",
   },
 };

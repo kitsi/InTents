@@ -1,5 +1,5 @@
 import "./SideDrawer.css";
-import { Box, Drawer, Typography, Button } from "@mui/material";
+import { Box, Drawer, Button } from "@mui/material";
 
 import { NavLink } from "react-router-dom";
 import React from "react";

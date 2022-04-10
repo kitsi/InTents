@@ -21,9 +21,9 @@ function CheckoutPage() {
   const [openModal, setOpenModal] = useState(false);
 
   const handleAccordionChange = (panel) => (isExpanded) => {
-    if (panel == "address") {
+    if (panel === "address") {
       setExpandedAddress(!expandedAddress);
-    } else if (panel == "payment") {
+    } else if (panel === "payment") {
       setExpandedPayment(!expandedPayment);
     }
   };

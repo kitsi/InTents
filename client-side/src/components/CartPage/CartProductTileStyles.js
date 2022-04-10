@@ -1,6 +1,6 @@
 export const cartCard = {
   position: "relative",
-  ["@media (min-width:900px)"]: {
+  "@media (min-width:900px)": {
     display: "flex",
     flexDirection: "row",
     gap: "2rem",
@@ -18,7 +18,7 @@ export const productImage = {
   transition: "all 0.15s",
   objectFit: "contain",
   margin: "auto",
-  ["@media (min-width:900px)"]: {
+  "@media (min-width:900px)": {
     width: "200px",
     objectFit: "contain",
     marginLeft: "1rem",
@@ -31,7 +31,7 @@ export const productImage = {
 
 export const productDetails = {
   flexGrow: "1",
-  ["@media (min-width:900px)"]: {
+  "@media (min-width:900px)": {
     display: "flex",
     flexDirection: "column",
     flexGrow: "1",
@@ -39,7 +39,7 @@ export const productDetails = {
 };
 
 export const productDescription = {
-  ["@media (min-width:900px)"]: {
+  "@media (min-width:900px)": {
     whiteSpace: "normal",
     overflow: "visible",
     textOverflow: "initial",

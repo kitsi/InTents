@@ -14,7 +14,7 @@ export const buttonContainer = {
   position: "sticky",
   boxShadow:
     "0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 2px 3px 0px rgb(0 0 0 / 12%)",
-  ["@media (min-width:600px)"]: {
+  "@media (min-width:600px)": {
     top: "64px",
   },
 };
@@ -30,7 +30,6 @@ export const buttons = {
 
 export const subtotal = {
   textAlign: "right",
-  margin: "0",
   padding: "0 2rem",
   maxWidth: "1000px",
   margin: "1rem auto 0 auto",

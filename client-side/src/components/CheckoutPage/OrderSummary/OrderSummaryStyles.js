@@ -4,7 +4,7 @@ export const summaryContainer = {
   flexDirection: "column",
   alignItems: "center",
   justifyItems: "center",
-  ["@media (min-width:900px)"]: {
+  "@media (min-width:900px)": {
     minWidth: "40vw",
   },
 };

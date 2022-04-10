@@ -20,7 +20,7 @@ function ProductsPage() {
   }, [dispatch, products]);
 
   const productTiles = products
-    .filter((product) => (category ? product.category == category : true))
+    .filter((product) => (category ? product.category === category : true))
     .map((product) => {
       return <ProductTile key={product.id} productData={product} />;
     });
