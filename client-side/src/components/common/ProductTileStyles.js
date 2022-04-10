@@ -33,6 +33,11 @@ export const productImage = {
 
 export const productDetails = {
   zIndex: "1",
+  ["@media (min-width:900px)"]: {
+    display: "flex",
+    flexDirection: "column",
+    flexGrow: "1",
+  },
 };
 
 export const productDescription = {
@@ -47,5 +52,4 @@ export const productDescription = {
 export const cardActions = {
   alignItems: "flex-end",
   justifyContent: "flex-end",
-  width: "100%",
 };
