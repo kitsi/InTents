@@ -5,6 +5,7 @@ export const desktopContentContainer = {
   alignItems: "center",
   ["@media (min-width:900px)"]: {
     flexDirection: "row",
+    alignItems: "flex-start",
   },
 };
 
