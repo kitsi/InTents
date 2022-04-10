@@ -10,6 +10,7 @@ import {
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../CartPage/cartSlice";
+import * as styles from "./ProductDetailsPageStyles";
 
 function ProductDetails({ product }) {
   const [qtyValue, setQtyValue] = useState(1);
@@ -33,7 +34,7 @@ function ProductDetails({ product }) {
   };
 
   return (
-    <div className="product-details-page-wrapper">
+    <Box sx={styles.productDetailsWrapper}>
       <div className="product-header">
         <Box className="image-wrapper">
           <Box
@@ -86,7 +87,7 @@ function ProductDetails({ product }) {
           <Typography variant="body1">{product.description}</Typography>
         </Paper>
       </Box>
-    </div>
+    </Box>
   );
 }
 

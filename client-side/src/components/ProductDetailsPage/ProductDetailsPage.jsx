@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { Box } from "@mui/material";
 import Loading from "../common/Loading";
-import ProductDetails from "../ProductDetails/ProductDetails";
-
+import ProductDetails from "./ProductDetails";
+import * as styles from "./ProductDetailsPageStyles";
 import "./ProductDetailsPage.css";
 
 function ProductDetailsPage() {
@@ -27,11 +28,11 @@ function ProductDetailsPage() {
   }, []);
 
   return (
-    <div className="product-details-page">
-      <div className="product-details-wrapper">
+    <Box sx={styles.productDetailsPage}>
+      <Box sx={styles.productDetailsWrapper}>
         {loading ? <Loading /> : <ProductDetails product={product} />}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
 
