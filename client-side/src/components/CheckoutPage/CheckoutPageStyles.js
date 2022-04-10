@@ -5,6 +5,7 @@ export const desktopContentContainer = {
   "@media (min-width:900px)": {
     flexDirection: "row",
     alignItems: "flex-start",
+    overflowX: "hidden",
   },
 };
 
@@ -16,10 +17,6 @@ export const desktopAccordionContainer = {
     margin: "1rem",
   },
 };
-
-export const mobileContentContainer = {};
-
-export const mobileAccordionContainer = {};
 
 export const expandIcon = {
   width: "2.5rem",

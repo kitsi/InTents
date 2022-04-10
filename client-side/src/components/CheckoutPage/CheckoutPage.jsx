@@ -41,7 +41,7 @@ function CheckoutPage() {
   };
 
   return (
-    <>
+    <Box sx={{ overflowX: "hidden" }}>
       <OrderConfirmationModal
         handleModalClose={handleModalClose}
         openModal={openModal}
@@ -82,7 +82,7 @@ function CheckoutPage() {
         </Box>
         <OrderSummary />
       </Box>
-    </>
+    </Box>
   );
 }
 
