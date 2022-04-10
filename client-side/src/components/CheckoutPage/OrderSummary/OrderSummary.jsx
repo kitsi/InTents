@@ -35,8 +35,7 @@ function OrderSummary() {
 
   useEffect(() => {
     dispatch(setOrderTotal(total));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [total]);
+  }, [total, dispatch]);
 
   return (
     <Box sx={styles.summaryContainer}>
