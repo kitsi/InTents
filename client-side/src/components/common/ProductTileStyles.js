@@ -52,4 +52,7 @@ export const productDescription = {
 export const cardActions = {
   alignItems: "flex-end",
   justifyContent: "flex-end",
+  marginRight: "0",
+  marginTop: "auto",
+  flexShrink: "0",
 };
