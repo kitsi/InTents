@@ -1,6 +1,5 @@
 package com.teksystems.intents.serverside.services;
 
-import com.teksystems.intents.serverside.models.Inventory;
 import com.teksystems.intents.serverside.models.Order;
 import com.teksystems.intents.serverside.repositories.OrderRepository;
 import org.springframework.data.domain.Page;
