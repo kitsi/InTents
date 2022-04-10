@@ -19,6 +19,10 @@ function OrderSummary() {
   });
 
   useEffect(() => {
+    dispatch(setOrderTotal(total));
+  }, [total, dispatch]);
+
+  useEffect(() => {
     const calculateTotal = () => {
       let price = 0;
 
@@ -31,11 +35,8 @@ function OrderSummary() {
       setTotal(price + 0.08 * price);
     };
     calculateTotal();
-  }, [subTotalPrice, setSubTotalPrice, cartItems]);
-
-  useEffect(() => {
-    dispatch(setOrderTotal(total));
-  }, [total, dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [subTotalPrice, setSubTotalPrice]);
 
   return (
     <Box sx={styles.summaryContainer}>
