@@ -8,6 +8,7 @@ import {
   Toolbar,
   Typography,
   Badge,
+  Button,
 } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
 import React, { useState } from "react";
@@ -78,27 +79,23 @@ const NavBar = () => {
               display: { xs: "none", md: "flex" },
               ...styles.linksContainer,
             }}
-            className="links-container"
+            //className="links-container"
           >
-            <NavLink
-              to="/products/"
-              className={({ isActive }) => (isActive ? `active link` : `link`)}
-            >
-              <Typography>All Products</Typography>
-            </NavLink>
+            <Button to="/products/" component={NavLink} sx={styles.link}>
+              All Products
+            </Button>
             {pages.map((page) => (
-              <NavLink
+              <Button
                 to={`/products/categories/${page
                   .split(" ")
                   .join("-")
                   .toLowerCase()}`}
                 key={page}
-                className={({ isActive }) =>
-                  isActive ? `active link` : `link`
-                }
+                component={NavLink}
+                sx={styles.link}
               >
-                <Typography>{page}</Typography>
-              </NavLink>
+                {page}
+              </Button>
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>

@@ -1,14 +1,28 @@
 export const link = {
   textDecoration: "none",
   color: "#fff",
+  textTransform: "none",
+  fontSize: "1rem",
+  "&.active": {
+    p: {
+      fontWeight: "bold",
+    },
+  },
+  "&::after": {
+    transition: "all .5s",
+  },
+  "&::before": {
+    transition: "all .5s",
+  },
 };
 
 export const linksContainer = {
   gap: "2rem",
   justifyContent: "center",
+  transition: "all .5s",
   a: {
     position: "relative",
-    "&:::after": {
+    "&::after": {
       position: "absolute",
       bottom: -"2px",
       left: "0",
@@ -19,6 +33,9 @@ export const linksContainer = {
       color: "transparent",
       background: "white",
       height: "2px",
+      "&::hover": {
+        width: "100%",
+      },
     },
   },
 };
