@@ -45,5 +45,7 @@ export const productDescription = {
 };
 
 export const cardActions = {
+  alignItems: "flex-end",
   justifyContent: "flex-end",
+  width: "100%",
 };

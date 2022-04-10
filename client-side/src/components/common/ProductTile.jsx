@@ -56,7 +56,7 @@ export default function ProductTile({ productData }) {
           {productData.description}
         </Typography>
       </CardContent>
-      <CardActions className="card-actions">
+      <CardActions sx={styles.cardActions}>
         <Button
           size="small"
           variant="contained"
