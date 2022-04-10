@@ -15,11 +15,17 @@ export const cardTotal = {
 };
 
 export const productImage = {
+  transition: "all 0.15s",
   objectFit: "contain",
+  margin: "auto",
   ["@media (min-width:900px)"]: {
     width: "200px",
     objectFit: "contain",
     marginLeft: "1rem",
+  },
+
+  "&:hover": {
+    transform: "scale(1.2)",
   },
 };
 

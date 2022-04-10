@@ -1,4 +1,3 @@
-import "./cartProductTile.css";
 import {
   Card,
   CardActions,
