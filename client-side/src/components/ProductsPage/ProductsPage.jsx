@@ -1,6 +1,4 @@
-import "./ProductsPage.css";
-
-import { Divider, Typography } from "@mui/material";
+import { Divider, Typography, Box } from "@mui/material";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
@@ -8,6 +6,7 @@ import ProductTile from "../common/ProductTile";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "./productsSlice";
 import Loading from "../common/Loading";
+import * as styles from "./ProductsPageStyles";
 
 function ProductsPage() {
   const { products, loading } = useSelector((state) => state.products);
@@ -20,9 +19,11 @@ function ProductsPage() {
     dispatch(fetchProducts());
   }, [dispatch, products]);
 
-  const productTiles = products.filter(product => category ? product.category == category : true).map((product) => {
-    return <ProductTile key={product.id} productData={product} />;
-  });
+  const productTiles = products
+    .filter((product) => (category ? product.category === category : true))
+    .map((product) => {
+      return <ProductTile key={product.id} productData={product} />;
+    });
 
   const headingFormatter = (heading) => {
     let title = "";
@@ -37,22 +38,25 @@ function ProductsPage() {
 
   return (
     <div id="products-page">
-      <Typography variant="h2" className="products-page-header">
+      <Typography
+        variant="h2"
+        sx={{ ...styles.productsPageHeader, ...styles.alignCenter }}
+      >
         {category ? headingFormatter(category) : "All Products"}
       </Typography>
       <Divider />
 
-      <div className="product-tiles-container">
+      <Box sx={styles.productTilesContainer}>
         {loading ? (
           <Loading />
         ) : products.length === 0 ? (
-          <Typography variant="h3">
+          <Typography variant="h3" sx={styles.alignCenter}>
             No Products Available. Please check back again!
           </Typography>
         ) : (
           <>{productTiles}</>
         )}
-      </div>
+      </Box>
     </div>
   );
 }

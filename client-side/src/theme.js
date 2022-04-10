@@ -1,6 +1,9 @@
 import { createTheme } from "@mui/material";
 
 const theme = createTheme({
+  body: {
+    backgroundColor: "#ded9e2",
+  },
   typography: {
     h2: {
       fontSize: "3rem",
