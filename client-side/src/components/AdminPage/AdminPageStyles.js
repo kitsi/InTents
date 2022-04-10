@@ -7,6 +7,7 @@ export const addButton = {
 
 export const pageHeader = {
   padding: "1rem 0",
+  textAlign: "center",
 };
 
 export const productTilesContainer = {

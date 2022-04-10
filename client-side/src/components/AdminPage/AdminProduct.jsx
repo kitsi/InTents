@@ -7,9 +7,10 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import axios from 'axios';
+import axios from "axios";
 import { useDispatch } from "react-redux";
 import { fetchProducts } from "../ProductsPage/productsSlice";
+import * as styles from "../common/ProductTileStyles";
 
 function AdminProduct({ productData, editProduct }) {
   const dispatch = useDispatch();
@@ -17,18 +18,18 @@ function AdminProduct({ productData, editProduct }) {
   const deleteProduct = async () => {
     await axios.delete(`http://localhost:3001/products/${productData.id}`);
     dispatch(fetchProducts());
-  }
+  };
 
   return (
-    <Card className="card">
+    <Card sx={styles.card}>
       <CardMedia
         component="img"
         height="200"
         image={productData.image}
         alt={productData.name}
-        className="product-image"
+        sx={styles.productImage}
       />
-      <CardContent className="product-details">
+      <CardContent sx={styles.productDetails}>
         <Typography gutterBottom variant="h5" component="div">
           {productData.name}
         </Typography>
@@ -38,12 +39,12 @@ function AdminProduct({ productData, editProduct }) {
         <Typography
           variant="body2"
           color="text.secondary"
-          className="product-description"
+          sx={styles.productDescription}
         >
           {productData.description}
         </Typography>
       </CardContent>
-      <CardActions className="card-actions">
+      <CardActions sx={styles.cardActions}>
         <Button
           size="small"
           variant="contained"
@@ -52,7 +53,12 @@ function AdminProduct({ productData, editProduct }) {
         >
           Edit
         </Button>
-        <Button size="small" variant="contained" color="primary" onClick={deleteProduct}>
+        <Button
+          size="small"
+          variant="contained"
+          color="primary"
+          onClick={deleteProduct}
+        >
           Remove
         </Button>
       </CardActions>
