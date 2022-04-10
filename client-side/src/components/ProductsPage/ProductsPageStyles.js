@@ -11,8 +11,7 @@ export const productTilesContainer = {
   flexDirection: "column",
   alignItems: "center",
   gap: "3rem",
-  padding: "0 2rem 2rem 0",
+  padding: "2rem",
   maxWidth: "1000px",
   margin: "0 auto",
-  marginTop: "2rem",
 };
