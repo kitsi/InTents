@@ -5,7 +5,6 @@ import { Box } from "@mui/material";
 import Loading from "../common/Loading";
 import ProductDetails from "./ProductDetails";
 import * as styles from "./ProductDetailsPageStyles";
-import "./ProductDetailsPage.css";
 
 function ProductDetailsPage() {
   const { sku } = useParams();

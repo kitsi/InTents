@@ -34,31 +34,31 @@ function ProductDetails({ product }) {
   };
 
   return (
-    <Box sx={styles.productDetailsWrapper}>
-      <div className="product-header">
-        <Box className="image-wrapper">
+    <Box sx={styles.productDetailsPageWrapper}>
+      <Box sx={styles.productHeader}>
+        <Box sx={styles.imageWrapper}>
           <Box
             component="img"
             src={product.image}
-            className="product-details-image"
+            sx={styles.productDetailsImage}
           />
         </Box>
-      </div>
-      <Box className="details-wrapper">
+      </Box>
+      <Box sx={styles.detailsWrapper}>
         <div>
-          <Typography className="product-name-right" variant="h3">
+          <Typography sx={styles.productNameRight} variant="h3">
             {product.name}
           </Typography>
-          <Typography className="category">
+          <Typography sx={styles.category}>
             {product.category && headingFormatter(product.category)}
           </Typography>
         </div>
-        <Box className="details">
-          <Box className="price-and-sku">
+        <Box sx={styles.details}>
+          <Box sx={styles.priceAndSku}>
             <Typography>${product.price}</Typography>
             <Typography>SKU:{product.sku}</Typography>
           </Box>
-          <Box className="controls">
+          <Box sx={styles.controls}>
             <FormControl>
               <Select value={qtyValue} onChange={changeQty}>
                 <MenuItem value={1}>1</MenuItem>
@@ -83,7 +83,7 @@ function ProductDetails({ product }) {
             </Button>
           </Box>
         </Box>
-        <Paper className="description-text">
+        <Paper sx={styles.descriptionText}>
           <Typography variant="body1">{product.description}</Typography>
         </Paper>
       </Box>
