@@ -139,7 +139,7 @@ function CheckoutPage() {
                 <Typography>2. Payment Information</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <PaymentForm />
+                <PaymentForm handleModalOpen={handleModalOpen} />
               </AccordionDetails>
             </Accordion>
           </Box>
