@@ -22,4 +22,5 @@ spring.jpa.hibernate.ddl-auto = update
 
 ### Resources
 [Sales Tax Rates per state](https://files.taxfoundation.org/20210106094117/State-and-Local-Sales-Tax-Rates-2021.pdf)
-   <br /><br />
+   <br />
+[Mysql procedure using last_insert_id](https://www.mysqltutorial.org/mysql-last_insert_id.aspx)

@@ -32,7 +32,7 @@ public class Product {
     @Getter @Setter
     private String description;
 
-    @Column(name = "price", columnDefinition = "DECIMAL UNSIGNED")
+    @Column(name = "price", columnDefinition = "DECIMAL(10,2) UNSIGNED")
     @Getter @Setter
     private BigDecimal price;
 
@@ -41,7 +41,12 @@ public class Product {
     private String image;
 
     @ManyToOne
-    @JoinColumn(name = "category")
+    @JoinColumn(name = "category_id")
     @Getter @Setter
     private Category category;
+
+    @OneToOne
+    @JoinColumn(name = "inventory_id")
+    @Getter @Setter
+    private Inventory inventory;
 }
