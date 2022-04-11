@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { Container, Grid, TextField, Button, Box } from "@mui/material";
 import { useDispatch } from "react-redux";
@@ -17,6 +17,8 @@ import axios from "axios";
 
 const PaymentForm = (props, { handleModalOpen }) => {
   const dispatch = useDispatch();
+
+  const { orderTotal } = props;
 
   const [paymentFormData, setPaymentFormData] = useState({
     nameOnCard: "",
@@ -86,7 +88,9 @@ const PaymentForm = (props, { handleModalOpen }) => {
     }
 
     setIsLoading(true);
-    const clientSecret = await getClientSecret({ amount: 14 });
+    // Order total should eventually be calculated in the backend once products table is set up for security reasons
+    const data = { amount: orderTotal };
+    const clientSecret = await getClientSecret(data);
 
     const cardElement = elements.getElement(CardNumberElement);
 
