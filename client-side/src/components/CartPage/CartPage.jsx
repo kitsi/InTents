@@ -1,14 +1,12 @@
-import "./cartPage.css";
-
-import { Typography } from "@mui/material";
-import { useSelector } from "react-redux";
-import { Button } from "@mui/material";
-
-import CartProductTile from "./CartProductTile";
 import React from "react";
-import { Link } from "react-router-dom";
+import * as styles from "./CartPageStyles.js";
 
+import { useSelector } from "react-redux";
+import { Button, Box, Typography } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import { Link } from "react-router-dom";
+import formatCurrency from "../../utilities/formatCurrency.js";
+import CartProductTile from "./CartProductTile";
 
 export default function CartPage() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -26,40 +24,44 @@ export default function CartPage() {
   }
 
   return (
-    <div className="cart-page">
-      <div className="button-container">
-        <div className="buttons">
-          <Link to={"/products"}>
-            <Button
-              className="continue-shopping-mobile"
-              size="large"
-              variant="contained"
-              color="primary"
-            >
-              <ArrowBackIosNewIcon />
-            </Button>
-          </Link>
+    <Box>
+      <Box sx={styles.buttonContainer}>
+        <Box sx={styles.buttons}>
+          <Button
+            size="large"
+            variant="contained"
+            color="primary"
+            component={Link}
+            to={"/products"}
+          >
+            <ArrowBackIosNewIcon />
+          </Button>
           <Typography variant="h2">Cart</Typography>
-          <Link to={"/checkout"}>
-            <Button size="large" variant="contained" color="primary">
-              Checkout
-            </Button>
-          </Link>
-        </div>
-        <p className="subtotal">
-          <strong>Subtotal:</strong> ${getSubtotal().toFixed(2)}
-        </p>
-      </div>
-      <div className="cart-content-container">
-        <div className="cart-controls"></div>
-        <div className="cart-product-tiles-container">
+          <Button
+            size="large"
+            variant="contained"
+            color="primary"
+            component={Link}
+            to={"/checkout"}
+          >
+            Checkout
+          </Button>
+        </Box>
+        <Typography sx={styles.subtotal}>
+          <strong>Subtotal:</strong> {formatCurrency(getSubtotal())}
+        </Typography>
+      </Box>
+      <Box sx={styles.contentContainer}>
+        <Box sx={styles.productTilesContainer}>
           {cartItems.length > 0 ? (
             cartList
           ) : (
-            <Typography variant="h3">No items in your cart</Typography>
+            <Typography variant="h3" sx={{ textAlign: "center" }}>
+              No items in your cart
+            </Typography>
           )}
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 }

@@ -9,6 +9,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import AdminPage from "./components/AdminPage/AdminPage";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 
 const StripeApiKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
 
@@ -31,6 +32,7 @@ function Router() {
         }
       />
       <Route path="/product/:sku" exact element={<ProductDetailsPage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }

@@ -15,6 +15,7 @@ import {
 } from "@stripe/react-stripe-js";
 import StripeInput from "../StripeInput";
 import axios from "axios";
+import * as styles from "./FormStyles";
 
 const PaymentForm = ({ handleModalOpen }) => {
   const dispatch = useDispatch();
@@ -201,19 +202,12 @@ const PaymentForm = ({ handleModalOpen }) => {
             />
           </Grid>
         </Grid>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "flex-end",
-          }}
-        >
+        <Box sx={styles.submitButtonWrapper}>
           <Button
             type="submit"
             variant="contained"
             color="primary"
-            sx={{
-              marginTop: "1rem",
-            }}
+            sx={styles.submitButton}
             disabled={isLoading || !stripe || !elements}
           >
             Place Order

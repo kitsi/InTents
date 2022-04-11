@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./adminPage.css";
 import AdminProduct from "./AdminProduct";
 import { fetchProducts } from "../ProductsPage/productsSlice";
 import { Divider, Typography, Button, Box } from "@mui/material";
@@ -38,7 +37,7 @@ function AdminPage() {
     });
     setnewProduct(true);
     toggleModal();
-  }
+  };
 
   const editProduct = (product) => {
     setSelectedProduct(product);
@@ -57,21 +56,21 @@ function AdminPage() {
   });
 
   return (
-    <div className="admin-page">
+    <Box>
       <ProductEditDialog
         isOpen={modalOpen}
         toggleModal={toggleModal}
         product={selectedProduct}
         newProduct={newProduct}
       />
-      <Typography variant="h2" className="admin-page-header">
+      <Typography variant="h2" sx={styles.pageHeader}>
         Admin
       </Typography>
-      
+
       <Divider />
 
       <Box sx={styles.addButton}>
-        <Button 
+        <Button
           size="large"
           variant="contained"
           color="primary"
@@ -80,8 +79,8 @@ function AdminPage() {
           Add Item
         </Button>
       </Box>
-      
-      <div className="admin-product-tiles-container">
+
+      <Box sx={styles.productTilesContainer}>
         {loading ? (
           <Loading />
         ) : products.length === 0 ? (
@@ -91,8 +90,8 @@ function AdminPage() {
         ) : (
           productTiles
         )}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
 
