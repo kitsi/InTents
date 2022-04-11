@@ -19,6 +19,7 @@ import * as styles from "./ProductEditDialogStyles";
 import axios from 'axios'
 import { useDispatch } from "react-redux";
 import { fetchProducts } from "../../ProductsPage/productsSlice";
+import { baseUrl } from "../../../utilities/strings";
 
 export default function ProductEditDialog({ isOpen, toggleModal, product, newProduct }) {
   const dispatch = useDispatch();
@@ -52,9 +53,9 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
 
   const sendProductToServer = async() => {
     if(newProduct) {
-      await axios.post("http://localhost:3001/products", formState);
+      await axios.post(`${baseUrl}/products`, formState);
     } else {
-      await axios.put(`http://localhost:3001/products/${product.id}`, formState);
+      await axios.put(`${baseUrl}/products/${product.id}`, formState);
     }
   
     dispatch(fetchProducts());
