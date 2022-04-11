@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 
-import { Container, Grid, TextField, Button, Box } from "@mui/material";
+import {
+  Container,
+  Grid,
+  TextField,
+  Button,
+  Box,
+  CircularProgress,
+} from "@mui/material";
 import { useDispatch } from "react-redux";
 import { setPaymentForm } from "../checkoutSlice";
 import { clearCart } from "../../CartPage/cartSlice";
@@ -16,22 +23,21 @@ import {
 import StripeInput from "../StripeInput";
 import axios from "axios";
 import * as styles from "./FormStyles";
+import Loading from "../../common/Loading";
 
 const PaymentForm = ({ handleModalOpen }) => {
   const dispatch = useDispatch();
   const { orderTotal } = useSelector((state) => state.checkout);
 
-  const [paymentFormData, setPaymentFormData] = useState({
-    nameOnCard: "",
-    cardNumber: "",
-    expiration: "",
-    cvc: "",
-  });
-
   // Stripe card validation
   const [cardNumErrorMsg, setCardNumErrorMsg] = useState(null);
   const [expDateErrorMsg, setExpDateErrorMsg] = useState(null);
   const [cvcErrorMsg, setCvcErrorMsg] = useState(null);
+  const [customerName, setCustomerName] = useState("");
+
+  const handleNameChange = (e) => {
+    setCustomerName(e.target.value);
+  };
 
   const handleChange = ({ error }) => {
     if (error) {
@@ -100,7 +106,7 @@ const PaymentForm = ({ handleModalOpen }) => {
       payment_method: {
         card: cardElement,
         billing_details: {
-          name: "Neo Maraisane", // Hard-coded for now. Replace with actual customer name.
+          name: customerName,
         },
       },
     });
@@ -118,7 +124,7 @@ const PaymentForm = ({ handleModalOpen }) => {
       }
     } else {
       handleModalOpen();
-      console.log("Payment success!");
+      dispatch(clearCart());
     }
 
     setIsLoading(false);
@@ -133,7 +139,8 @@ const PaymentForm = ({ handleModalOpen }) => {
               fullWidth
               label="Name On Card"
               name="nameOnCard"
-              value={paymentFormData.nameOnCard}
+              value={customerName}
+              onChange={handleNameChange}
               InputLabelProps={{
                 shrink: true,
               }}
@@ -154,7 +161,6 @@ const PaymentForm = ({ handleModalOpen }) => {
                   component: CardNumberElement,
                 },
               }}
-              value={paymentFormData.cardNumber}
               InputLabelProps={{
                 shrink: true,
               }}
@@ -195,7 +201,6 @@ const PaymentForm = ({ handleModalOpen }) => {
                   component: CardCvcElement,
                 },
               }}
-              value={paymentFormData.cvc}
               InputLabelProps={{
                 shrink: true,
               }}
@@ -210,7 +215,11 @@ const PaymentForm = ({ handleModalOpen }) => {
             sx={styles.submitButton}
             disabled={isLoading || !stripe || !elements}
           >
-            Place Order
+            {isLoading ? (
+              <CircularProgress size={24} sx={styles.loadingIcon} />
+            ) : (
+              "Place Order"
+            )}
           </Button>
         </Box>
         {/* Show any error or success messages  */}
