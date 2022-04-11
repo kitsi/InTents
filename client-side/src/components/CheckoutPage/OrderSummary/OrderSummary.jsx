@@ -1,7 +1,5 @@
 import { Box, Divider, Paper, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { setOrderTotal } from "../checkoutSlice";
+import React, { useEffect } from "react";
 import SummaryProductTile from "./SummaryProductTile";
 import { useSelector } from "react-redux";
 import * as styles from "./OrderSummaryStyles";

@@ -32,6 +32,7 @@ function CheckoutPage() {
     setOrderConfirmationTotal(total);
     setTotal(0);
   };
+
   const handleAccordionChange = (panel) => (isExpanded) => {
     if (panel === "address") {
       setExpandedAddress(!expandedAddress);
