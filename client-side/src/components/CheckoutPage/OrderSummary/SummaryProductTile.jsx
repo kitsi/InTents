@@ -5,7 +5,6 @@ import * as styles from "./OrderSummaryStyles";
 import formatCurrency from "../../../utilities/formatCurrency";
 
 function SummaryProductTile({ cartProduct, product }) {
-  const item = product.product;
   return (
     <Card sx={styles.productContainer}>
       <Typography sx={styles.quantity}>{cartProduct.quantity}</Typography>

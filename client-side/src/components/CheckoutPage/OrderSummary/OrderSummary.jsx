@@ -22,24 +22,32 @@ function OrderSummary() {
 
   const [isLoading, setLoading] = useState(true);
 
-  const updateCartList = () => {
-    setCartList(cartItems.map((item) => {
-      const product = products.filter(product => product.id === item.id)[0];
-      return <SummaryProductTile key={item.id} cartProduct={item} product={product} />;
-    }))
-  };
-
   useEffect(() => {
     dispatch(setOrderTotal(total));
   }, [total, dispatch]);
 
   useEffect(() => {
+    const updateAllProducts = async () => {
+      const productArray = [];
+  
+      for (let i = 0; i < cartItems.length; i++) {
+        const { data } = await axios.get(`${baseUrl}/products/${cartItems[i].id}`);
+        productArray.push(data);
+      }
+  
+      setProducts(productArray);
+      setLoading(false);
+    }
+
     updateAllProducts();
   }, [cartItems]);
 
   useEffect(() => {
-    updateCartList();
-  }, [products]);
+    setCartList(cartItems.map((item) => {
+      const product = products.filter(product => product.id === item.id)[0];
+      return <SummaryProductTile key={item.id} cartProduct={item} product={product} />;
+    }));
+  }, [products, cartItems]);
 
   useEffect(() => {
     if(!isLoading) {
@@ -55,18 +63,6 @@ function OrderSummary() {
       setTotal(price + 0.08 * price);
     }
   }, [isLoading, products, cartItems]);
-
-  const updateAllProducts = async () => {
-    const productArray = [];
-
-    for (let i = 0; i < cartItems.length; i++) {
-      const { data } = await axios.get(`${baseUrl}/products/${cartItems[i].id}`);
-      productArray.push(data);
-    }
-
-    setProducts(productArray);
-    setLoading(false);
-  }
 
   if (isLoading) {
     return (

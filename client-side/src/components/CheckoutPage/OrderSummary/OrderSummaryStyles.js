@@ -1,12 +1,12 @@
 export const summaryContainer = {
-  minWidth: "100%",
+  width: {
+    xs: "100%",
+    lg: "60vw"
+  },
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyItems: "center",
-  "@media (min-width:900px)": {
-    minWidth: "40vw",
-  },
 };
 
 export const contentContainer = {
