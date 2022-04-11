@@ -24,9 +24,9 @@ public class Product {
     @Getter @Setter
     private String sku;
 
-    @Column(name = "product_title")
+    @Column(name = "title")
     @Getter @Setter
-    private String productTitle;
+    private String title;
 
     @Column(name = "description")
     @Getter @Setter
@@ -40,7 +40,8 @@ public class Product {
     @Getter @Setter
     private String image;
 
-    @Column(name = "category")
+    @ManyToOne
+    @JoinColumn(name = "category")
     @Getter @Setter
-    private String category;
+    private Category category;
 }
