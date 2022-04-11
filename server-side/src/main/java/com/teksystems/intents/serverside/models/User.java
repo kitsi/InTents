@@ -37,7 +37,7 @@ public class User {
     @Getter @Setter
     private String password;
 
-    @Column(name = "is_admin", columnDefinition = "boolean default false")
+    @Column(name = "is_admin", columnDefinition = "BOOLEAN DEFAULT false")
     @Getter @Setter
     private boolean isAdmin;
 
