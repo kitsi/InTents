@@ -83,7 +83,10 @@ const PaymentForm = ({ handleModalOpen }) => {
     return new Promise(async (resolve) => {
       const {
         data: { clientSecret },
-      } = await axios.post(url, data);
+      } = await axios.post(url, data).catch((err) => {
+        setMessage("An unexpected error occurred.");
+        setIsLoading(false);
+      });
       resolve(clientSecret);
     });
   };
@@ -125,7 +128,7 @@ const PaymentForm = ({ handleModalOpen }) => {
       if (error.type === "card_error" || error.type === "validation_error") {
         setMessage(error.message);
       } else {
-        setMessage("An unexpected error occured.");
+        setMessage("An unexpected error occurred.");
       }
     } else {
       handleModalOpen();
