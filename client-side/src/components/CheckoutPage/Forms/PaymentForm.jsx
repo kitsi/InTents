@@ -7,6 +7,7 @@ import {
   Button,
   Box,
   CircularProgress,
+  Alert,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { setPaymentForm } from "../checkoutSlice";
@@ -23,7 +24,6 @@ import {
 import StripeInput from "../StripeInput";
 import axios from "axios";
 import * as styles from "./FormStyles";
-import Loading from "../../common/Loading";
 
 const PaymentForm = ({ handleModalOpen }) => {
   const dispatch = useDispatch();
@@ -213,6 +213,12 @@ const PaymentForm = ({ handleModalOpen }) => {
           </Grid>
         </Grid>
         <Box sx={styles.submitButtonWrapper}>
+          {/* Show any error or success messages  */}
+          {message && (
+            <Alert sx={styles.errorAlert} variant="filled" severity={"error"}>
+              {message}
+            </Alert>
+          )}
           <Button
             type="submit"
             variant="contained"
@@ -227,8 +233,6 @@ const PaymentForm = ({ handleModalOpen }) => {
             )}
           </Button>
         </Box>
-        {/* Show any error or success messages  */}
-        {message && <div id="payment-message">{message}</div>}
       </form>
     </Container>
   );
