@@ -24,8 +24,8 @@ function ProductDetails({ product }) {
   function addToCart() {
     dispatch(
       addProduct({
+        id: product.id,
         quantity: qtyValue,
-        product: product,
       })
     );
   }
