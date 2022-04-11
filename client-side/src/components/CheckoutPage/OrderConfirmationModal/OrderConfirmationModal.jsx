@@ -44,7 +44,7 @@ function OrderConfirmationModal(props) {
             </Typography>
             <Typography>
               {shippingAddress.addressLineOne}, {shippingAddress.city},
-              {shippingAddress.addressLineTwo != ""
+              {shippingAddress.addressLineTwo !== ""
                 ? shippingAddress.addressLineTwo + ","
                 : null}{" "}
               {shippingAddress.state}, {shippingAddress.zip}

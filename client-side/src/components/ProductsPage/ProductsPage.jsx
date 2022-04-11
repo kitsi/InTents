@@ -1,6 +1,6 @@
 import { Divider, Typography, Box } from "@mui/material";
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import ProductTile from "./ProductTile";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,14 +10,25 @@ import * as styles from "./ProductsPageStyles";
 
 function ProductsPage() {
   const { products, loading } = useSelector((state) => state.products);
+  const navigate = useNavigate();
 
   const { category } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const categories = [
+      "tents",
+      "cookware",
+      "sleeping-bags",
+      "fans",
+      "emergency",
+    ];
     if (products.length > 0) return;
     dispatch(fetchProducts());
-  }, [dispatch, products]);
+    if (!categories.includes(category)) {
+      return navigate("/products");
+    }
+  }, [dispatch, products, category, navigate]);
 
   const productTiles = products
     .filter((product) => (category ? product.category === category : true))
