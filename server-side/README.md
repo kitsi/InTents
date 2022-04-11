@@ -5,7 +5,7 @@
 1) Run MySql on machine, note username & password to enter in next step
 
 2) Add the following code to the  'src/main/resources/application.properties' file (substitute your own username & password)
-```aidl
+```
 spring.datasource.url = jdbc:mysql://localhost:3306/intents?createDatabaseIfNotExist=true
 spring.datasource.username = [your username]
 spring.datasource.password = [your password]
