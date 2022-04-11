@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { setOrderTotal } from "../checkoutSlice";
 import SummaryProductTile from "./SummaryProductTile";
 import { useSelector } from "react-redux";
+import * as styles from "./OrderSummaryStyles";
 
 function OrderSummary() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -17,57 +18,34 @@ function OrderSummary() {
     return <SummaryProductTile key={item.product.id} product={item} />;
   });
 
-  const calculateTotal = () => {
-    let price = 0;
-
-    cartItems.forEach((item) => {
-      price += item.quantity * item.product.price;
-    });
-
-    setSubTotalPrice(price);
-    setTax(0.08 * price);
-    setTotal(price + 0.08 * price);
-  };
-
-  useEffect(() => {
-    calculateTotal();
-  }, [subTotalPrice, setSubTotalPrice]);
-
   useEffect(() => {
     dispatch(setOrderTotal(total));
-  }, [total]);
+  }, [total, dispatch]);
+
+  useEffect(() => {
+    const calculateTotal = () => {
+      let price = 0;
+
+      cartItems.forEach((item) => {
+        price += item.quantity * item.product.price;
+      });
+
+      setSubTotalPrice(price);
+      setTax(0.08 * price);
+      setTotal(price + 0.08 * price);
+    };
+    calculateTotal();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [subTotalPrice, setSubTotalPrice]);
 
   return (
-    <Box
-      sx={{
-        minWidth: "40vw",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyItems: "center",
-      }}
-    >
-      <Paper
-        elevation={3}
-        sx={{
-          margin: "1rem",
-          padding: "1rem",
-          width: "90%",
-        }}
-      >
+    <Box sx={styles.summaryContainer}>
+      <Paper elevation={3} sx={styles.contentContainer}>
         <Typography>Order Summary</Typography>
         <Divider />
         {cartList}
         <Divider />
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            height: "150px",
-            marginTop: "1rem",
-          }}
-        >
+        <Box sx={styles.totalsContainer}>
           <Typography>Subtotal: ${subTotalPrice.toFixed(2)}</Typography>
           <Typography>Shipping: FREE</Typography>
           <Typography>Tax(8%): ${tax.toFixed(2)}</Typography>

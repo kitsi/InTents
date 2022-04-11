@@ -1,29 +1,32 @@
-import "./SideDrawer.css"
-import { Box, Drawer, Typography } from "@mui/material";
+import { Box, Drawer, Button } from "@mui/material";
 
 import { NavLink } from "react-router-dom";
 import React from "react";
+import * as styles from "./NavBarStyles";
 
 export default function SideDrawer({ isOpen, toggleDrawer, pages }) {
   return (
-    <Drawer open={isOpen} onClose={toggleDrawer} className="drawer">
-      <Box onClick={toggleDrawer} className="drawer-container">
-        <NavLink
+    <Drawer open={isOpen} onClose={toggleDrawer}>
+      <Box onClick={toggleDrawer} sx={styles.drawerContainer}>
+        <Button
           to="/products/"
-          className={({ isActive }) =>
-            isActive ? `active link` : `link`
-          }
+          component={NavLink}
+          sx={{ ...styles.link, ...styles.darkFont }}
         >
-          <Typography>All Products</Typography>
-        </NavLink>
+          All Products
+        </Button>
         {pages.map((page) => (
-          <NavLink
-            to={`/products/categories/${page.split(' ').join('-').toLowerCase()}`}
+          <Button
+            to={`/products/categories/${page
+              .split(" ")
+              .join("-")
+              .toLowerCase()}`}
             key={page}
-            className={({ isActive }) => (isActive ? `active link` : `link`)}
+            component={NavLink}
+            sx={{ ...styles.link, ...styles.darkFont }}
           >
-            <Typography>{page}</Typography>
-          </NavLink>
+            {page}
+          </Button>
         ))}
       </Box>
     </Drawer>
