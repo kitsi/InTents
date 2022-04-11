@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import {
   Container,
   Grid,
@@ -10,7 +9,6 @@ import {
   Alert,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { setPaymentForm } from "../checkoutSlice";
 import { clearCart } from "../../CartPage/cartSlice";
 import { useSelector } from "react-redux";
 
@@ -31,12 +29,19 @@ const PaymentForm = ({ handleModalOpen, clearOrderSummary, orderTotal }) => {
 
   const stripe = useStripe();
   const elements = useElements();
+
   // Stripe card validation
   const [cardNumErrorMsg, setCardNumErrorMsg] = useState(null);
   const [expDateErrorMsg, setExpDateErrorMsg] = useState(null);
   const [cvcErrorMsg, setCvcErrorMsg] = useState(null);
-
   const [customerName, setCustomerName] = useState("");
+
+  const [message, setMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const hasError = cardNumErrorMsg !== null;
+  const expError = expDateErrorMsg !== null;
+  const cvcError = cvcErrorMsg !== null;
 
   const handleNameChange = (e) => {
     setCustomerName(e.target.value);
@@ -48,6 +53,7 @@ const PaymentForm = ({ handleModalOpen, clearOrderSummary, orderTotal }) => {
     elements.getElement(CardExpiryElement).clear();
     setCustomerName("");
   };
+
   const handleChange = ({ error }) => {
     if (error) {
       if (
@@ -74,10 +80,6 @@ const PaymentForm = ({ handleModalOpen, clearOrderSummary, orderTotal }) => {
     }
   };
 
-  const hasError = cardNumErrorMsg !== null;
-  const expError = expDateErrorMsg !== null;
-  const cvcError = cvcErrorMsg !== null;
-
   // Stripe create paymentIntent and make an API call to Stripe to retrieve client secret
   const getClientSecret = (data) => {
     const url = "http://localhost:8080/api/create-payment-intent/";
@@ -96,18 +98,14 @@ const PaymentForm = ({ handleModalOpen, clearOrderSummary, orderTotal }) => {
     });
   };
 
-  const [message, setMessage] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-
   const handleSubmit = async (e) => {
     e.preventDefault(e);
     if (!stripe || !elements) {
-      // Stripe.js has not yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
 
     setIsLoading(true);
+
     // Order total should eventually be calculated in the backend once products table is set up for security reasons
     const data = { amount: orderTotal };
 
@@ -124,11 +122,6 @@ const PaymentForm = ({ handleModalOpen, clearOrderSummary, orderTotal }) => {
       },
     });
 
-    // This point will only be reached if there is an immediate error when
-    // confirming the payment. Otherwise, your customer will be redirected to
-    // your `return_url`. For some payment methods like iDEAL, your customer will
-    // be redirected to an intermediate site first to authorize the payment, then
-    // redirected to the `return_url`.
     if (error) {
       if (error.type === "card_error" || error.type === "validation_error") {
         setMessage(error.message);
