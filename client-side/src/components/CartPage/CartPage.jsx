@@ -56,7 +56,6 @@ export default function CartPage() {
   }
 
   return (
-    products.length === cartItems.length ?
     <Box>
       <Box sx={styles.buttonContainer}>
         <Box sx={styles.buttons}>
@@ -96,6 +95,5 @@ export default function CartPage() {
         </Box>
       </Box>
     </Box>
-    : <Loading />
   );
 }
