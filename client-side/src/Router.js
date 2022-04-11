@@ -11,7 +11,6 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
 const StripeApiKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
-console.log(StripeApiKey);
 
 const stripePromise = loadStripe(StripeApiKey);
 
