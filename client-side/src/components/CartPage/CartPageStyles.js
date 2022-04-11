@@ -2,7 +2,7 @@ export const productTilesContainer = {
   display: "flex",
   flexDirection: "column",
   gap: "3rem",
-  marginTop: "2rem",
+  margin: "2rem 0",
 };
 
 export const buttonContainer = {
