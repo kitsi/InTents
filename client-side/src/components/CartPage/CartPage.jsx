@@ -12,7 +12,7 @@ export default function CartPage() {
   const { cartItems } = useSelector((state) => state.cart);
 
   const cartList = cartItems.map((item) => {
-    return <CartProductTile key={item.product.id} product={item} />;
+    return <CartProductTile key={item.id} product={item} />;
   });
 
   function getSubtotal() {
