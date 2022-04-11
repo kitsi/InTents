@@ -1,22 +1,28 @@
 import React from "react";
 import { Box, Container, Typography, Button, Divider } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as styles from "./NotFoundPageStyles";
 function NotFoundPage() {
+  const navigate = useNavigate();
   return (
     <Container sx={styles.pageContainer}>
-      <Box sx={styles.header}>
+      <Box>
         <Typography variant="h2">404 Something Went Wrong</Typography>
         <Divider />
       </Box>
+      <Box sx={styles.buttonContainer}>
+        <Button variant="contained" component={Link} to="/">
+          Go To Home Page
+        </Button>
+        <Button variant="contained" onClick={() => navigate(-1)}>
+          Go Back
+        </Button>
+      </Box>
       <img
-        width={"95%"}
+        style={styles.notFoundImage}
         src="https://i.imgur.com/hBQsejY.png"
         alt="Page Not Found"
       ></img>
-      <Button sx={styles.button} variant="contained" component={Link} to="/">
-        Go To Home Page
-      </Button>
     </Container>
   );
 }

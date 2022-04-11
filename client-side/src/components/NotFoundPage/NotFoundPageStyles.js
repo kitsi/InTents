@@ -3,12 +3,14 @@ export const pageContainer = {
   flexDirection: "column",
   alignItems: "center",
   marginTop: "2rem",
+  gap: "1rem",
 };
 
-export const button = {
-  marginTop: "2rem",
+export const buttonContainer = {
+  display: "flex",
+  gap: "3rem",
 };
 
-export const header = {
-  marginBottom: "2rem",
+export const notFoundImage = {
+  width: "70%",
 };
