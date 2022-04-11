@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { Button, Box, Typography } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { Link } from "react-router-dom";
-
+import formatCurrency from "../../utilities/formatCurrency.js";
 import CartProductTile from "./CartProductTile";
 
 export default function CartPage() {
@@ -48,7 +48,7 @@ export default function CartPage() {
           </Button>
         </Box>
         <Typography sx={styles.subtotal}>
-          <strong>Subtotal:</strong> ${getSubtotal().toFixed(2)}
+          <strong>Subtotal:</strong> {formatCurrency(getSubtotal())}
         </Typography>
       </Box>
       <Box sx={styles.contentContainer}>
