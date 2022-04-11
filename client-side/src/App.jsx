@@ -1,20 +1,15 @@
-import "./App.css";
-
 import { CssBaseline, ThemeProvider } from "@mui/material";
-
 import { BrowserRouter } from "react-router-dom";
-import NavBar from "./components/NavBar/NavBar";
-import Router from "./Router";
 import theme from "./theme";
+import PageContainer from "./PageContainer";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <CssBaseline />
       <ThemeProvider theme={theme}>
         <BrowserRouter>
-          <NavBar />
-          <Router />
+          <PageContainer />
         </BrowserRouter>
       </ThemeProvider>
     </div>

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { setAddressForm } from "../checkoutSlice";
 import addressFormSchema from "../validations/AddressFormSchema";
 import { useFormik } from "formik";
+import * as styles from "./FormStyles";
 
 const AddressForm = (props) => {
   const { openPaymentAccordion } = props;
@@ -128,20 +129,13 @@ const AddressForm = (props) => {
             />
           </Grid>
         </Grid>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "flex-end",
-          }}
-        >
+        <Box sx={styles.submitButtonWrapper}>
           <Button
             type="submit"
             size="large"
             color="primary"
             variant="contained"
-            sx={{
-              marginTop: "1rem",
-            }}
+            sx={styles.submitButton}
             onClick={() => {
               setButtonText("Update");
             }}
