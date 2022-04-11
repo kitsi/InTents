@@ -19,9 +19,8 @@ export default function CartPage() {
     setCartList(cartItems.map((item) => {
       const product = products.filter(product => product.id === item.id)[0];
       return <CartProductTile key={item.id} cartProduct={item} product={product} />;
-    })
-  )
-};
+    }))
+  };
 
   useEffect(() => {
     updateAllProducts();

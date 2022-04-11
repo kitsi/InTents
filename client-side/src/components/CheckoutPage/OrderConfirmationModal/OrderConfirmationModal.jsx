@@ -10,8 +10,12 @@ import {
 } from "./OrderConfirmationModalStyles";
 import { Link } from "react-router-dom";
 import formatCurrency from "../../../utilities/formatCurrency";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../../CartPage/cartSlice";
 
 function OrderConfirmationModal(props) {
+  const dispatch = useDispatch();
+  
   const {
     handleModalClose,
     openModal,
@@ -56,6 +60,7 @@ function OrderConfirmationModal(props) {
               to={"/products"}
               variant="contained"
               sx={continueButtonStyle}
+              onClick={() => dispatch(clearCart())}
             >
               Continue Shopping
             </Button>
