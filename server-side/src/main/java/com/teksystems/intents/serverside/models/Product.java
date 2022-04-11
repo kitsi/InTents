@@ -44,4 +44,9 @@ public class Product {
     @JoinColumn(name = "category")
     @Getter @Setter
     private Category category;
+
+    @OneToOne
+    @JoinColumn(name = "inventory_id")
+    @Getter @Setter
+    private Inventory inventory;
 }
