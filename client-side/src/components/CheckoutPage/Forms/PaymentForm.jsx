@@ -13,7 +13,7 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import StripeInput from "../StripeInput";
-import axios, { Axios } from "axios";
+import axios from "axios";
 
 const PaymentForm = (props, { handleModalOpen }) => {
   const dispatch = useDispatch();
@@ -86,12 +86,7 @@ const PaymentForm = (props, { handleModalOpen }) => {
     }
 
     setIsLoading(true);
-
-    const clientSecret = await getClientSecret({
-      amount: 10,
-    });
-
-    console.log(clientSecret);
+    const clientSecret = await getClientSecret({ amount: 14 });
 
     const cardElement = elements.getElement(CardNumberElement);
 
@@ -116,7 +111,7 @@ const PaymentForm = (props, { handleModalOpen }) => {
 
   return (
     <Container>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={12}>
             <TextField
