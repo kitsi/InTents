@@ -5,6 +5,7 @@ import { setOrderTotal } from "../checkoutSlice";
 import SummaryProductTile from "./SummaryProductTile";
 import { useSelector } from "react-redux";
 import * as styles from "./OrderSummaryStyles";
+import formatCurrency from "../../../utilities/formatCurrency";
 
 function OrderSummary() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -46,12 +47,12 @@ function OrderSummary() {
         {cartList}
         <Divider />
         <Box sx={styles.totalsContainer}>
-          <Typography>Subtotal: ${subTotalPrice.toFixed(2)}</Typography>
+          <Typography>Subtotal: {formatCurrency(subTotalPrice)}</Typography>
           <Typography>Shipping: FREE</Typography>
-          <Typography>Tax(8%): ${tax.toFixed(2)}</Typography>
+          <Typography>Tax(8%): {formatCurrency(tax)}</Typography>
 
           <Divider />
-          <Typography>Total: ${total.toFixed(2)}</Typography>
+          <Typography>Total: {formatCurrency(total)}</Typography>
         </Box>
       </Paper>
     </Box>

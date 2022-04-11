@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../CartPage/cartSlice";
 import * as styles from "./ProductDetailsPageStyles";
+import formatCurrency from "../../utilities/formatCurrency";
 
 function ProductDetails({ product }) {
   const [qtyValue, setQtyValue] = useState(1);
@@ -55,8 +56,8 @@ function ProductDetails({ product }) {
         </div>
         <Box sx={styles.details}>
           <Box sx={styles.priceAndSku}>
-            <Typography>${product.price}</Typography>
-            <Typography>SKU:{product.sku}</Typography>
+            <Typography>{formatCurrency(product.price)}</Typography>
+            <Typography>SKU: {product.sku}</Typography>
           </Box>
           <Box sx={styles.controls}>
             <FormControl>

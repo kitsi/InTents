@@ -2,6 +2,7 @@ import React from "react";
 
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import * as styles from "./OrderSummaryStyles";
+import formatCurrency from "../../../utilities/formatCurrency";
 
 function SummaryProductTile({ product }) {
   const item = product.product;
@@ -24,7 +25,7 @@ function SummaryProductTile({ product }) {
           {item.name}
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          ${item.price * product.quantity}
+          {formatCurrency(item.price * product.quantity)}
         </Typography>
       </CardContent>
     </Card>

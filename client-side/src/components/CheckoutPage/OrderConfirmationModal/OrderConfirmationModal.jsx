@@ -9,6 +9,7 @@ import {
   subHeaderStyle,
 } from "./OrderConfirmationModalStyles";
 import { Link } from "react-router-dom";
+import formatCurrency from "../../../utilities/formatCurrency";
 
 function OrderConfirmationModal(props) {
   const {
@@ -47,7 +48,7 @@ function OrderConfirmationModal(props) {
             <Typography variant="h6" sx={subHeaderStyle}>
               Order Total
             </Typography>
-            <Typography>${orderTotal.toFixed(2)}</Typography>
+            <Typography>{formatCurrency(orderTotal)}</Typography>
           </Box>
           <Box sx={footerStyle}>
             <Button
