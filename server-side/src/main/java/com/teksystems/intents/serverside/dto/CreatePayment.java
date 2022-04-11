@@ -1,17 +1,15 @@
 package com.teksystems.intents.serverside.dto;
 
-import com.google.gson.annotations.SerializedName;
-
 public class CreatePayment {
-    @SerializedName("items")
-    Object[] items;
-
-    public Object[] getItems() {
-        return items;
-    }
+    private Long amount;
 
     public Long getAmount() {
-        // Hard-corded amount of $10. Perform calculation here for order amount((item price * qty) * tax)
-        return 10L;
+        // Perform calculation here for order amount((item price * qty) * tax) using information from database
+        // For security and fraud reasons amount to be sent to stripe will be calculated here not Frontend
+        return amount;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
     }
 }
