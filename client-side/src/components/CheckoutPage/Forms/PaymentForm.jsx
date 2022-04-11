@@ -25,9 +25,10 @@ import StripeInput from "../StripeInput";
 import axios from "axios";
 import * as styles from "./FormStyles";
 
-const PaymentForm = ({ handleModalOpen }) => {
+const PaymentForm = ({ handleModalOpen, clearOrderSummary, orderTotal }) => {
   const dispatch = useDispatch();
-  const { orderTotal } = useSelector((state) => state.checkout);
+  const { cartItems } = useSelector((state) => state.cart);
+
   const stripe = useStripe();
   const elements = useElements();
   // Stripe card validation
@@ -84,7 +85,11 @@ const PaymentForm = ({ handleModalOpen }) => {
       const {
         data: { clientSecret },
       } = await axios.post(url, data).catch((err) => {
-        setMessage("An unexpected error occurred.");
+        if (cartItems.length === 0) {
+          setMessage("Your cart is empty");
+        } else {
+          setMessage("An unexpected error occurred.");
+        }
         setIsLoading(false);
       });
       resolve(clientSecret);
@@ -134,6 +139,7 @@ const PaymentForm = ({ handleModalOpen }) => {
       handleModalOpen();
       dispatch(clearCart());
       clearForm();
+      clearOrderSummary();
     }
 
     setIsLoading(false);

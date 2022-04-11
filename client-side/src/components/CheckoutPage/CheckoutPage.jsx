@@ -20,6 +20,18 @@ function CheckoutPage() {
   const [expandedPayment, setExpandedPayment] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
+  // Order Summary State
+  const [subTotalPrice, setSubTotalPrice] = useState(0);
+  const [tax, setTax] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [orderConfirmationTotal, setOrderConfirmationTotal] = useState(0);
+
+  const clearOrderSummary = () => {
+    setSubTotalPrice(0);
+    setTax(0);
+    setOrderConfirmationTotal(total);
+    setTotal(0);
+  };
   const handleAccordionChange = (panel) => (isExpanded) => {
     if (panel === "address") {
       setExpandedAddress(!expandedAddress);
@@ -29,7 +41,7 @@ function CheckoutPage() {
   };
 
   // use select to be replaced with data from backend after post request is made
-  const { orderTotal, formData } = useSelector((state) => state.checkout);
+  const { formData } = useSelector((state) => state.checkout);
 
   const handleModalOpen = () => setOpenModal(true);
   const handleModalClose = () => setOpenModal(false);
@@ -45,7 +57,7 @@ function CheckoutPage() {
       <OrderConfirmationModal
         handleModalClose={handleModalClose}
         openModal={openModal}
-        orderTotal={orderTotal}
+        orderTotal={orderConfirmationTotal}
         shippingAddress={formData.addressFormData}
         orderNumber={1}
       />
@@ -76,11 +88,22 @@ function CheckoutPage() {
               <Typography>2. Payment Information</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <PaymentForm handleModalOpen={handleModalOpen} />
+              <PaymentForm
+                handleModalOpen={handleModalOpen}
+                clearOrderSummary={clearOrderSummary}
+                orderTotal={total}
+              />
             </AccordionDetails>
           </Accordion>
         </Box>
-        <OrderSummary />
+        <OrderSummary
+          subTotalPrice={subTotalPrice}
+          setSubTotalPrice={setSubTotalPrice}
+          tax={tax}
+          setTax={setTax}
+          total={total}
+          setTotal={setTotal}
+        />
       </Box>
     </Box>
   );

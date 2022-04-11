@@ -7,21 +7,14 @@ import { useSelector } from "react-redux";
 import * as styles from "./OrderSummaryStyles";
 import formatCurrency from "../../../utilities/formatCurrency";
 
-function OrderSummary() {
+function OrderSummary(props) {
   const { cartItems } = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
-
-  const [subTotalPrice, setSubTotalPrice] = useState(0);
-  const [tax, setTax] = useState(0);
-  const [total, setTotal] = useState(0);
+  const { subTotalPrice, setSubTotalPrice, tax, setTax, total, setTotal } =
+    props;
 
   const cartList = cartItems.map((item) => {
     return <SummaryProductTile key={item.product.id} product={item} />;
   });
-
-  useEffect(() => {
-    dispatch(setOrderTotal(total));
-  }, [total, dispatch]);
 
   useEffect(() => {
     const calculateTotal = () => {
@@ -37,7 +30,7 @@ function OrderSummary() {
     };
     calculateTotal();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [subTotalPrice, setSubTotalPrice]);
+  }, []);
 
   return (
     <Box sx={styles.summaryContainer}>
