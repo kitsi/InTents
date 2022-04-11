@@ -28,7 +28,8 @@ import Loading from "../../common/Loading";
 const PaymentForm = ({ handleModalOpen }) => {
   const dispatch = useDispatch();
   const { orderTotal } = useSelector((state) => state.checkout);
-
+  const stripe = useStripe();
+  const elements = useElements();
   // Stripe card validation
   const [cardNumErrorMsg, setCardNumErrorMsg] = useState(null);
   const [expDateErrorMsg, setExpDateErrorMsg] = useState(null);
@@ -39,6 +40,12 @@ const PaymentForm = ({ handleModalOpen }) => {
     setCustomerName(e.target.value);
   };
 
+  const clearForm = () => {
+    elements.getElement(CardCvcElement).clear();
+    elements.getElement(CardNumberElement).clear();
+    elements.getElement(CardExpiryElement).clear();
+    setCustomerName("");
+  };
   const handleChange = ({ error }) => {
     if (error) {
       if (
@@ -79,9 +86,6 @@ const PaymentForm = ({ handleModalOpen }) => {
       resolve(clientSecret);
     });
   };
-
-  const stripe = useStripe();
-  const elements = useElements();
 
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -125,6 +129,7 @@ const PaymentForm = ({ handleModalOpen }) => {
     } else {
       handleModalOpen();
       dispatch(clearCart());
+      clearForm();
     }
 
     setIsLoading(false);
