@@ -34,6 +34,7 @@ const PaymentForm = ({ handleModalOpen }) => {
   const [cardNumErrorMsg, setCardNumErrorMsg] = useState(null);
   const [expDateErrorMsg, setExpDateErrorMsg] = useState(null);
   const [cvcErrorMsg, setCvcErrorMsg] = useState(null);
+
   const [customerName, setCustomerName] = useState("");
 
   const handleNameChange = (e) => {
@@ -224,7 +225,7 @@ const PaymentForm = ({ handleModalOpen }) => {
             variant="contained"
             color="primary"
             sx={styles.submitButton}
-            disabled={isLoading || !stripe || !elements}
+            disabled={isLoading || !stripe || !elements || customerName === ""}
           >
             {isLoading ? (
               <CircularProgress size={24} sx={styles.loadingIcon} />
