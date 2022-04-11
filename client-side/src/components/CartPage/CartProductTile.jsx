@@ -10,7 +10,7 @@ import {
 import { useDispatch } from "react-redux";
 import { incrementProduct, decrementProduct, removeProduct } from "./cartSlice";
 import * as styles from "./CartProductTileStyles";
-
+import formatCurrency from "../../utilities/formatCurrency";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import React from "react";
@@ -35,7 +35,7 @@ function CartProductTile({ product }) {
   return (
     <Card sx={styles.cartCard}>
       <Typography sx={styles.cardTotal}>
-        ${(item.price * product.quantity).toFixed(2)}
+        {formatCurrency(item.price * product.quantity)}
       </Typography>
       <CardMedia
         component="img"
@@ -49,7 +49,7 @@ function CartProductTile({ product }) {
           {item.name}
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          ${item.price}
+          {formatCurrency(item.price)}
         </Typography>
         <Typography
           variant="body2"

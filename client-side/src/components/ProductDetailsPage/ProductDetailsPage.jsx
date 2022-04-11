@@ -5,6 +5,7 @@ import { Box } from "@mui/material";
 import Loading from "../common/Loading";
 import ProductDetails from "./ProductDetails";
 import * as styles from "./ProductDetailsPageStyles";
+import { baseUrl } from "../../utilities/strings";
 
 function ProductDetailsPage() {
   const { sku } = useParams();
@@ -17,7 +18,7 @@ function ProductDetailsPage() {
     async function getProduct() {
       setLoading(true);
       const { data } = await axios
-        .get(`http://localhost:3001/products?sku=${sku}`)
+        .get(`${baseUrl}/products?sku=${sku}`)
         .catch((err) => setError(err));
       setLoading(false);
       setProduct(data[0]);

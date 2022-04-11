@@ -4,7 +4,7 @@ import * as styles from "./LoadingStyles";
 export default function Loading() {
   return (
     <Box sx={styles.loadingContainer}>
-      <CircularProgress />
+      <CircularProgress size={75} />
     </Box>
   );
 }

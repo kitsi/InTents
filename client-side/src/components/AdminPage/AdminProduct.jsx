@@ -11,12 +11,14 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { fetchProducts } from "../ProductsPage/productsSlice";
 import * as styles from "../common/ProductTileStyles";
+import { baseUrl } from "../../utilities/strings";
+import formatCurrency from "../../utilities/formatCurrency";
 
 function AdminProduct({ productData, editProduct }) {
   const dispatch = useDispatch();
 
   const deleteProduct = async () => {
-    await axios.delete(`http://localhost:3001/products/${productData.id}`);
+    await axios.delete(`${baseUrl}/products/${productData.id}`);
     dispatch(fetchProducts());
   };
 
@@ -34,7 +36,7 @@ function AdminProduct({ productData, editProduct }) {
           {productData.name}
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          ${productData.price}
+          {formatCurrency(productData.price)}
         </Typography>
         <Typography
           variant="body2"
