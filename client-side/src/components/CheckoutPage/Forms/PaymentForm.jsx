@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Container, Grid, TextField, Button, Box } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { setPaymentForm } from "../checkoutSlice";
 import { clearCart } from "../../CartPage/cartSlice";
-import paymentFormSchema from "../validations/PaymentFormSchema";
-import { useFormik } from "formik";
 
 import {
   CardCvcElement,
   CardExpiryElement,
   CardNumberElement,
+  useStripe,
+  useElements,
 } from "@stripe/react-stripe-js";
 import StripeInput from "../StripeInput";
+import axios, { Axios } from "axios";
 
 const PaymentForm = (props, { handleModalOpen }) => {
   const dispatch = useDispatch();
@@ -30,10 +31,44 @@ const PaymentForm = (props, { handleModalOpen }) => {
     cvc: "",
   };
 
-  const handleSubmit = (e) => {
-    // submit
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault(e);
   };
+
+  // Stripe card validation
+  const [cardNumErrorMsg, setCardNumErrorMsg] = useState(null);
+  const [expDateErrorMsg, setExpDateErrorMsg] = useState(null);
+  const [cvcErrorMsg, setCvcErrorMsg] = useState(null);
+
+  const handleChange = ({ error }) => {
+    if (error) {
+      if (
+        error.code === "incomplete_number" ||
+        error.code === "invalid_number"
+      ) {
+        setCardNumErrorMsg(error.message);
+      }
+      if (
+        error.code === "incomplete_expiry" ||
+        error.code === "invalid_expiry_year_past" ||
+        error.code === "invalid_expiry_month_past"
+      ) {
+        setExpDateErrorMsg(error.message);
+      }
+
+      if (error.code === "incomplete_cvc") {
+        setCvcErrorMsg(error.message);
+      }
+    } else {
+      setCardNumErrorMsg(null);
+      setExpDateErrorMsg(null);
+      setCvcErrorMsg(null);
+    }
+  };
+
+  const hasError = cardNumErrorMsg !== null;
+  const expError = expDateErrorMsg !== null;
+  const cvcError = cvcErrorMsg !== null;
 
   return (
     <Container>
@@ -56,6 +91,9 @@ const PaymentForm = (props, { handleModalOpen }) => {
               fullWidth
               label="Card Number"
               name="cardNumber"
+              error={hasError}
+              helperText={hasError ? cardNumErrorMsg || "Invalid" : ""}
+              onChange={handleChange}
               InputProps={{
                 inputComponent: StripeInput,
                 inputProps: {
@@ -74,6 +112,9 @@ const PaymentForm = (props, { handleModalOpen }) => {
               fullWidth
               label="Expiration"
               name="expiration"
+              error={expError}
+              helperText={expError ? expDateErrorMsg || "Invalid" : ""}
+              onChange={handleChange}
               InputProps={{
                 inputComponent: StripeInput,
                 inputProps: {
@@ -91,6 +132,9 @@ const PaymentForm = (props, { handleModalOpen }) => {
               fullWidth
               label="CVC"
               name="cvc"
+              error={cvcError}
+              helperText={cvcError ? cvcErrorMsg || "Invalid" : ""}
+              onChange={handleChange}
               InputProps={{
                 inputComponent: StripeInput,
                 inputProps: {
