@@ -24,16 +24,6 @@ const PaymentForm = (props, { handleModalOpen }) => {
     expiration: "",
     cvc: "",
   });
-  const initialpaymentFormData = {
-    nameOnCard: "",
-    cardNumber: "",
-    expiration: "",
-    cvc: "",
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault(e);
-  };
 
   // Stripe card validation
   const [cardNumErrorMsg, setCardNumErrorMsg] = useState(null);
@@ -69,6 +59,23 @@ const PaymentForm = (props, { handleModalOpen }) => {
   const hasError = cardNumErrorMsg !== null;
   const expError = expDateErrorMsg !== null;
   const cvcError = cvcErrorMsg !== null;
+
+  // Stripe create paymentIntent and make an API call to Stripe to retrieve client secret
+  const getClientSecret = (data) => {
+    const url = "http://localhost:8080/api/create-payment-intent/";
+    return new Promise(async (resolve) => {
+      const {
+        data: { clientSecret },
+      } = await axios.post(url, data);
+      resolve(clientSecret);
+    });
+  };
+
+  console.log(getClientSecret({ amount: 10 }));
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(e);
+  };
 
   return (
     <Container>
