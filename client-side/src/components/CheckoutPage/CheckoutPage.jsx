@@ -97,10 +97,7 @@ function CheckoutPage() {
                 <Typography>2. Payment Information</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <PaymentForm
-                  handleModalOpen={handleModalOpen}
-                  orderTotal={orderTotal}
-                />
+                <PaymentForm handleModalOpen={handleModalOpen} />
               </AccordionDetails>
             </Accordion>
           </Box>

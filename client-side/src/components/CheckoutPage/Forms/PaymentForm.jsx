@@ -4,6 +4,7 @@ import { Container, Grid, TextField, Button, Box } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { setPaymentForm } from "../checkoutSlice";
 import { clearCart } from "../../CartPage/cartSlice";
+import { useSelector } from "react-redux";
 
 import {
   CardCvcElement,
@@ -17,8 +18,7 @@ import axios from "axios";
 
 const PaymentForm = (props, { handleModalOpen }) => {
   const dispatch = useDispatch();
-
-  const { orderTotal } = props;
+  const { orderTotal } = useSelector((state) => state.checkout);
 
   const [paymentFormData, setPaymentFormData] = useState({
     nameOnCard: "",
@@ -90,6 +90,7 @@ const PaymentForm = (props, { handleModalOpen }) => {
     setIsLoading(true);
     // Order total should eventually be calculated in the backend once products table is set up for security reasons
     const data = { amount: orderTotal };
+
     const clientSecret = await getClientSecret(data);
 
     const cardElement = elements.getElement(CardNumberElement);
