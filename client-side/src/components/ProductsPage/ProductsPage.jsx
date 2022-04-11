@@ -2,7 +2,7 @@ import { Divider, Typography, Box } from "@mui/material";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import ProductTile from "../common/ProductTile";
+import ProductTile from "./ProductTile";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "./productsSlice";
 import Loading from "../common/Loading";
