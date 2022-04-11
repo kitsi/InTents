@@ -98,6 +98,9 @@ const PaymentForm = (props, { handleModalOpen }) => {
     const { error } = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
         card: cardElement,
+        billing_details: {
+          name: "Neo Maraisane", // Hard-coded for now. Replace with actual customer name.
+        },
       },
     });
     // This point will only be reached if there is an immediate error when
