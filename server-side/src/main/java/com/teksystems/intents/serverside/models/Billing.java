@@ -35,20 +35,6 @@ public class Billing {
     @Getter
     private boolean isPaid;
 
-    @Getter
-    private String paymentMethod;
-
-    public void setPaymentMethod(String paymentMethod) {
-        for(PaymentMethod method : PaymentMethod.values()) {
-            if(method.name.equals(paymentMethod)) {
-                this.paymentMethod = paymentMethod;
-                isPaid = true;
-            } else {
-                isPaid = false;
-            }
-        }
-    }
-
     public BigDecimal getSubtotal() {
         calculateSubtotal();
         return subtotal;
