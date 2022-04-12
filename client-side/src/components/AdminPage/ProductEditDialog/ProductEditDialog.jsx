@@ -33,7 +33,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
     category: "",
   });
 
-  const resetFormData = () => {
+  const setFormDataToProductData = () => {
     setFormState({...product});
   }
 
@@ -47,9 +47,9 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
 
   useEffect(() => {
     if (isOpen) {
-      setFormState({...product});
+      setFormDataToProductData();
     }
-  }, [isOpen, product]);
+  }, [isOpen]);
 
   const sendProductToServer = async() => {
     if(newProduct) {
@@ -188,7 +188,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
           </Grid>
 
           <Grid item xs={12} sx={styles.buttonContainer}>
-            <Button sx={styles.button} variant="contained" size="large" color="error" onClick={resetFormData} disabled={newProduct}>Reset</Button>
+            <Button sx={styles.button} variant="contained" size="large" color="error" onClick={setFormDataToProductData} disabled={newProduct}>Reset</Button>
             <Button sx={styles.button} variant="contained" size="large" onClick={sendProductToServer}>Save</Button>
           </Grid>
 
