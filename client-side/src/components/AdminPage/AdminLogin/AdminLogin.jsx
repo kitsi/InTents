@@ -22,7 +22,6 @@ function AdminLogin() {
     onSubmit: (values) => {
       // setup post req
       dispatch(setToken("Temp Token"));
-      console.log(values);
       return navigate("/admin");
     },
   });
