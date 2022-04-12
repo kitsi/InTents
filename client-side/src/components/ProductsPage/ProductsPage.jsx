@@ -16,8 +16,6 @@ function ProductsPage() {
   const [pageNumber, setPageNumber] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
 
-  useEffect();
-
   useEffect(() => {
     const categories = [
       "tents",
