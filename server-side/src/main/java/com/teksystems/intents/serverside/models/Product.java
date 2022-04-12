@@ -16,8 +16,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
-    @Getter
+    @Getter @Setter
     private Long productId;
 
     @Column(name = "sku")
@@ -28,7 +27,7 @@ public class Product {
     @Getter @Setter
     private String title;
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "VARCHAR(1000)")
     @Getter @Setter
     private String description;
 
@@ -45,8 +44,8 @@ public class Product {
     @Getter @Setter
     private Category category;
 
-    @OneToOne
-    @JoinColumn(name = "inventory_id")
+    @OneToOne(cascade = CascadeType.ALL)
     @Getter @Setter
+    @JoinColumn(name = "inventory_id", referencedColumnName = "inventory_id")
     private Inventory inventory;
 }
