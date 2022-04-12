@@ -1,33 +1,35 @@
 import React, { useState, useEffect } from "react";
 import * as styles from "./CartPageStyles.js";
-import axios from "axios";
 import { useSelector } from "react-redux";
 import { Button, Box, Typography } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { Link } from "react-router-dom";
 import formatCurrency from "../../utilities/formatCurrency.js";
 import CartProductTile from "./CartProductTile";
-import { baseUrl } from "../../utilities/strings.js";
+import { useDispatch } from "react-redux";
+import { removeProduct } from "./cartSlice.js";
+import getProductDataFromCart from "../../utilities/getProductDataFromCart.js";
 
 export default function CartPage() {
+  const dispatch = useDispatch();
+  
   const { cartItems } = useSelector((state) => state.cart);
   const [products, setProducts] = useState([]);
   const [cartList, setCartList] = useState();
 
   useEffect(() => {
     const updateAllProducts = async () => {
-      const productArray = [];
-  
-      for (let i = 0; i < cartItems.length; i++) {
-        const { data } = await axios.get(`${baseUrl}/products/${cartItems[i].id}`);
-        productArray.push(data);
+      const { products, removedCartItems } = await getProductDataFromCart(cartItems);
+      
+      for (let i = 0; i < removedCartItems.length; i++) {
+        dispatch(removeProduct(removedCartItems[i]));
       }
   
-      setProducts(productArray);
+      setProducts(products);
     }
 
     updateAllProducts();
-  }, [cartItems]);
+  }, [cartItems, dispatch]);
 
   useEffect(() => {
     setCartList(cartItems.map((item) => {

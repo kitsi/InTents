@@ -4,11 +4,11 @@ import SummaryProductTile from "./SummaryProductTile";
 import { useSelector } from "react-redux";
 import * as styles from "./OrderSummaryStyles";
 import formatCurrency from "../../../utilities/formatCurrency";
-import axios from "axios";
-import { baseUrl } from "../../../utilities/strings";
 import Loading from "../../common/Loading";
 import { useDispatch } from "react-redux";
 import { setOrderTotal } from "../checkoutSlice";
+import { removeProduct } from "../../CartPage/cartSlice";
+import getProductDataFromCart from "../../../utilities/getProductDataFromCart";
 
 function OrderSummary(props) {
   const { cartItems } = useSelector((state) => state.cart);
@@ -26,19 +26,18 @@ function OrderSummary(props) {
 
   useEffect(() => {
     const updateAllProducts = async () => {
-      const productArray = [];
-  
-      for (let i = 0; i < cartItems.length; i++) {
-        const { data } = await axios.get(`${baseUrl}/products/${cartItems[i].id}`);
-        productArray.push(data);
+      const { products, removedCartItems } = await getProductDataFromCart(cartItems);
+      
+      for (let i = 0; i < removedCartItems.length; i++) {
+        dispatch(removeProduct(removedCartItems[i]));
       }
   
-      setProducts(productArray);
+      setProducts(products);
       setLoading(false);
     }
 
     updateAllProducts();
-  }, [cartItems]);
+  }, [cartItems, dispatch]);
 
   useEffect(() => {
     setCartList(cartItems.map((item) => {
