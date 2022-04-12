@@ -8,6 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class OrderService {
 
@@ -18,5 +20,17 @@ public class OrderService {
         Pageable pageable = PageRequest.of(pageNum, pageSize);
         Page<Order> orders = orderRepo.findAll(pageable);
         return orders;
+    }
+
+    public Optional<Order> getOrder(Long id) {
+        return orderRepo.findById(id);
+    }
+
+    public void deleteOrder(Long id) {
+        orderRepo.deleteById(id);
+    }
+
+    public Order createOrder(Order order) {
+        orderRepo.save(order);
     }
 }
