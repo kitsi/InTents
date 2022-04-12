@@ -19,9 +19,7 @@ public class Inventory {
     @Getter
     private Long inventoryId;
 
-    @OneToOne
-    @JoinColumn(name = "product_id")
-    @Getter @Setter
+    @OneToOne(mappedBy = "inventory")
     private Product product;
 
     @Column(name = "quantity")

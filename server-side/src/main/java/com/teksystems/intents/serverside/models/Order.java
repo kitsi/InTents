@@ -32,5 +32,4 @@ public class Order {
     @OneToOne(mappedBy = "order")
     @JoinColumn(name = "billing_id")
     private Billing billing;
-
 }

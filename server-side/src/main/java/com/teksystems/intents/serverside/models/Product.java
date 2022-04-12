@@ -16,8 +16,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
-    @Getter
+    @Getter @Setter
     private Long productId;
 
     @Column(name = "sku")
@@ -28,11 +27,11 @@ public class Product {
     @Getter @Setter
     private String title;
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "VARCHAR(1000)")
     @Getter @Setter
     private String description;
 
-    @Column(name = "price", columnDefinition = "DECIMAL UNSIGNED")
+    @Column(name = "price", columnDefinition = "DECIMAL(10,2) UNSIGNED")
     @Getter @Setter
     private BigDecimal price;
 
@@ -41,12 +40,12 @@ public class Product {
     private String image;
 
     @ManyToOne
-    @JoinColumn(name = "category")
+    @JoinColumn(name = "category_id")
     @Getter @Setter
     private Category category;
 
-    @OneToOne
-    @JoinColumn(name = "inventory_id")
+    @OneToOne(cascade = CascadeType.ALL)
     @Getter @Setter
+    @JoinColumn(name = "inventory_id", referencedColumnName = "inventory_id")
     private Inventory inventory;
 }

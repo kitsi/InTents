@@ -15,20 +15,19 @@ public class Billing {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "billing_id")
     @Getter
     private Long billingId;
 
     @OneToOne
     private Order order;
 
-    @Column(name = "subtotal", columnDefinition = "DECIMAL UNSIGNED")
+    @Column(name = "subtotal", columnDefinition = "DECIMAL(10,4) UNSIGNED")
     private BigDecimal subtotal;
 
-    @Column(name = "tax", columnDefinition = "DECIMAL UNSIGNED")
+    @Column(name = "tax", columnDefinition = "DECIMAL(10,4) UNSIGNED")
     private BigDecimal tax;
 
-    @Column(name = "total", columnDefinition = "DECIMAL UNSIGNED")
+    @Column(name = "total", columnDefinition = "DECIMAL(10,4) UNSIGNED")
     private BigDecimal total;
 
     @Column(name = "is_paid")
