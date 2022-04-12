@@ -42,6 +42,7 @@ public class ProductService {
         product.setPrice(productDetails.getPrice());
         product.setImage(productDetails.getImage());
         product.setInventory(productDetails.getInventory());
+        product = productRepo.findById(id).get();
         return productRepo.save(product);
     }
 
