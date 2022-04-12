@@ -12,14 +12,12 @@ function ProductDetailsPage() {
 
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState();
 
   useEffect(() => {
     async function getProduct() {
       setLoading(true);
       const { data } = await axios
         .get(`${baseUrl}/products?sku=${sku}`)
-        .catch((err) => setError(err));
       setLoading(false);
       setProduct(data[0]);
     }
