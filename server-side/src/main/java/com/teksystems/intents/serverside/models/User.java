@@ -44,4 +44,16 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", isAdmin=" + isAdmin +
+                ", orders=" + orders +
+                '}';
+    }
 }

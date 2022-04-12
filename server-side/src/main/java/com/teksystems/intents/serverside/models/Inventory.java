@@ -25,4 +25,13 @@ public class Inventory {
     @Column(name = "quantity")
     @Getter @Setter
     private Integer quantity;
+
+    @Override
+    public String toString() {
+        return "Inventory{" +
+                "inventoryId=" + inventoryId +
+                ", product=" + product +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

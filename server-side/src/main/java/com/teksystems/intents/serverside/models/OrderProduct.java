@@ -17,14 +17,14 @@ public class OrderProduct {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_product_id")
     @Getter
-    private Long orderItemId;
+    private Long orderProductId;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
-    @Getter @Setter
+    @JoinColumn(name = "order_id", referencedColumnName = "order_id")
+    @Setter
     private Order order;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "product_id")
     @Getter @Setter
     private  Product product;
@@ -32,4 +32,14 @@ public class OrderProduct {
     @Column(name = "qty")
     @Getter @Setter
     private int quantity;
+
+    @Override
+    public String toString() {
+        return "OrderProduct{" +
+                "orderProductId=" + orderProductId +
+                ", order=" + order +
+                ", product=" + product +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
