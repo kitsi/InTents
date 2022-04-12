@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+@CrossOrigin(origins = "http:localhost:3000")
 @RestController
 @RequestMapping("api/products")
 public class ProductController {
@@ -16,6 +17,7 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/")
+    @CrossOrigin(origins = "http://localhost:3000")
     public Page<Product> getProducts(
             @RequestParam(value = "pageNum", defaultValue = "0", required = false) int pageNum,
             @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize
@@ -24,6 +26,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
     public Optional<Product> getProduct(@PathVariable(value = "id") Long id) {
         return productService.getProduct(id);
     }
@@ -34,16 +37,19 @@ public class ProductController {
 //===================================
 
     @DeleteMapping("/admin/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
     public void deleteProduct(@PathVariable(value = "id") Long id) {
         productService.deleteProduct(id);
     }
 
     @PostMapping("/admin/")
+    @CrossOrigin(origins = "http://localhost:3000")
     public Product createProduct(@RequestBody Product product) {
         return productService.createProduct(product);
     }
 
     @PutMapping("/admin/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
     public Product updateProduct(@PathVariable(value = "id") Long id, @RequestBody Product productDetails) {
         return productService.updateProduct(id, productDetails);
     }
