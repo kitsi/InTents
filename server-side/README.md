@@ -15,7 +15,7 @@ spring.jpa.hibernate.ddl-auto = update
 ```
 **If the database doesn't already exist, it will be added**<br />
 
-3) Run [sql file](/src/main/resources/intents.sql) to add data<br /><br />
+3) Run [sql file](/src/main/resources/products.sql) to add data<br /><br />
 
 4) Interacting with api in browser<br />
     Swagger url: http://localhost:8080/swagger-ui/index.html#/

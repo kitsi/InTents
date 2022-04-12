@@ -8,7 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -20,6 +20,10 @@ public class ProductService {
         Pageable pageable = PageRequest.of(pageNum, pageSize);
         Page<Product> products = productRepo.findAll(pageable);
         return products;
+    }
+
+    public Optional<Product> getProduct(Long id) {
+        return productRepo.findById(id);
     }
 
 }
