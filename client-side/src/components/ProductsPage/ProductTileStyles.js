@@ -44,6 +44,9 @@ export const productDescription = {
   whiteSpace: "nowrap",
   overflow: "hidden",
   textOverflow: "ellipsis",
+  display: "-webkit-box",
+  WebkitLineClamp: "3",
+  WebkitBoxOrient: "vertical",
   "@media (min-width:900px)": {
     whiteSpace: "normal",
   },
