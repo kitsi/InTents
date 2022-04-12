@@ -7,7 +7,7 @@ export default async function getProductDataFromCart(cartItems) {
 
   for (let i = 0; i < cartItems.length; i++) {
     await axios.get(`${baseUrl}/products/${cartItems[i].id}`)
-      .then(response => console.log(products.push(response.data)))
+      .then(response => products.push(response.data))
       .catch(() => removedCartItems.push(cartItems[i]));
   }
 
