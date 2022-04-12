@@ -1,5 +1,5 @@
 import axios from "axios";
-import { baseUrl } from "./strings";
+import { baseUrl } from "../utilities/strings";
 
 export default async function getProductDataFromCart(cartItems) {
   const products = [];

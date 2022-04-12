@@ -8,7 +8,7 @@ import Loading from "../../common/Loading";
 import { useDispatch } from "react-redux";
 import { setOrderTotal } from "../checkoutSlice";
 import { removeProduct } from "../../CartPage/cartSlice";
-import getProductDataFromCart from "../../../utilities/getProductDataFromCart";
+import getProductDataFromCart from "../../../api/getProductDataFromCart";
 
 function OrderSummary(props) {
   const { cartItems } = useSelector((state) => state.cart);

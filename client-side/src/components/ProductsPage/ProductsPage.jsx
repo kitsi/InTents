@@ -1,19 +1,22 @@
 import { Divider, Typography, Box } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
 import ProductTile from "./ProductTile";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "./productsSlice";
 import Loading from "../common/Loading";
 import * as styles from "./ProductsPageStyles";
 
 function ProductsPage() {
-  const { products, loading } = useSelector((state) => state.products);
   const navigate = useNavigate();
 
   const { category } = useParams();
-  const dispatch = useDispatch();
+
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingSuccess, setLoadingSuccess] = useState(true);
+  const [pageNumber, setPageNumber] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
+
+  useEffect();
 
   useEffect(() => {
     const categories = [
@@ -23,12 +26,11 @@ function ProductsPage() {
       "fans",
       "emergency",
     ];
-    if (products.length > 0) return;
-    dispatch(fetchProducts());
+
     if (!categories.includes(category)) {
       return navigate("/products");
     }
-  }, [dispatch, products, category, navigate]);
+  }, [products, category, navigate]);
 
   const productTiles = products
     .filter((product) => (category ? product.category === category : true))
@@ -58,7 +60,7 @@ function ProductsPage() {
       <Divider />
 
       <Box sx={styles.productTilesContainer}>
-        {loading ? (
+        {isLoading ? (
           <Loading />
         ) : products.length === 0 ? (
           <Typography variant="h3" sx={styles.alignCenter}>

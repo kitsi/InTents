@@ -8,7 +8,7 @@ import formatCurrency from "../../utilities/formatCurrency.js";
 import CartProductTile from "./CartProductTile";
 import { useDispatch } from "react-redux";
 import { removeProduct } from "./cartSlice.js";
-import getProductDataFromCart from "../../utilities/getProductDataFromCart.js";
+import getProductDataFromCart from "../../api/getProductDataFromCart.js";
 
 export default function CartPage() {
   const dispatch = useDispatch();
