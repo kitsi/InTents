@@ -1,9 +1,7 @@
 package com.teksystems.intents.serverside.controllers;
 
 import com.teksystems.intents.serverside.models.Category;
-import com.teksystems.intents.serverside.models.Product;
 import com.teksystems.intents.serverside.services.CategoryService;
-import com.teksystems.intents.serverside.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
