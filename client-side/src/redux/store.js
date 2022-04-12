@@ -1,6 +1,7 @@
 import cartReducer from "../components/CartPage/cartSlice";
 import checkoutReducer from "../components/CheckoutPage/checkoutSlice";
 import productsReducer from "../components/ProductsPage/productsSlice";
+import adminReducer from "../components/AdminPage/AdminLogin/adminSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import {
   persistReducer,
@@ -26,6 +27,7 @@ export const store = configureStore({
     products: productsReducer,
     cart: persistedCartReducer,
     checkout: checkoutReducer,
+    admin: adminReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
