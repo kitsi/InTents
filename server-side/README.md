@@ -14,6 +14,7 @@ spring.datasource.password = [your password]
 spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
 spring.jpa.generate-ddl = true
 spring.jpa.hibernate.ddl-auto = update
+server.servlet.context-path=/api
 
 stripe.api.key = [add stripe api key]
 ```
