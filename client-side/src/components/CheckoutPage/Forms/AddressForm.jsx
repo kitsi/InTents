@@ -2,7 +2,7 @@ import { Button, Container, Grid, TextField, Box } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setAddressForm } from "../checkoutSlice";
-import addressFormSchema from "../validations/AddressFormSchema";
+import addressFormSchema from "./AddressFormSchema";
 import { useFormik } from "formik";
 import * as styles from "./FormStyles";
 

@@ -1,7 +1,5 @@
 import { Box, Divider, Paper, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { setOrderTotal } from "../checkoutSlice";
+import React, { useEffect } from "react";
 import SummaryProductTile from "./SummaryProductTile";
 import { useSelector } from "react-redux";
 import * as styles from "./OrderSummaryStyles";
@@ -10,19 +8,18 @@ import axios from "axios";
 import { baseUrl } from "../../../utilities/strings";
 import Loading from "../../common/Loading";
 
-function OrderSummary() {
+function OrderSummary(props) {
   const { cartItems } = useSelector((state) => state.cart);
+  const { subTotalPrice, setSubTotalPrice, tax, setTax, total, setTotal } = props;
+  
   const dispatch = useDispatch();
-
-  const [subTotalPrice, setSubTotalPrice] = useState(0);
-  const [tax, setTax] = useState(0);
-  const [total, setTotal] = useState(0);
   const [cartList, setCartList] = useState([]);
   const [products, setProducts] = useState([]);
 
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
+    const calculateTotal = () => {
     dispatch(setOrderTotal(total));
   }, [total, dispatch]);
 
@@ -61,6 +58,10 @@ function OrderSummary() {
       setSubTotalPrice(price);
       setTax(0.08 * price);
       setTotal(price + 0.08 * price);
+    };
+    calculateTotal();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
     }
   }, [isLoading, products, cartItems]);
 
