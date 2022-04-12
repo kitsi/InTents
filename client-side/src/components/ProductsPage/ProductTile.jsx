@@ -21,8 +21,8 @@ export default function ProductTile({ productData }) {
   function addToCart() {
     dispatch(
       addProduct({
+        id: productData.id,
         quantity: 1,
-        product: productData,
       })
     );
   }

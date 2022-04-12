@@ -4,15 +4,14 @@ import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import * as styles from "./OrderSummaryStyles";
 import formatCurrency from "../../../utilities/formatCurrency";
 
-function SummaryProductTile({ product }) {
-  const item = product.product;
+function SummaryProductTile({ cartProduct, product }) {
   return (
     <Card sx={styles.productContainer}>
-      <Typography sx={styles.quantity}>{product.quantity}</Typography>
+      <Typography sx={styles.quantity}>{cartProduct.quantity}</Typography>
       <CardMedia
         component="img"
-        image={item.image}
-        alt={item.name}
+        image={product.image}
+        alt={product.name}
         sx={styles.cardImage}
       />
       <CardContent sx={styles.cardContentContainer}>
@@ -22,10 +21,10 @@ function SummaryProductTile({ product }) {
           component="div"
           sx={styles.cardTitle}
         >
-          {item.name}
+          {product.name}
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          {formatCurrency(item.price * product.quantity)}
+          {formatCurrency(cartProduct.quantity * product.price)}
         </Typography>
       </CardContent>
     </Card>
