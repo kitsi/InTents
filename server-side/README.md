@@ -14,6 +14,7 @@ spring.datasource.password = [your password]
 spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
 spring.jpa.generate-ddl = true
 spring.jpa.hibernate.ddl-auto = update
+server.servlet.context-path=/api
 
 stripe.api.key = [add stripe api key]
 ```
@@ -22,7 +23,7 @@ stripe.api.key = [add stripe api key]
 3) Run [sql file](/src/main/resources/products.sql) to add data<br /><br />
 
 4) Interacting with api in browser<br />
-   Swagger url: http://localhost:8080/swagger-ui/index.html#/
+   Swagger url: http://localhost:8080/api/swagger-ui/index.html
 
 ### Resources
 [Sales Tax Rates per state](https://files.taxfoundation.org/20210106094117/State-and-Local-Sales-Tax-Rates-2021.pdf)
