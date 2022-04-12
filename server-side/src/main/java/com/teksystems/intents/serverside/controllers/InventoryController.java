@@ -21,6 +21,6 @@ public class InventoryController {
             @RequestParam(value = "pageNum", defaultValue = "0", required = false) int pageNum,
             @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize
     ) {
-        return inventoryService.getInventory(pageNum, pageSize);
+        return inventoryService.getAllInventory(pageNum, pageSize);
     }
 }
