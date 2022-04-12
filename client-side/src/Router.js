@@ -8,7 +8,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import AdminPage from "./components/AdminPage/AdminPage";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 import CheckoutPageStripe from "./components/CheckoutPage/CheckoutPageStripe";
-
+import AdminLogin from "./components/AdminPage/AdminLogin/AdminLogin";
 function Router() {
   return (
     <Routes>
@@ -17,6 +17,8 @@ function Router() {
       <Route path="/products" element={<ProductsPage />} />
       <Route path="/products/categories/:category" element={<ProductsPage />} />
       <Route path="/admin" element={<AdminPage />} />
+      <Route path="/admin/login" element={<AdminLogin />} />
+
       <Route path="/checkout" element={<CheckoutPageStripe />} />
       <Route path="/product/:sku" exact element={<ProductDetailsPage />} />
       <Route path="*" element={<NotFoundPage />} />
