@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Typography, Button, Divider, Modal, Box } from "@mui/material";
 import {
   modalStyle,
@@ -15,19 +15,35 @@ import { clearCart } from "../../CartPage/cartSlice";
 
 function OrderConfirmationModal(props) {
   const dispatch = useDispatch();
-  
+  const modalRef = useRef();
+
   const {
     handleModalClose,
     openModal,
     orderNumber,
     shippingAddress,
     orderTotal,
+    pageRef,
   } = props;
+
+  // not important, fun easter egg
+  const rotatePage = () => {
+    const animationTime = 1250;
+    pageRef.current.style.transition = `transform ${animationTime}ms`;
+    pageRef.current.style.transform = "rotate(360deg)";
+    modalRef.current.style.transition = `transform ${animationTime}ms`;
+    modalRef.current.style.transform = "rotate(360deg)  translate(-50%, -50%)";
+    modalRef.current.style.transformOrigin = "top left";
+    setTimeout(() => {
+      pageRef.current.style.transform = "rotate(0deg)";
+      modalRef.current.style.transform = "rotate(0deg) translate(-50%, -50%)";
+    }, animationTime);
+  };
 
   return (
     <div>
       <Modal open={openModal} onClose={handleModalClose}>
-        <Box sx={modalStyle}>
+        <Box sx={modalStyle} ref={modalRef}>
           <Box sx={headerStyle}>
             <Typography variant="h4" component="h2">
               Purchase Successful
@@ -65,7 +81,7 @@ function OrderConfirmationModal(props) {
               Continue Shopping
             </Button>
             {/* Easter Egg */}
-            <Typography>Happy Trails...</Typography>
+            <Typography onClick={rotatePage}>Happy Trails...</Typography>
           </Box>
         </Box>
       </Modal>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import OrderSummary from "./OrderSummary/OrderSummary";
 import AddressForm from "./Forms/AddressForm";
 import PaymentForm from "./Forms/PaymentForm";
@@ -19,6 +19,8 @@ function CheckoutPage() {
   const [expandedAddress, setExpandedAddress] = useState(true);
   const [expandedPayment, setExpandedPayment] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+
+  const pageRef = useRef();
 
   // Order Summary State
   const [subTotalPrice, setSubTotalPrice] = useState(0);
@@ -54,13 +56,14 @@ function CheckoutPage() {
   };
 
   return (
-    <Box sx={{ overflowX: "hidden" }}>
+    <Box sx={{ overflowX: "hidden" }} ref={pageRef}>
       <OrderConfirmationModal
         handleModalClose={handleModalClose}
         openModal={openModal}
         orderTotal={orderConfirmationTotal}
         shippingAddress={formData.addressFormData}
         orderNumber={1}
+        pageRef={pageRef}
       />
       <Box sx={styles.desktopContentContainer}>
         <Box sx={styles.desktopAccordionContainer}>
