@@ -1,43 +1,72 @@
 import { Box, Divider, Paper, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { setOrderTotal } from "../checkoutSlice";
+import React, { useState, useEffect } from "react";
 import SummaryProductTile from "./SummaryProductTile";
 import { useSelector } from "react-redux";
 import * as styles from "./OrderSummaryStyles";
 import formatCurrency from "../../../utilities/formatCurrency";
+import axios from "axios";
+import { baseUrl } from "../../../utilities/strings";
+import Loading from "../../common/Loading";
+import { useDispatch } from "react-redux";
+import { setOrderTotal } from "../checkoutSlice";
 
-function OrderSummary() {
+function OrderSummary(props) {
   const { cartItems } = useSelector((state) => state.cart);
+  const { subTotalPrice, setSubTotalPrice, tax, setTax, total, setTotal } = props;
+  
   const dispatch = useDispatch();
+  const [cartList, setCartList] = useState([]);
+  const [products, setProducts] = useState([]);
 
-  const [subTotalPrice, setSubTotalPrice] = useState(0);
-  const [tax, setTax] = useState(0);
-  const [total, setTotal] = useState(0);
-
-  const cartList = cartItems.map((item) => {
-    return <SummaryProductTile key={item.product.id} product={item} />;
-  });
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     dispatch(setOrderTotal(total));
   }, [total, dispatch]);
 
   useEffect(() => {
-    const calculateTotal = () => {
+    const updateAllProducts = async () => {
+      const productArray = [];
+  
+      for (let i = 0; i < cartItems.length; i++) {
+        const { data } = await axios.get(`${baseUrl}/products/${cartItems[i].id}`);
+        productArray.push(data);
+      }
+  
+      setProducts(productArray);
+      setLoading(false);
+    }
+
+    updateAllProducts();
+  }, [cartItems]);
+
+  useEffect(() => {
+    setCartList(cartItems.map((item) => {
+      const product = products.filter(product => product.id === item.id)[0];
+      return <SummaryProductTile key={item.id} cartProduct={item} product={product} />;
+    }));
+  }, [products, cartItems]);
+
+  useEffect(() => {
+    if(!isLoading) {
       let price = 0;
 
       cartItems.forEach((item) => {
-        price += item.quantity * item.product.price;
+        const product = products.filter(product => product.id === item.id)[0];
+        price += item.quantity * product.price;
       });
 
       setSubTotalPrice(price);
       setTax(0.08 * price);
       setTotal(price + 0.08 * price);
     };
-    calculateTotal();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [subTotalPrice, setSubTotalPrice]);
+  }, [isLoading, products, cartItems, setSubTotalPrice, setTax, setTotal]);
+
+  if (isLoading) {
+    return (
+      <Loading />
+    );
+  }
 
   return (
     <Box sx={styles.summaryContainer}>

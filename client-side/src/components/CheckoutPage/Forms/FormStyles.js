@@ -1,8 +1,31 @@
 export const submitButtonWrapper = {
   display: "flex",
-  justifyContent: "flex-end",
+  justifyContent: "space-between",
+  position: "relative",
+  alignItems: "center",
+  marginTop: "1rem",
+
+  "@media (max-width:900px)": {
+    flexDirection: "column",
+    gap: "1rem",
+  },
 };
 
 export const submitButton = {
-  marginTop: "1rem",
+  height: "45px",
+  width: "140px",
+  marginLeft: "auto",
+  "@media (max-width:900px)": {
+    width: "100%",
+  },
+};
+
+export const errorAlert = {
+  "@media (max-width:900px)": {
+    width: "100%",
+  },
+};
+
+export const loadingIcon = {
+  color: "primary.main",
 };

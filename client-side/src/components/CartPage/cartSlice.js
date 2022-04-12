@@ -11,7 +11,7 @@ export const cartSlice = createSlice({
     addProduct: (state, action) => {
       const { payload } = action;
       const cartProduct = state.cartItems.filter(
-        (product) => product.product.id === payload.product.id
+        (product) => product.id === payload.id
       )[0];
 
       if (!cartProduct) {
@@ -23,13 +23,13 @@ export const cartSlice = createSlice({
     removeProduct: (state, action) => {
       const { payload } = action;
       state.cartItems = state.cartItems.filter(
-        (item) => item.product.id !== payload.product.id
+        (item) => item.id !== payload.id
       );
     },
     incrementProduct: (state, action) => {
       const { payload } = action;
       const cartProduct = state.cartItems.filter(
-        (product) => product.product.id === payload.product.id
+        (product) => product.id === payload.id
       )[0];
 
       cartProduct.quantity++;
@@ -37,7 +37,7 @@ export const cartSlice = createSlice({
     decrementProduct: (state, action) => {
       const { payload } = action;
       const cartProduct = state.cartItems.filter(
-        (product) => product.product.id === payload.product.id
+        (product) => product.id === payload.id
       )[0];
 
       cartProduct.quantity--;

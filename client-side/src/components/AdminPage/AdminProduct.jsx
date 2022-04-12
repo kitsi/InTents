@@ -10,7 +10,7 @@ import {
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { fetchProducts } from "../ProductsPage/productsSlice";
-import * as styles from "../common/ProductTileStyles";
+import * as styles from "../../components/ProductsPage/ProductTileStyles";
 import { baseUrl } from "../../utilities/strings";
 import formatCurrency from "../../utilities/formatCurrency";
 

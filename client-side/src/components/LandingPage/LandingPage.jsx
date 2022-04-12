@@ -1,9 +1,6 @@
 import React from "react";
-import { Box, Grid, Typography, IconButton } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import * as styles from "./LandingPageStyles";
-import OutdoorGrillOutlinedIcon from '@mui/icons-material/OutdoorGrillOutlined';
-import MedicalServicesOutlinedIcon from '@mui/icons-material/MedicalServicesOutlined';
-import BedOutlinedIcon from '@mui/icons-material/BedOutlined';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faTent, faFan, faCampground, faKitMedical, faMattressPillow, faFireBurner} from "@fortawesome/free-solid-svg-icons"
