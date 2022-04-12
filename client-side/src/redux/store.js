@@ -14,20 +14,27 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-const persistConfig = {
-  key: "root",
+const cartPersistConfig = {
+  key: "cart",
   version: 1,
   storage,
 };
 
-const persistedCartReducer = persistReducer(persistConfig, cartReducer);
+const adminPersistConfig = {
+  key: "admin",
+  version: 1,
+  storage,
+};
+
+const persistedCartReducer = persistReducer(cartPersistConfig, cartReducer);
+const persistedAdminReducer = persistReducer(adminPersistConfig, adminReducer);
 
 export const store = configureStore({
   reducer: {
     products: productsReducer,
     cart: persistedCartReducer,
     checkout: checkoutReducer,
-    admin: adminReducer,
+    admin: persistedAdminReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
