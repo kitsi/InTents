@@ -5,7 +5,7 @@ export default async function getProducts(pageNumber = 0, limit = 10) {
   let data;
   let success = true;
 
-  await axios.get(`${baseUrl}/products`)
+  await axios.get(`${baseUrl}/products/${pageNumber}/${limit}`)
     .then(res => data = res.data)
     .catch(() => success = false);
 
