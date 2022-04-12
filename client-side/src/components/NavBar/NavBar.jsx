@@ -14,14 +14,19 @@ import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { ShoppingCartOutlined } from "@mui/icons-material";
 import SideDrawer from "./SideDrawer";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import * as styles from "./NavBarStyles";
+import { clearToken } from "../AdminPage/AdminLogin/adminSlice";
+import { useNavigate } from "react-router-dom";
 // Add pages from wireframe
 const pages = ["Tents", "Cookware", "Sleeping Bags", "Fans", "Emergency"];
 
 const NavBar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { cartItems } = useSelector((state) => state.cart);
+  const { token } = useSelector((state) => state.admin);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
@@ -31,6 +36,11 @@ const NavBar = () => {
     let count = 0;
     cartItems.map((item) => (count += item.quantity));
     return count;
+  };
+
+  const logout = () => {
+    dispatch(clearToken());
+    return navigate("/");
   };
 
   return (
@@ -107,17 +117,28 @@ const NavBar = () => {
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton>
-              <Badge
-                badgeContent={badgeCount()}
-                color="secondary"
-                component={Link}
-                sx={styles.link}
-                to={"/cart"}
+            {token ? (
+              <Button
+                size="large"
+                sx={{ backgroundColor: "primary.dark" }}
+                variant="contained"
+                onClick={logout}
               >
-                <ShoppingCartOutlined />
-              </Badge>
-            </IconButton>
+                Logout
+              </Button>
+            ) : (
+              <IconButton>
+                <Badge
+                  badgeContent={badgeCount()}
+                  color="secondary"
+                  component={Link}
+                  sx={styles.link}
+                  to={"/cart"}
+                >
+                  <ShoppingCartOutlined />
+                </Badge>
+              </IconButton>
+            )}
           </Box>
         </Toolbar>
       </Container>

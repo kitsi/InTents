@@ -11,9 +11,12 @@ export const adminSlice = createSlice({
     setToken: (state, action) => {
       state.token = action.payload;
     },
+    clearToken: (state) => {
+      state.token = "";
+    },
   },
 });
 
-export const { setToken } = adminSlice.actions;
+export const { setToken, clearToken } = adminSlice.actions;
 
 export default adminSlice.reducer;
