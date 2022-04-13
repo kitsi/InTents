@@ -8,6 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
 
@@ -18,5 +20,9 @@ public class UserService {
         Pageable pageable = PageRequest.of(pageNum, pageSize);
         Page<User> users = userRepo.findAll(pageable);
         return users;
+    }
+
+    public Optional<User> getUser(Long id) {
+        return userRepo.findById(id);
     }
 }

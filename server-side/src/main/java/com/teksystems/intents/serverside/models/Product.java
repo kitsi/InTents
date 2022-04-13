@@ -48,4 +48,18 @@ public class Product {
     @Getter @Setter
     @JoinColumn(name = "inventory_id", referencedColumnName = "inventory_id")
     private Inventory inventory;
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", sku='" + sku + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", image='" + image + '\'' +
+                ", category=" + category +
+                ", inventory=" + inventory +
+                '}';
+    }
 }

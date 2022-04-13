@@ -21,4 +21,12 @@ public class Category {
     @Column(name = "title")
     @Getter @Setter
     private String title;
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "categoryId=" + categoryId +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }

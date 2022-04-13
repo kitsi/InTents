@@ -25,11 +25,23 @@ public class Order {
     @Getter @Setter
     private User user;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     @Getter @Setter
     private List<OrderProduct> orderProducts;
 
     @OneToOne(mappedBy = "order")
     @JoinColumn(name = "billing_id")
+    @Setter
     private Billing billing;
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", user=" + user +
+                ", orderProducts=" + orderProducts +
+                ", billing=" + billing +
+                '}';
+    }
+
 }
