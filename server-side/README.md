@@ -25,6 +25,25 @@ stripe.api.key = [add stripe api key]
 4) Interacting with api in browser<br />
    Swagger url: http://localhost:8080/api/swagger-ui/index.html
 
+
+5) To set logging levels and save logs to a file. Add the following to 'src/main/resources/application.properties' file.<br />
+Different logging levels can be configured if needed.
+```
+# Logging levels
+#logging.level.root=WARN
+logging.level.com.teksystems.bootcamp.springboot.intents.controllers=ERROR
+logging.level.org.springframework.web=DEBUG
+logging.level.org.hibernate.SQL=ERROR
+
+logging.pattern.console=%d [%thread] %clr(%-5level) %cyan(%-50logger{32}) : %msg%n
+logging.pattern.file=%d [%thread] %-5level %-50logger{32} : %msg%n
+
+# Log file
+logging.file.name = application.log
+spring.output.ansi.enabled=always
+
+```
+
 ### Resources
 [Sales Tax Rates per state](https://files.taxfoundation.org/20210106094117/State-and-Local-Sales-Tax-Rates-2021.pdf)
 <br />
