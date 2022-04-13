@@ -29,7 +29,7 @@ export default function ProductTile({ productData }) {
 
   return (
     <Card sx={styles.card}>
-      <Link to={`/product/${productData.sku}`}>
+      <Link to={`/product/${productData.productId}`}>
         <CardMedia
           component="img"
           height="200"
@@ -39,7 +39,7 @@ export default function ProductTile({ productData }) {
         />
       </Link>
       <CardContent sx={styles.productDetails}>
-        <Link to={`/product/${productData.sku}`}>
+        <Link to={`/product/${productData.productId}`}>
           <Typography gutterBottom variant="h5" component="div">
             {productData.title}
           </Typography>
