@@ -25,7 +25,7 @@ function AdminProduct({ productData, editProduct, reloadPage }) {
         component="img"
         height="200"
         image={productData.image}
-        alt={productData.name}
+        alt={productData.title}
         sx={styles.productImage}
       />
       <CardContent sx={styles.productDetails}>
