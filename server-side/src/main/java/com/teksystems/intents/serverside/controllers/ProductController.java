@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http:localhost:3000")
@@ -18,11 +19,12 @@ public class ProductController {
 
     @GetMapping("/")
     @CrossOrigin(origins = "http://localhost:3000")
-    public Page<Product> getProducts(
-            @RequestParam(value = "pageNum", defaultValue = "0", required = false) int pageNum,
-            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize
+    public List<Product> getProducts(
+//            @RequestParam(value = "pageNum", defaultValue = "0", required = false) int pageNum,
+//            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize
+            @RequestParam(value = "category", required = false) Long categoryId
     ) {
-        return productService.getProducts(pageNum, pageSize);
+        return productService.getProducts(categoryId);
     }
 
     @GetMapping("/{id}")

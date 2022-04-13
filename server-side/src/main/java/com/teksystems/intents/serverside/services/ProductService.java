@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,11 +23,17 @@ public class ProductService {
     @Autowired
     private InventoryRepository inventoryRepo;
 
-    public Page<Product> getProducts(int pageNum, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNum, pageSize);
-        Page<Product> products = productRepo.findAll(pageable);
+    public List<Product> getProducts(Long categoryId) {
+        // Pageable pageable = PageRequest.of(pageNum, pageSize);
+        List<Product> products;
+        if(categoryId != null) {
+             products = productRepo.findAllByCategoryId(categoryId);
+        } else {
+             products = productRepo.findAll();
+        }
         return products;
     }
+
 
     public Optional<Product> getProduct(Long id) {
         return productRepo.findById(id);
