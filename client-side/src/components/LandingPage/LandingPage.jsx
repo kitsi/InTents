@@ -19,7 +19,7 @@ export default function LandingPage() {
       <Grid container sx={styles.gridContainer}>
 
         <Grid item xs={10} sm={5} md={3} sx={styles.gridItemContainer}>
-          <Link to="/products/" style={styles.gridItemLink}>
+          <Link to="/products" style={styles.gridItemLink}>
             <Box sx={styles.gridItem}>
               <FontAwesomeIcon icon={faCampground} />
               <Typography sx={styles.gridItemCategory}>All</Typography>

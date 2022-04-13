@@ -22,6 +22,7 @@ import {
 import StripeInput from "../StripeInput";
 import axios from "axios";
 import * as styles from "./FormStyles";
+import { baseUrl } from "../../../utilities/strings";
 
 const PaymentForm = ({ handleModalOpen, clearOrderSummary, orderTotal }) => {
   const dispatch = useDispatch();
@@ -82,7 +83,7 @@ const PaymentForm = ({ handleModalOpen, clearOrderSummary, orderTotal }) => {
 
   // Stripe create paymentIntent and make an API call to Stripe to retrieve client secret
   const getClientSecret = (data) => {
-    const url = "http://localhost:8080/api/create-payment-intent/";
+    const url = `${baseUrl}/api/create-payment-intent/`;
     return new Promise(async (resolve) => {
       const {
         data: { clientSecret },

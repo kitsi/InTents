@@ -1,6 +1,5 @@
 import cartReducer from "../components/CartPage/cartSlice";
 import checkoutReducer from "../components/CheckoutPage/checkoutSlice";
-import productsReducer from "../components/ProductsPage/productsSlice";
 import adminReducer from "../components/AdminPage/AdminLogin/adminSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import {
@@ -31,7 +30,6 @@ const persistedAdminReducer = persistReducer(adminPersistConfig, adminReducer);
 
 export const store = configureStore({
   reducer: {
-    products: productsReducer,
     cart: persistedCartReducer,
     checkout: checkoutReducer,
     admin: persistedAdminReducer,

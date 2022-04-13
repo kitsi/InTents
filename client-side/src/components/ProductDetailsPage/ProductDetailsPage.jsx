@@ -8,27 +8,23 @@ import * as styles from "./ProductDetailsPageStyles";
 import { baseUrl } from "../../utilities/strings";
 
 function ProductDetailsPage() {
-  const { sku } = useParams();
+  const { id } = useParams();
 
   const [product, setProduct] = useState({});
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getProduct() {
-      setLoading(true);
-      const { data } = await axios
-        .get(`${baseUrl}/products?sku=${sku}`)
-      setLoading(false);
-      setProduct(data[0]);
+      await axios.get(`${baseUrl}/products/${id}`)
+        .then(res => setProduct(res.data));
     }
 
     getProduct();
-  }, [sku]);
+  }, [id]);
 
   return (
     <Box sx={styles.productDetailsPage}>
       <Box sx={styles.productDetailsWrapper}>
-        {loading ? <Loading /> : <ProductDetails product={product} />}
+        {product ? <ProductDetails product={product} /> : <Loading />}
       </Box>
     </Box>
   );

@@ -8,7 +8,7 @@ import formatCurrency from "../../utilities/formatCurrency.js";
 import CartProductTile from "./CartProductTile";
 import { useDispatch } from "react-redux";
 import { removeProduct } from "./cartSlice.js";
-import getProductDataFromCart from "../../utilities/getProductDataFromCart.js";
+import getProductDataFromCart from "../../api/getProductDataFromCart.js";
 
 export default function CartPage() {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ export default function CartPage() {
 
   useEffect(() => {
     setCartList(cartItems.map((item) => {
-      const product = products.filter(product => product.id === item.id)[0];
+      const product = products.filter(product => product.productId === item.id)[0];
       return <CartProductTile key={item.id} cartProduct={item} product={product} />;
     }))
   }, [products, cartItems]);
@@ -42,7 +42,7 @@ export default function CartPage() {
     let total = 0;
     for (let i = 0; i < cartItems.length; i++) {
       const cartItem = cartItems[i];
-      const product = products.filter(item => item.id === cartItem.id)[0];
+      const product = products.filter(item => item.productId === cartItem.id)[0];
 
       if (product) {
         total += product.price * cartItem.quantity;

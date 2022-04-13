@@ -1,39 +1,49 @@
 import { Divider, Typography, Box } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
 import ProductTile from "./ProductTile";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "./productsSlice";
 import Loading from "../common/Loading";
 import * as styles from "./ProductsPageStyles";
+import getCategories from "../../api/getCategories";
+import getProducts from "../../api/getProducts";
+import PaginationBar from "../common/PaginationBar";
 
 function ProductsPage() {
-  const { products, loading } = useSelector((state) => state.products);
   const navigate = useNavigate();
 
   const { category } = useParams();
-  const dispatch = useDispatch();
+
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [curPage, setCurPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    const categories = [
-      "tents",
-      "cookware",
-      "sleeping-bags",
-      "fans",
-      "emergency",
-    ];
-    if (products.length > 0) return;
-    dispatch(fetchProducts());
-    if (!categories.includes(category)) {
-      return navigate("/products");
+    const checkCategories = async () => {
+      const categories = await getCategories();
+      
+      if (!categories.map(category => category.title).includes(category)) {
+        return navigate("/products");
+      }
     }
-  }, [dispatch, products, category, navigate]);
 
-  const productTiles = products
-    .filter((product) => (category ? product.category === category : true))
-    .map((product) => {
-      return <ProductTile key={product.id} productData={product} />;
+    const checkProducts = async () => {
+      setIsLoading(true);
+
+      const { products, totalPages, pageNumber } = await getProducts(curPage, category);
+      setProducts(products);
+      setTotalPages(totalPages);
+      setCurPage(Math.max(0, Math.min(pageNumber, totalPages - 1)));
+
+      setIsLoading(false);
+    }
+    
+    checkCategories();
+    checkProducts();
+  }, [category, curPage, navigate]);
+
+  const productTiles = products.map((product) => {
+      return <ProductTile key={product.productId} productData={product} />;
     });
 
   const headingFormatter = (heading) => {
@@ -57,8 +67,10 @@ function ProductsPage() {
       </Typography>
       <Divider />
 
+      <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
+
       <Box sx={styles.productTilesContainer}>
-        {loading ? (
+        {isLoading ? (
           <Loading />
         ) : products.length === 0 ? (
           <Typography variant="h3" sx={styles.alignCenter}>
@@ -68,6 +80,8 @@ function ProductsPage() {
           <>{productTiles}</>
         )}
       </Box>
+
+      <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
     </div>
   );
 }

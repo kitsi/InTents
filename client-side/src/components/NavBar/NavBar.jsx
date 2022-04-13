@@ -99,7 +99,7 @@ const NavBar = () => {
               ...styles.linksContainer,
             }}
           >
-            <Button to="/products/" component={NavLink} sx={styles.link}>
+            <Button to="/products" end component={NavLink} sx={styles.link}>
               All Products
             </Button>
             {pages.map((page) => (
@@ -132,7 +132,7 @@ const NavBar = () => {
                   badgeContent={badgeCount()}
                   color="secondary"
                   component={Link}
-                  sx={styles.link}
+                  sx={styles.cart}
                   to={"/cart"}
                 >
                   <ShoppingCartOutlined />

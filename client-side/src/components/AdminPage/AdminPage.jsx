@@ -1,39 +1,62 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import AdminProduct from "./AdminProduct";
-import { fetchProducts } from "../ProductsPage/productsSlice";
 import { Divider, Typography, Button, Box } from "@mui/material";
 import Loading from "../common/Loading";
 import ProductEditDialog from "./ProductEditDialog/ProductEditDialog";
-
+import getProducts from "../../api/getProducts";
 import * as styles from "./AdminPageStyles";
+import PaginationBar from "../common/PaginationBar";
 
 function AdminPage() {
-  const { products, loading } = useSelector((state) => state.products);
-  const dispatch = useDispatch();
-
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState();
   const [newProduct, setnewProduct] = useState(false);
 
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [curPage, setCurPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const [lastPage, setLastPage] = useState(0);
+
   useEffect(() => {
-    if (products.length > 0) return;
-    dispatch(fetchProducts());
-  }, [dispatch, products]);
+    const checkProducts = async () => {
+      setLastPage(curPage);
+
+      const { products, totalPages, pageNumber } = await getProducts(curPage);
+      setProducts(products);
+      setTotalPages(totalPages);
+      setCurPage(Math.max(0, Math.min(pageNumber, totalPages - 1)));
+
+      setIsLoading(false);
+    }
+
+    if (isLoading || curPage !== lastPage){
+      checkProducts();
+    }
+  }, [curPage, isLoading, lastPage]);
 
   const toggleModal = () => {
     setModalOpen(!modalOpen);
   };
 
+  const reloadPage = () => {
+    setIsLoading(true);
+  }
+
   const createProduct = () => {
     setSelectedProduct({
-      name: "",
+      title: "",
       sku: "",
       description: "",
       price: 0,
-      quantity: 0,
+      inventory: {
+        quantity: 0,
+      },
       image: "",
-      category: "",
+      category: {
+        categoryId: 1,
+      },
     });
     setnewProduct(true);
     toggleModal();
@@ -48,9 +71,10 @@ function AdminPage() {
   const productTiles = products.map((product) => {
     return (
       <AdminProduct
-        key={product.id}
+        key={product.productId}
         productData={product}
         editProduct={editProduct}
+        reloadPage={reloadPage}
       />
     );
   });
@@ -62,6 +86,7 @@ function AdminPage() {
         toggleModal={toggleModal}
         product={selectedProduct}
         newProduct={newProduct}
+        reloadPage={reloadPage}
       />
       <Typography variant="h2" sx={styles.pageHeader}>
         Admin
@@ -75,13 +100,15 @@ function AdminPage() {
           variant="contained"
           color="primary"
           onClick={createProduct}
-        >
+          >
           Add Item
         </Button>
       </Box>
 
+      <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
+
       <Box sx={styles.productTilesContainer}>
-        {loading ? (
+        {isLoading ? (
           <Loading />
         ) : products.length === 0 ? (
           <Typography variant="h3">
@@ -91,6 +118,9 @@ function AdminPage() {
           productTiles
         )}
       </Box>
+
+      <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
+
     </Box>
   );
 }

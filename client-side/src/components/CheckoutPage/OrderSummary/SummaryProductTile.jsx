@@ -11,7 +11,7 @@ function SummaryProductTile({ cartProduct, product }) {
       <CardMedia
         component="img"
         image={product.image}
-        alt={product.name}
+        alt={product.title}
         sx={styles.cardImage}
       />
       <CardContent sx={styles.cardContentContainer}>
@@ -21,7 +21,7 @@ function SummaryProductTile({ cartProduct, product }) {
           component="div"
           sx={styles.cardTitle}
         >
-          {product.name}
+          {product.title}
         </Typography>
         <Typography variant="body1" color="text.secondary">
           {formatCurrency(cartProduct.quantity * product.price)}

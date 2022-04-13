@@ -24,7 +24,7 @@ function ProductDetails({ product }) {
   function addToCart() {
     dispatch(
       addProduct({
-        id: product.id,
+        id: product.productId,
         quantity: qtyValue,
       })
     );
@@ -48,10 +48,10 @@ function ProductDetails({ product }) {
       <Box sx={styles.detailsWrapper}>
         <div>
           <Typography sx={styles.productNameRight} variant="h3">
-            {product.name}
+            {product.title}
           </Typography>
           <Typography sx={styles.category}>
-            {product.category && headingFormatter(product.category)}
+            {product.category && headingFormatter(product.category.title)}
           </Typography>
         </div>
         <Box sx={styles.details}>

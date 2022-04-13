@@ -16,7 +16,6 @@ export const productTilesContainer = {
   alignItems: "center",
   gap: "3rem",
   maxWidth: "1000px",
-  margin: "0 auto",
+  margin: "2rem auto",
   padding: "0 2rem",
-  marginTop: "2rem",
 };

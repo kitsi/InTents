@@ -1,7 +1,7 @@
 use intents;
 
 insert into categories(title) values
-('cookeware'), ('tents'), ('sleeping-bags'), ('fans'), ('emergency');
+('cookware'), ('tents'), ('sleeping-bags'), ('fans'), ('emergency');
 
 insert into inventory(quantity) values
 (42),(2),(10),(30),(25),(15),(300),(260),(120),(50),(30),
@@ -9,7 +9,7 @@ insert into inventory(quantity) values
 
 
 insert into products(sku, title, description, price, category_id, inventory_id, image) values
-('45687542', '''Blackstone 22'' Tabletop Griddle with Cover', 'hfghfgh', 149.99, 1, 1,
+('45687542', '''Blackstone 22'' Tabletop Griddle with Cover', 'This is a fantastic grill to cook stuff while you are on your camping adventure.', 149.99, 1, 1,
 'https://www.campingworld.com/dw/image/v2/BCJK_PRD/on/demandware.static/-/Sites-global-master-catalog/default/dw32700d0f/images/large/655035_1.jpg?sw=800&sh=800'),
 ('89432145', 'Venture Forward 5-Person Cabin Tent', 'The Venture Forward Cabin Tent sleeps up to 5 and has a straight side wall design with a 6\'10\" center height so there\'s plenty of room for even the tallest campers. Its durable, watertight construction includes taped seams on the rain fly, no-wick technology, and a welded tub-style floor. The sturdy X-Frame steel and fiberglass frame design and ring-and-pin anchoring system provide fast and easy setup.',
 999999.99, 2, 2,'https://www.campingworld.com/dw/image/v2/BCJK_PRD/on/demandware.static/-/Sites-global-master-catalog/default/dw61c309b9/images/large/731913_1.jpg?sw=800&sh=800'),

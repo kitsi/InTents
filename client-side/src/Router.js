@@ -32,7 +32,7 @@ function Router() {
       <Route path="/admin/login" element={<AdminLogin />} />
 
       <Route path="/checkout" element={<CheckoutPageStripe />} />
-      <Route path="/product/:sku" exact element={<ProductDetailsPage />} />
+      <Route path="/product/:id" exact element={<ProductDetailsPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

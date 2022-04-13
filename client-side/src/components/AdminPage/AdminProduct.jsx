@@ -8,18 +8,15 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { fetchProducts } from "../ProductsPage/productsSlice";
 import * as styles from "../../components/ProductsPage/ProductTileStyles";
 import { baseUrl } from "../../utilities/strings";
 import formatCurrency from "../../utilities/formatCurrency";
 
-function AdminProduct({ productData, editProduct }) {
-  const dispatch = useDispatch();
-
+function AdminProduct({ productData, editProduct, reloadPage }) {
   const deleteProduct = async () => {
-    await axios.delete(`${baseUrl}/products/${productData.id}`);
-    dispatch(fetchProducts());
+    console.log(productData);
+    await axios.delete(`${baseUrl}/products/admin/${productData.productId}`);
+    reloadPage();
   };
 
   return (
@@ -33,7 +30,7 @@ function AdminProduct({ productData, editProduct }) {
       />
       <CardContent sx={styles.productDetails}>
         <Typography gutterBottom variant="h5" component="div">
-          {productData.name}
+          {productData.title}
         </Typography>
         <Typography variant="body1" color="text.secondary">
           {formatCurrency(productData.price)}

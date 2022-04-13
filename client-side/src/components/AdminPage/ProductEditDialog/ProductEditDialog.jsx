@@ -14,24 +14,27 @@ import {
   MenuItem
 } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
-
+import getCategories from "../../../api/getCategories";
 import * as styles from "./ProductEditDialogStyles";
 import axios from 'axios'
-import { useDispatch } from "react-redux";
-import { fetchProducts } from "../../ProductsPage/productsSlice";
 import { baseUrl } from "../../../utilities/strings";
 
-export default function ProductEditDialog({ isOpen, toggleModal, product, newProduct }) {
-  const dispatch = useDispatch();
+export default function ProductEditDialog({ isOpen, toggleModal, product, newProduct, reloadPage }) {
   const [formState, setFormState] = useState({
-    name: "",
+    title: "",
     sku: "",
     description: "",
     price: 0,
-    quantity: 0,
+    inventory: {
+      quantity: 0,
+    },
     image: "",
-    category: "",
+    category: {
+      categoryId: 1,
+    },
   });
+
+  const [categories, setCategories] = useState([]);
 
   const resetFormData = () => {
     setFormState({...product});
@@ -41,9 +44,21 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
     setFormState({ ...formState, [event.target.name]: event.target.value });
   };
 
-  const changeValueCategory = (event) => {
-    setFormState({ ...formState, "category": event.target.value });
+  const changeValueQuantity = (event) => {
+    setFormState({ ...formState, inventory: { ...formState.inventory, quantity: event.target.value } });
   };
+
+  const changeValueCategory = (event) => {
+    setFormState({ ...formState, category: { categoryId: event.target.value } });
+  };
+
+  useEffect(() => {
+    const refreshCategories = async () => {
+      setCategories(await getCategories());
+    }
+
+    refreshCategories();
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -53,16 +68,14 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
 
   const sendProductToServer = async() => {
     if(newProduct) {
-      await axios.post(`${baseUrl}/products`, formState);
+      await axios.post(`${baseUrl}/products/admin/`, formState);
     } else {
-      await axios.put(`${baseUrl}/products/${product.id}`, formState);
+      await axios.put(`${baseUrl}/products/admin/${product.productId}`, formState);
     }
   
-    dispatch(fetchProducts());
+    reloadPage();
     toggleModal();
   }
-
-  const categories = ["tents", "cookware", "sleeping-bags", "fans", "emergency"];
 
   return (
     <Dialog maxWidth="lg" fullWidth open={isOpen} onClose={toggleModal}>
@@ -86,9 +99,9 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
             </Grid>
             <Grid item xs={12}>
               <TextField
-                name="name"
+                name="title"
                 variant="outlined"
-                value={formState.name}
+                value={formState.title}
                 onChange={changeValue}
                 fullWidth
                 sx={styles.textBox}
@@ -134,10 +147,9 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
             </Grid>
             <Grid item xs={12}>
               <TextField
-                name="quantity"
                 variant="outlined"
-                value={formState.quantity}
-                onChange={changeValue}
+                value={formState.inventory.quantity}
+                onChange={changeValueQuantity}
                 fullWidth
                 sx={styles.textBox}
               />
@@ -149,9 +161,9 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
               <Typography sx={styles.label}>Category</Typography>
             </Grid>
             <Grid item xs={12}>
-              <Select fullWidth value={formState.category} onChange={changeValueCategory}>
+              <Select fullWidth value={formState.category.categoryId} onChange={changeValueCategory}>
                 {categories.map(category => 
-                  <MenuItem key={category} value={category}>{category}</MenuItem>
+                  <MenuItem key={category.categoryId} value={category.categoryId}>{category.title}</MenuItem>
                 )}
               </Select>
             </Grid>
