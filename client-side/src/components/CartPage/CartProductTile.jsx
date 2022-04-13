@@ -37,7 +37,7 @@ function CartProductTile({ cartProduct, product }) {
       <Card sx={styles.cartCard}>
         <Loading />
       </Card>
-    )
+    );
   }
 
   return (
@@ -49,12 +49,12 @@ function CartProductTile({ cartProduct, product }) {
         component="img"
         height="200"
         image={product.image}
-        alt={product.name}
+        alt={product.title}
         sx={styles.productImage}
       />
       <CardContent sx={styles.productDetails}>
         <Typography gutterBottom variant="h5" component="div">
-          {product.name}
+          {product.title}
         </Typography>
         <Typography variant="body1" color="text.secondary">
           {formatCurrency(product.price)}
@@ -69,15 +69,24 @@ function CartProductTile({ cartProduct, product }) {
       </CardContent>
       <CardActions sx={styles.cardActions}>
         <Box sx={styles.quantityChange}>
-          <IconButton onClick={subtractOne} disabled={cartProduct.quantity <= 1}>
+          <IconButton
+            onClick={subtractOne}
+            disabled={cartProduct.quantity <= 1}
+            aria-label="remove-one"
+          >
             <RemoveIcon />
           </IconButton>
           <Typography sx={styles.qtyLabel}>{cartProduct.quantity}</Typography>
-          <IconButton onClick={addOne}>
+          <IconButton onClick={addOne} aria-label="add-one">
             <AddIcon />
           </IconButton>
         </Box>
-        <IconButton size="large" sx={styles.deleteIcon} onClick={removeItem}>
+        <IconButton
+          size="large"
+          sx={styles.deleteIcon}
+          onClick={removeItem}
+          aria-label="remove-from cart"
+        >
           <DeleteIcon />
         </IconButton>
       </CardActions>
