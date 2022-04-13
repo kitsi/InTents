@@ -12,14 +12,14 @@ function ProductDetailsPage() {
   const { id } = useParams();
 
   const [product, setProduct] = useState();
-  const [errorMsg, setErrorMsg] = useState("Error: Something went wrong.");
+  const [errorMsg, setErrorMsg] = useState();
 
   useEffect(() => {
     async function getProduct() {
       await axios.get(`${baseUrl}/products/${id}`)
         .then(res => {
           if (res.status === 200) {
-            setErrorMsg("");
+            setErrorMsg();
             setProduct(res.data)
           } else {
             setErrorMsg(`Error: ${res.message}`);
