@@ -24,7 +24,7 @@ function AdminPage() {
       setProducts(products);
       setTotalPages(totalPages);
       setCurPage(pageNumber);
-      
+
       setIsLoading(false);
     }
 
@@ -62,7 +62,7 @@ function AdminPage() {
   const productTiles = products.map((product) => {
     return (
       <AdminProduct
-        key={product.id}
+        key={product.productId}
         productData={product}
         editProduct={editProduct}
       />
