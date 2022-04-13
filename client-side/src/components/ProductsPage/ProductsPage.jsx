@@ -31,7 +31,9 @@ function ProductsPage() {
   useEffect(() => {
     // Fetching products
     const checkProducts = async () => {
-      setIsLoading(true);
+      if (prevCategoryId !== categoryId) {
+        setIsLoading(true);
+      }
       const { products, totalPages, pageNumber } = await getProducts(
         curPage,
         categoryId
