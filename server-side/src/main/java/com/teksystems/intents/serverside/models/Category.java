@@ -1,9 +1,6 @@
 package com.teksystems.intents.serverside.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,6 +8,7 @@ import javax.persistence.*;
 @Table(name = "categories")
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Category {
 
     @Id
@@ -22,11 +20,5 @@ public class Category {
     @Getter @Setter
     private String title;
 
-    @Override
-    public String toString() {
-        return "Category{" +
-                "categoryId=" + categoryId +
-                ", title='" + title + '\'' +
-                '}';
-    }
+
 }
