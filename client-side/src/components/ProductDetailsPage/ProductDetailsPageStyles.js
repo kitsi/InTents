@@ -84,3 +84,14 @@ export const descriptionText = {
     margin: "1rem 0",
   },
 };
+
+export const errorContainer = {
+  textAlign: "center",
+};
+
+export const error = {
+  color: "error.main",
+  fontWeight: "bold",
+  fontSize: "1.5rem",
+  paddingY: "1rem",
+};
