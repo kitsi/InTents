@@ -11,6 +11,7 @@ export default function SideDrawer({ isOpen, toggleDrawer, pages }) {
         <Button
           to="/products"
           component={NavLink}
+          end
           sx={{ ...styles.link, ...styles.darkFont }}
         >
           All Products
