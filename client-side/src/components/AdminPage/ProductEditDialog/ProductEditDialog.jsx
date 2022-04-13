@@ -24,13 +24,17 @@ import { baseUrl } from "../../../utilities/strings";
 export default function ProductEditDialog({ isOpen, toggleModal, product, newProduct }) {
   const dispatch = useDispatch();
   const [formState, setFormState] = useState({
-    name: "",
+    title: "",
     sku: "",
     description: "",
     price: 0,
-    quantity: 0,
+    inventory: {
+      quantity: 0,
+    },
     image: "",
-    category: "",
+    category: {
+      categoryId: 1,
+    },
   });
 
   const [categories, setCategories] = useState([]);
@@ -43,8 +47,12 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
     setFormState({ ...formState, [event.target.name]: event.target.value });
   };
 
+  const changeValueQuantity = (event) => {
+    setFormState({ ...formState, inventory: { ...formState.inventory, quantity: event.target.value } });
+  };
+
   const changeValueCategory = (event) => {
-    setFormState({ ...formState, "category": event.target.value });
+    setFormState({ ...formState, category: { ...formState.category, categoryId: event.target.value } });
   };
 
   useEffect(() => {
@@ -94,9 +102,9 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
             </Grid>
             <Grid item xs={12}>
               <TextField
-                name="name"
+                name="title"
                 variant="outlined"
-                value={formState.name}
+                value={formState.title}
                 onChange={changeValue}
                 fullWidth
                 sx={styles.textBox}
@@ -142,10 +150,9 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
             </Grid>
             <Grid item xs={12}>
               <TextField
-                name="quantity"
                 variant="outlined"
-                value={formState.quantity}
-                onChange={changeValue}
+                value={formState.inventory.quantity}
+                onChange={changeValueQuantity}
                 fullWidth
                 sx={styles.textBox}
               />
@@ -157,7 +164,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
               <Typography sx={styles.label}>Category</Typography>
             </Grid>
             <Grid item xs={12}>
-              <Select fullWidth value={formState.category} onChange={changeValueCategory}>
+              <Select fullWidth value={formState.category.categoryId} onChange={changeValueCategory}>
                 {categories.map(category => 
                   <MenuItem key={category.id} value={category.id}>{category.title}</MenuItem>
                 )}

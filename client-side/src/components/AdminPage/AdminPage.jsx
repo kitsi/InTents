@@ -27,13 +27,17 @@ function AdminPage() {
 
   const createProduct = () => {
     setSelectedProduct({
-      name: "",
+      title: "",
       sku: "",
       description: "",
       price: 0,
-      quantity: 0,
+      inventory: {
+        quantity: 0,
+      },
       image: "",
-      category: "",
+      category: {
+        categoryId: 1,
+      },
     });
     setnewProduct(true);
     toggleModal();
