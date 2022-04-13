@@ -1,7 +1,7 @@
 use intents;
 
 insert into categories(title) values
-('cookeware'), ('tents'), ('sleeping-bags'), ('fans'), ('emergency');
+('cookware'), ('tents'), ('sleeping-bags'), ('fans'), ('emergency');
 
 insert into inventory(quantity) values
 (42),(2),(10),(30),(25),(15),(300),(260),(120),(50),(30),

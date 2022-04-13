@@ -20,7 +20,7 @@ import axios from 'axios'
 import { useDispatch } from "react-redux";
 import { fetchProducts } from "../../ProductsPage/productsSlice";
 import { baseUrl } from "../../../utilities/strings";
-
+//TODO: Make sure format of objects created match backend
 export default function ProductEditDialog({ isOpen, toggleModal, product, newProduct }) {
   const dispatch = useDispatch();
   const [formState, setFormState] = useState({
