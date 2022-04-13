@@ -34,7 +34,7 @@ function AdminPage() {
     if (isLoading || curPage !== lastPage){
       checkProducts();
     }
-  }, [curPage, isLoading]);
+  }, [curPage, isLoading, lastPage]);
 
   const toggleModal = () => {
     setModalOpen(!modalOpen);
