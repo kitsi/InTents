@@ -19,7 +19,7 @@ import * as styles from "./ProductEditDialogStyles";
 import axios from 'axios'
 import { baseUrl } from "../../../utilities/strings";
 
-export default function ProductEditDialog({ isOpen, toggleModal, product, newProduct }) {
+export default function ProductEditDialog({ isOpen, toggleModal, product, newProduct, reloadPage }) {
   const [formState, setFormState] = useState({
     title: "",
     sku: "",
@@ -49,7 +49,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
   };
 
   const changeValueCategory = (event) => {
-    setFormState({ ...formState, category: { ...formState.category, categoryId: event.target.value } });
+    setFormState({ ...formState, category: { categoryId: event.target.value } });
   };
 
   useEffect(() => {
@@ -68,11 +68,12 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
 
   const sendProductToServer = async() => {
     if(newProduct) {
-      await axios.post(`${baseUrl}/products`, formState);
+      await axios.post(`${baseUrl}/products/admin/`, formState);
     } else {
-      await axios.put(`${baseUrl}/products/${product.id}`, formState);
+      await axios.put(`${baseUrl}/products/admin/${product.productId}`, formState);
     }
   
+    reloadPage();
     toggleModal();
   }
 

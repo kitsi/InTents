@@ -12,9 +12,11 @@ import * as styles from "../../components/ProductsPage/ProductTileStyles";
 import { baseUrl } from "../../utilities/strings";
 import formatCurrency from "../../utilities/formatCurrency";
 
-function AdminProduct({ productData, editProduct }) {
+function AdminProduct({ productData, editProduct, reloadPage }) {
   const deleteProduct = async () => {
-    await axios.delete(`${baseUrl}/products/${productData.id}`);
+    console.log(productData);
+    await axios.delete(`${baseUrl}/products/admin/${productData.productId}`);
+    reloadPage();
   };
 
   return (

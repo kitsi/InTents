@@ -18,9 +18,7 @@ function AdminPage() {
 
   useEffect(() => {
     const checkProducts = async () => {
-      setIsLoading(true);
-
-      const { products, totalPages, pageNumber } = await getProducts(curPage);
+      const { products, totalPages, pageNumber } = await getProducts(2);
       setProducts(products);
       setTotalPages(totalPages);
       setCurPage(pageNumber);
@@ -28,12 +26,18 @@ function AdminPage() {
       setIsLoading(false);
     }
 
-    checkProducts();
-  }, [curPage]);
+    if (isLoading){
+      checkProducts();
+    }
+  }, [curPage, isLoading]);
 
   const toggleModal = () => {
     setModalOpen(!modalOpen);
   };
+
+  const reloadPage = () => {
+    setIsLoading(true);
+  }
 
   const createProduct = () => {
     setSelectedProduct({
@@ -65,6 +69,7 @@ function AdminPage() {
         key={product.productId}
         productData={product}
         editProduct={editProduct}
+        reloadPage={reloadPage}
       />
     );
   });
@@ -76,6 +81,7 @@ function AdminPage() {
         toggleModal={toggleModal}
         product={selectedProduct}
         newProduct={newProduct}
+        reloadPage={reloadPage}
       />
       <Typography variant="h2" sx={styles.pageHeader}>
         Admin
