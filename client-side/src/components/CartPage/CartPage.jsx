@@ -42,7 +42,7 @@ export default function CartPage() {
     let total = 0;
     for (let i = 0; i < cartItems.length; i++) {
       const cartItem = cartItems[i];
-      const product = products.filter(item => item.id === cartItem.id)[0];
+      const product = products.filter(item => item.productId === cartItem.id)[0];
 
       if (product) {
         total += product.price * cartItem.quantity;
