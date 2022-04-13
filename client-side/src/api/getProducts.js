@@ -1,12 +1,11 @@
 import axios from "axios";
 import { baseUrl } from "../utilities/strings";
 
-//TODO: Consider adding category to URL parameters
-export default async function getProducts(pageNumber = 0, category, limit = 10) {
+export default async function getProducts(pageNumber = 0, category = 0, limit = 10) {
   let data;
   let success = true;
 
-  await axios.get(`${baseUrl}/products/?pageNum=${pageNumber}&pageSize=${limit}` + (category ? `&category=${category}` : ""))
+  await axios.get(`${baseUrl}/products/?pageNum=${pageNumber}&pageSize=${limit}` + (category !== 0 ? `&category=${category}` : ""))
     .then(res => data = res.data)
     .catch(() => success = false);
 

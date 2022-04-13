@@ -12,6 +12,7 @@ function ProductsPage() {
   const navigate = useNavigate();
 
   const { category } = useParams();
+  const [categoryId, setCategoryId] = useState(0);
 
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -22,15 +23,21 @@ function ProductsPage() {
     const checkCategories = async () => {
       const categories = await getCategories();
       
-      if (!categories.map(category => category.title).includes(category)) {
-        return navigate("/products");
+      if (category) {
+        if (!categories.map(category => category.title).includes(category)) {
+          return navigate("/products");
+        }
+
+        setCategoryId(categories.filter(cat => cat.title === category)[0].categoryId);
+      } else {
+        setCategoryId(0);
       }
     }
 
     const checkProducts = async () => {
       setIsLoading(true);
 
-      const { products, totalPages, pageNumber } = await getProducts(curPage, category);
+      const { products, totalPages, pageNumber } = await getProducts(curPage, categoryId);
       setProducts(products);
       setTotalPages(totalPages);
       setCurPage(Math.max(0, Math.min(pageNumber, totalPages - 1)));
@@ -40,7 +47,7 @@ function ProductsPage() {
     
     checkCategories();
     checkProducts();
-  }, [category, curPage, navigate]);
+  }, [category, categoryId, curPage, navigate]);
 
   const productTiles = products.map((product) => {
       return <ProductTile key={product.productId} productData={product} />;
