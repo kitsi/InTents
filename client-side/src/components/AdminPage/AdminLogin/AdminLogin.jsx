@@ -33,7 +33,7 @@ function AdminLogin() {
     if (token) {
       return navigate("/admin");
     }
-  }, [token]);
+  }, [token, navigate]);
 
   return (
     <Container sx={styles.loginContainer}>
