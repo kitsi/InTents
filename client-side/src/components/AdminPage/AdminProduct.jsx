@@ -33,7 +33,7 @@ function AdminProduct({ productData, editProduct }) {
       />
       <CardContent sx={styles.productDetails}>
         <Typography gutterBottom variant="h5" component="div">
-          {productData.name}
+          {productData.title}
         </Typography>
         <Typography variant="body1" color="text.secondary">
           {formatCurrency(productData.price)}
