@@ -56,7 +56,7 @@ function CheckoutPage() {
   };
 
   return (
-    <Box sx={{ overflowX: "hidden" }} ref={pageRef}>
+    <Box sx={styles.checkoutPage} ref={pageRef}>
       <OrderConfirmationModal
         handleModalClose={handleModalClose}
         openModal={openModal}

@@ -1,11 +1,8 @@
 export const container = {
   display: "flex",
-  width: {
-    xs: "90%",
-    md: "70%",
-    lg: "50%",
-  },
+  maxWidth: "1000px",
   margin: "1rem auto",
+  padding: "0 2rem",
 };
 
 export const stats = {
