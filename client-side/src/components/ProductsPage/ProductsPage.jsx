@@ -18,6 +18,7 @@ function ProductsPage() {
   const [allCategories, setAllCategories] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [curPage, setCurPage] = useState(0);
+  const [prevPage, setPrevPage] = useState();
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
@@ -59,6 +60,9 @@ function ProductsPage() {
     if (prevCategoryId !== categoryId) {
       checkProducts();
       setPrevCategoryId(categoryId);
+    } else if (prevPage !== curPage) {
+      checkProducts();
+      setPrevPage(curPage);
     }
   }, [category, categoryId, curPage, prevCategoryId, allCategories, navigate]);
 
