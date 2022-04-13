@@ -1,25 +1,35 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import AdminProduct from "./AdminProduct";
-import { fetchProducts } from "../ProductsPage/productsSlice";
 import { Divider, Typography, Button, Box } from "@mui/material";
 import Loading from "../common/Loading";
 import ProductEditDialog from "./ProductEditDialog/ProductEditDialog";
-
+import getProducts from "../../api/getProducts";
 import * as styles from "./AdminPageStyles";
 
 function AdminPage() {
-  const { products, loading } = useSelector((state) => state.products);
-  const dispatch = useDispatch();
-
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState();
   const [newProduct, setnewProduct] = useState(false);
 
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [curPage, setCurPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
+
   useEffect(() => {
-    if (products.length > 0) return;
-    dispatch(fetchProducts());
-  }, [dispatch, products]);
+    const checkProducts = async () => {
+      setIsLoading(true);
+
+      const { products, totalPages, pageNumber } = await getProducts(curPage);
+      setProducts(products);
+      setTotalPages(totalPages);
+      setCurPage(pageNumber);
+      
+      setIsLoading(false);
+    }
+
+    checkProducts();
+  }, [curPage]);
 
   const toggleModal = () => {
     setModalOpen(!modalOpen);
@@ -85,7 +95,7 @@ function AdminPage() {
       </Box>
 
       <Box sx={styles.productTilesContainer}>
-        {loading ? (
+        {isLoading ? (
           <Loading />
         ) : products.length === 0 ? (
           <Typography variant="h3">

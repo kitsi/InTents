@@ -28,10 +28,12 @@ function ProductsPage() {
 
     const checkProducts = async () => {
       setIsLoading(true);
+
       const { products, totalPages, pageNumber } = await getProducts(curPage);
       setProducts(products);
       setTotalPages(totalPages);
       setCurPage(pageNumber);
+      
       setIsLoading(false);
     }
     
