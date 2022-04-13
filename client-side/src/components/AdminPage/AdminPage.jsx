@@ -18,7 +18,7 @@ function AdminPage() {
 
   useEffect(() => {
     const checkProducts = async () => {
-      const { products, totalPages, pageNumber } = await getProducts(2);
+      const { products, totalPages, pageNumber } = await getProducts(curPage);
       setProducts(products);
       setTotalPages(totalPages);
       setCurPage(pageNumber);
