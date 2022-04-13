@@ -1,13 +1,13 @@
 package com.teksystems.intents.serverside.controllers;
 
+import com.teksystems.intents.serverside.models.Category;
 import com.teksystems.intents.serverside.models.User;
 import com.teksystems.intents.serverside.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -22,5 +22,11 @@ public class UserController {
             @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize
     ) {
         return userService.getUsers(pageNum, pageSize);
+    }
+
+    @GetMapping("/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public Optional<User> getUser(@PathVariable(value = "id") Long id) {
+        return userService.getUser(id);
     }
 }

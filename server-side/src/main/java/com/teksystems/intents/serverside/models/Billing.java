@@ -67,4 +67,17 @@ public class Billing {
     public void calculateTotal() {
         getSubtotal().add(getTax());
     }
+
+    @Override
+    public String toString() {
+        return "Billing{" +
+                "billingId=" + billingId +
+                ", order=" + order +
+                ", subtotal=" + subtotal +
+                ", tax=" + tax +
+                ", total=" + total +
+                ", isPaid=" + isPaid +
+                ", TAX_RATE=" + TAX_RATE +
+                '}';
+    }
 }
