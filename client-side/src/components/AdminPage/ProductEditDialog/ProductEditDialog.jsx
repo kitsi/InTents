@@ -17,12 +17,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import getCategories from "../../../api/getCategories";
 import * as styles from "./ProductEditDialogStyles";
 import axios from 'axios'
-import { useDispatch } from "react-redux";
-import { fetchProducts } from "../../ProductsPage/productsSlice";
 import { baseUrl } from "../../../utilities/strings";
-//TODO: Make sure format of objects created match backend
+
 export default function ProductEditDialog({ isOpen, toggleModal, product, newProduct }) {
-  const dispatch = useDispatch();
   const [formState, setFormState] = useState({
     title: "",
     sku: "",
@@ -76,7 +73,6 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
       await axios.put(`${baseUrl}/products/${product.id}`, formState);
     }
   
-    dispatch(fetchProducts());
     toggleModal();
   }
 
