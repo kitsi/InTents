@@ -57,6 +57,7 @@ export const quantity = {
 
 export const cardImage = {
   width: "20%",
+  height: "100px",
 };
 
 export const cardContentContainer = {
