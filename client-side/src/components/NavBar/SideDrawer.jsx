@@ -9,7 +9,7 @@ export default function SideDrawer({ isOpen, toggleDrawer, pages }) {
     <Drawer open={isOpen} onClose={toggleDrawer}>
       <Box onClick={toggleDrawer} sx={styles.drawerContainer}>
         <Button
-          to="/products/"
+          to="/products"
           component={NavLink}
           sx={{ ...styles.link, ...styles.darkFont }}
         >
