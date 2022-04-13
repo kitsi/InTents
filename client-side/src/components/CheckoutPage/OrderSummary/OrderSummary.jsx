@@ -41,7 +41,7 @@ function OrderSummary(props) {
 
   useEffect(() => {
     setCartList(cartItems.map((item) => {
-      const product = products.filter(product => product.id === item.id)[0];
+      const product = products.filter(product => product.productId === item.id)[0];
       return <SummaryProductTile key={item.id} cartProduct={item} product={product} />;
     }));
   }, [products, cartItems]);
@@ -51,7 +51,7 @@ function OrderSummary(props) {
       let price = 0;
 
       cartItems.forEach((item) => {
-        const product = products.filter(product => product.id === item.id)[0];
+        const product = products.filter(product => product.productId === item.id)[0];
         price += item.quantity * product.price;
       });
 
