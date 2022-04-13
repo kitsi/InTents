@@ -18,7 +18,7 @@ function Router() {
       <Route path="/products/categories/:category" element={<ProductsPage />} />
       <Route path="/admin" element={<AdminPage />} />
       <Route path="/checkout" element={<CheckoutPageStripe />} />
-      <Route path="/product/:sku" exact element={<ProductDetailsPage />} />
+      <Route path="/product/:id" exact element={<ProductDetailsPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
