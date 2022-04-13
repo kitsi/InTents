@@ -31,7 +31,7 @@ function AdminPage() {
       setIsLoading(false);
     }
 
-    if (isLoading || curPage != lastPage){
+    if (isLoading || curPage !== lastPage){
       checkProducts();
     }
   }, [curPage, isLoading]);
