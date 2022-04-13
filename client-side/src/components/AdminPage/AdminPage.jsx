@@ -17,8 +17,12 @@ function AdminPage() {
   const [curPage, setCurPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
 
+  const [lastPage, setLastPage] = useState(0);
+
   useEffect(() => {
     const checkProducts = async () => {
+      setLastPage(curPage);
+
       const { products, totalPages, pageNumber } = await getProducts(curPage);
       setProducts(products);
       setTotalPages(totalPages);
@@ -27,7 +31,7 @@ function AdminPage() {
       setIsLoading(false);
     }
 
-    if (isLoading){
+    if (isLoading || curPage != lastPage){
       checkProducts();
     }
   }, [curPage, isLoading]);
@@ -101,7 +105,7 @@ function AdminPage() {
         </Button>
       </Box>
 
-      <PaginationBar />
+      <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
 
       <Box sx={styles.productTilesContainer}>
         {isLoading ? (
@@ -114,6 +118,9 @@ function AdminPage() {
           productTiles
         )}
       </Box>
+
+      <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
+
     </Box>
   );
 }
