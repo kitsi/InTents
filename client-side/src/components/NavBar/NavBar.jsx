@@ -112,7 +112,7 @@ const NavBar = () => {
                 badgeContent={badgeCount()}
                 color="secondary"
                 component={Link}
-                sx={styles.link}
+                sx={styles.cart}
                 to={"/cart"}
               >
                 <ShoppingCartOutlined />

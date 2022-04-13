@@ -30,6 +30,11 @@ export const link = {
   },
 };
 
+export const cart = {
+  textDecoration: "none",
+  color: "#fff",
+};
+
 export const linksContainer = {
   gap: "2rem",
   justifyContent: "center",
