@@ -3,7 +3,7 @@ export const container = {
 };
 
 export const heroImage = {
-  backgroundImage: `url(${process.env.PUBLIC_URL + "/images/hero-image.jpg"})`,
+  backgroundImage: `url(${process.env.PUBLIC_URL + "/images/hero-image.jpeg"})`,
   width: "100%",
   height: "70vh",
   backgroundSize: "cover",
