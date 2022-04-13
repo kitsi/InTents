@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 @CrossOrigin(origins = "http:localhost:3000")
 @RestController
-@RequestMapping("/api/create-payment-intent")
+@RequestMapping("/create-payment-intent")
 public class PaymentController {
     @PostMapping("/")
     @CrossOrigin(origins = "http://localhost:3000")
