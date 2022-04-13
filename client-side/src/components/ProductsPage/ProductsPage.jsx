@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import ProductTile from "./ProductTile";
 import Loading from "../common/Loading";
 import * as styles from "./ProductsPageStyles";
+import getCategories from "../../api/getCategories";
 
 function ProductsPage() {
   const navigate = useNavigate();
@@ -17,18 +18,16 @@ function ProductsPage() {
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    const categories = [
-      "tents",
-      "cookware",
-      "sleeping-bags",
-      "fans",
-      "emergency",
-    ];
-
-    if (!categories.includes(category)) {
-      return navigate("/products");
+    const checkCategories = async () => {
+      const categories = await getCategories();
+      
+      if (!categories.map(category => category.title).includes(category)) {
+        return navigate("/products");
+      }
     }
-  }, [products, category, navigate]);
+
+    checkCategories();
+  }, [category, navigate]);
 
   const productTiles = products
     .filter((product) => (category ? product.category === category : true))
