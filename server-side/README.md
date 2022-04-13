@@ -28,14 +28,20 @@ stripe.api.key = [add stripe api key]
 
 5) To set logging levels and save logs to a file. Add the following to 'src/main/resources/application.properties' file
 ```
+# Log file
+logging.file.name=application.log
+spring.output.ansi.enabled=always
+
 # Logging levels
 #logging.level.root=WARN
 logging.level.com.teksystems.bootcamp.springboot.intents.controllers=ERROR
+logging.level.org.springframework.web=DEBUG
+logging.level.org.hibernate.SQL=ERROR
 
-logging.pattern.console=%d [%level] %c{1.} [%t] %m%n
-logging.pattern.file=%d [%level] %c{1.} [%t] %m%n
+# Logging pattern
+logging.pattern.console=%d [%thread] %clr(%-5level) %cyan(%-50logger{32}) : %msg%n
+logging.pattern.file==%d [%thread] %clr(%-5level) %cyan(%-50logger{32}) : %msg%n
 
-logging.file.name = application.log
 ```
 
 ### Resources
