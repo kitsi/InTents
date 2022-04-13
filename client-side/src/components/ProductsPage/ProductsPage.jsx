@@ -33,8 +33,8 @@ function ProductsPage() {
       const { products, totalPages, pageNumber } = await getProducts(curPage, category);
       setProducts(products);
       setTotalPages(totalPages);
-      setCurPage(pageNumber);
-      
+      setCurPage(Math.max(0, Math.min(pageNumber, totalPages - 1)));
+
       setIsLoading(false);
     }
     
