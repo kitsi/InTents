@@ -10,7 +10,6 @@ export const desktopContentContainer = {
 };
 
 export const desktopAccordionContainer = {
-  width: "100vw",
   margin: "1rem",
   "@media (min-width:900px)": {
     width: "70vw",
@@ -21,4 +20,11 @@ export const desktopAccordionContainer = {
 export const expandIcon = {
   width: "2.5rem",
   height: "2.5rem",
+};
+
+export const checkoutPage = {
+  overflowX: "hidden",
+  padding: {
+    md: "1rem 2rem",
+  },
 };

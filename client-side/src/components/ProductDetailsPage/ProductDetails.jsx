@@ -79,6 +79,7 @@ function ProductDetails({ product }) {
               variant="contained"
               color="primary"
               onClick={addToCart}
+              style={styles.addToCartBtn}
             >
               Add to cart
             </Button>

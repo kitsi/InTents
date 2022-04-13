@@ -36,9 +36,12 @@ export const cart = {
 };
 
 export const linksContainer = {
-  gap: "2rem",
   justifyContent: "center",
   transition: "all .5s",
+  gap: {
+    md: "0.25rem",
+    lg: "2rem",
+  },
 };
 
 export const headerTitle = {

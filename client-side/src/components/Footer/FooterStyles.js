@@ -1,6 +1,13 @@
 export const container = {
   display: "flex",
-  justifyContent: "space-between",
+  flexDirection: {
+    xs: "column",
+    md: "row",
+  },
+  justifyContent: {
+    xs: "space-evenly",
+    md: "space-between",
+  },
   alignItems: "center",
   width: "100%",
   backgroundColor: "secondary.main",

@@ -7,6 +7,7 @@ export const productDetailsPage = {
 export const productDetailsPageWrapper = {
   display: "flex",
   flexDirection: "column",
+  justifyContent: "center",
   gap: "3rem",
   "@media (min-width:900px)": {
     flexDirection: "row",
@@ -60,21 +61,39 @@ export const category = {
 
 export const details = {
   display: "flex",
+  flexDirection: {
+    xs: "column",
+    sm: "row",
+  },
+  gap: {
+    xs: "2rem",
+    sm: "0",
+  },
   justifyContent: "space-between",
   "@media (min-width:900px)": {
-    justifyContent: "space-between",
     padding: "0",
   },
 };
 export const priceAndSku = {
   display: "flex",
-  flexDirection: "column",
+  flexDirection: {
+    xs: "rows",
+    sm: "column",
+  },
+  gap: {
+    xs: "2rem",
+    sm: "0",
+  },
   justifyContent: "space-between",
 };
 
 export const controls = {
   display: "flex",
   gap: "1rem",
+};
+
+export const addToCartBtn = {
+  flexGrow: "1",
 };
 
 export const descriptionText = {
