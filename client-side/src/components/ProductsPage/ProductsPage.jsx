@@ -14,8 +14,7 @@ function ProductsPage() {
 
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [loadingSuccess, setLoadingSuccess] = useState(true);
-  const [pageNumber, setPageNumber] = useState(0);
+  const [curPage, setCurPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
@@ -28,17 +27,20 @@ function ProductsPage() {
     }
 
     const checkProducts = async () => {
-      getProducts();
+      setIsLoading(true);
+      const { products, totalPages, pageNumber } = await getProducts(curPage);
+      setProducts(products);
+      setTotalPages(totalPages);
+      setCurPage(pageNumber);
+      setIsLoading(false);
     }
-
+    
     checkCategories();
     checkProducts();
-  }, [category, navigate]);
+  }, [category, curPage, navigate]);
 
-  const productTiles = products
-    .filter((product) => (category ? product.category === category : true))
-    .map((product) => {
-      return <ProductTile key={product.id} productData={product} />;
+  const productTiles = products.map((product) => {
+      return <ProductTile key={product.productId} productData={product} />;
     });
 
   const headingFormatter = (heading) => {

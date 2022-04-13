@@ -21,7 +21,7 @@ export default function ProductTile({ productData }) {
   function addToCart() {
     dispatch(
       addProduct({
-        id: productData.id,
+        id: productData.productId,
         quantity: 1,
       })
     );
@@ -41,7 +41,7 @@ export default function ProductTile({ productData }) {
       <CardContent sx={styles.productDetails}>
         <Link to={`/product/${productData.sku}`}>
           <Typography gutterBottom variant="h5" component="div">
-            {productData.name}
+            {productData.title}
           </Typography>
         </Link>
         <Typography variant="body1" color="text.secondary">
