@@ -6,6 +6,7 @@ import Loading from "../common/Loading";
 import * as styles from "./ProductsPageStyles";
 import getCategories from "../../api/getCategories";
 import getProducts from "../../api/getProducts";
+import PaginationBar from "../common/PaginationBar";
 
 function ProductsPage() {
   const navigate = useNavigate();
@@ -66,6 +67,8 @@ function ProductsPage() {
       </Typography>
       <Divider />
 
+      <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
+
       <Box sx={styles.productTilesContainer}>
         {isLoading ? (
           <Loading />
@@ -77,6 +80,8 @@ function ProductsPage() {
           <>{productTiles}</>
         )}
       </Box>
+
+      <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
     </div>
   );
 }
