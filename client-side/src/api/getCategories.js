@@ -1,5 +1,5 @@
-import axios from "axios";
-import { baseUrl } from "../utilities/strings";
+// import axios from "axios";
+// import { baseUrl } from "../utilities/strings";
 
 export default async function getCategories() {
   // await axios.get(`${baseUrl}/categories`)

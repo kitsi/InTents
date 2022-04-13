@@ -89,7 +89,7 @@ const NavBar = () => {
               ...styles.linksContainer,
             }}
           >
-            <Button to="/products/" component={NavLink} sx={styles.link}>
+            <Button to="/products" component={NavLink} sx={styles.link}>
               All Products
             </Button>
             {pages.map((page) => (
