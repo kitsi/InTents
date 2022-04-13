@@ -5,6 +5,7 @@ import Loading from "../common/Loading";
 import ProductEditDialog from "./ProductEditDialog/ProductEditDialog";
 import getProducts from "../../api/getProducts";
 import * as styles from "./AdminPageStyles";
+import PaginationBar from "../common/PaginationBar";
 
 function AdminPage() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -95,10 +96,12 @@ function AdminPage() {
           variant="contained"
           color="primary"
           onClick={createProduct}
-        >
+          >
           Add Item
         </Button>
       </Box>
+
+      <PaginationBar />
 
       <Box sx={styles.productTilesContainer}>
         {isLoading ? (
