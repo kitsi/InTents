@@ -34,7 +34,7 @@ export default function ProductTile({ productData }) {
           component="img"
           height="200"
           image={productData.image}
-          alt={productData.name}
+          alt={productData.title}
           sx={styles.productImage}
         />
       </Link>

@@ -127,7 +127,7 @@ const NavBar = () => {
                 Logout
               </Button>
             ) : (
-              <IconButton>
+              <IconButton aria-label="cart">
                 <Badge
                   badgeContent={badgeCount()}
                   color="secondary"

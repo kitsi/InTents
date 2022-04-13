@@ -11,15 +11,21 @@ import {
   Button,
   IconButton,
   Select,
-  MenuItem
+  MenuItem,
 } from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import getCategories from "../../../api/getCategories";
 import * as styles from "./ProductEditDialogStyles";
-import axios from 'axios'
+import axios from "axios";
 import { baseUrl } from "../../../utilities/strings";
 
-export default function ProductEditDialog({ isOpen, toggleModal, product, newProduct, reloadPage }) {
+export default function ProductEditDialog({
+  isOpen,
+  toggleModal,
+  product,
+  newProduct,
+  reloadPage,
+}) {
   const [formState, setFormState] = useState({
     title: "",
     sku: "",
@@ -37,62 +43,69 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
   const [categories, setCategories] = useState([]);
 
   const resetFormData = () => {
-    setFormState({...product});
-  }
+    setFormState({ ...product });
+  };
 
   const changeValue = (event) => {
     setFormState({ ...formState, [event.target.name]: event.target.value });
   };
 
   const changeValueQuantity = (event) => {
-    setFormState({ ...formState, inventory: { ...formState.inventory, quantity: event.target.value } });
+    setFormState({
+      ...formState,
+      inventory: { ...formState.inventory, quantity: event.target.value },
+    });
   };
 
   const changeValueCategory = (event) => {
-    setFormState({ ...formState, category: { categoryId: event.target.value } });
+    setFormState({
+      ...formState,
+      category: { categoryId: event.target.value },
+    });
   };
 
   useEffect(() => {
     const refreshCategories = async () => {
       setCategories(await getCategories());
-    }
+    };
 
     refreshCategories();
   }, []);
 
   useEffect(() => {
     if (isOpen) {
-      setFormState({...product});
+      setFormState({ ...product });
     }
   }, [isOpen, product]);
 
-  const sendProductToServer = async() => {
-    if(newProduct) {
+  const sendProductToServer = async () => {
+    if (newProduct) {
       await axios.post(`${baseUrl}/products/admin/`, formState);
     } else {
-      await axios.put(`${baseUrl}/products/admin/${product.productId}`, formState);
+      await axios.put(
+        `${baseUrl}/products/admin/${product.productId}`,
+        formState
+      );
     }
-  
+
     reloadPage();
     toggleModal();
-  }
+  };
 
   return (
     <Dialog maxWidth="lg" fullWidth open={isOpen} onClose={toggleModal}>
       <DialogTitle>
-        {newProduct ? "Create New Product" : `Edit "${formState.name}"`}
+        {newProduct ? "Create New Product" : `Edit "${formState.title}"`}
         <IconButton sx={styles.closeButton} onClick={toggleModal}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
       <DialogContent>
-
         <Box sx={styles.imageContainer}>
           <Box component="img" src={formState.image} sx={styles.image} />
         </Box>
 
         <Grid container columnSpacing={2}>
-
           <Grid item xs={12} md={6}>
             <Grid item xs={12} sx={styles.labelContainer}>
               <Typography sx={styles.label}>Name</Typography>
@@ -161,10 +174,19 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
               <Typography sx={styles.label}>Category</Typography>
             </Grid>
             <Grid item xs={12}>
-              <Select fullWidth value={formState.category.categoryId} onChange={changeValueCategory}>
-                {categories.map(category => 
-                  <MenuItem key={category.categoryId} value={category.categoryId}>{category.title}</MenuItem>
-                )}
+              <Select
+                fullWidth
+                value={formState.category.categoryId}
+                onChange={changeValueCategory}
+              >
+                {categories.map((category) => (
+                  <MenuItem
+                    key={category.categoryId}
+                    value={category.categoryId}
+                  >
+                    {category.title}
+                  </MenuItem>
+                ))}
               </Select>
             </Grid>
           </Grid>
@@ -200,10 +222,25 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
           </Grid>
 
           <Grid item xs={12} sx={styles.buttonContainer}>
-            <Button sx={styles.button} variant="contained" size="large" color="error" onClick={resetFormData} disabled={newProduct}>Reset</Button>
-            <Button sx={styles.button} variant="contained" size="large" onClick={sendProductToServer}>Save</Button>
+            <Button
+              sx={styles.button}
+              variant="contained"
+              size="large"
+              color="error"
+              onClick={resetFormData}
+              disabled={newProduct}
+            >
+              Reset
+            </Button>
+            <Button
+              sx={styles.button}
+              variant="contained"
+              size="large"
+              onClick={sendProductToServer}
+            >
+              Save
+            </Button>
           </Grid>
-
         </Grid>
       </DialogContent>
     </Dialog>
