@@ -4,6 +4,7 @@ import com.teksystems.intents.serverside.models.Product;
 import com.teksystems.intents.serverside.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,11 +20,15 @@ public class ProductController {
 
     @GetMapping("/")
     @CrossOrigin(origins = "http://localhost:3000")
-    public List<Product> getProducts( @RequestParam(value = "category", required = false) Long categoryId) {
+    public Page<Product> getProducts(
+            @RequestParam(value = "pageNum", defaultValue = "0", required = false) int pageNum,
+            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize,
+            @RequestParam(value = "category", required = false) Long categoryId
+    ) {
         if(categoryId == null) {
-            return productService.getProducts();
+            return productService.getProducts(pageNum, pageSize);
         } else {
-            return productService.getProductsByCategory(categoryId);
+            return productService.getProductsByCategory(pageNum, pageSize, categoryId);
         }
     }
 

@@ -7,6 +7,9 @@ import com.teksystems.intents.serverside.repositories.CategoryRepository;
 import com.teksystems.intents.serverside.repositories.InventoryRepository;
 import com.teksystems.intents.serverside.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,13 +27,17 @@ public class ProductService {
     @Autowired
     private CategoryRepository categoryRepo;
 
-    public List<Product> getProducts() {
-        return productRepo.findAll();
+    public Page<Product> getProducts(int pageNum, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNum, pageSize);
+        Page<Product> products = productRepo.findAll(pageable);
+        return products;
     }
 
-    public List<Product> getProductsByCategory(Long categoryId) {
+    public Page<Product> getProductsByCategory(int pageNum, int pageSize, Long categoryId) {
+        Pageable pageable = PageRequest.of(pageNum, pageSize);
         Optional<Category> category = categoryRepo.findById(categoryId);
-        return productRepo.findAllByCategory(category);
+        Page<Product> products = productRepo.findAllByCategory(pageable, category);
+        return products;
     }
 
 
