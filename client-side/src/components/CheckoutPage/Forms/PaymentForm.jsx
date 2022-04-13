@@ -83,7 +83,7 @@ const PaymentForm = ({ handleModalOpen, clearOrderSummary, orderTotal }) => {
 
   // Stripe create paymentIntent and make an API call to Stripe to retrieve client secret
   const getClientSecret = (data) => {
-    const url = `${baseUrl}/api/create-payment-intent/`;
+    const url = `${baseUrl}/create-payment-intent/`;
     return new Promise(async (resolve) => {
       const {
         data: { clientSecret },
