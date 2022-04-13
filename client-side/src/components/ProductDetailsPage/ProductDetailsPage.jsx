@@ -15,9 +15,7 @@ function ProductDetailsPage() {
   useEffect(() => {
     async function getProduct() {
       await axios.get(`${baseUrl}/products/${id}`)
-        .then(res => {
-          setProduct(res.data);
-        });
+        .then(res => setProduct(res.data));
     }
 
     getProduct();
