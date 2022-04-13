@@ -41,6 +41,7 @@ function ProductDetails({ product }) {
           <Box
             component="img"
             src={product.image}
+            alt={product.title}
             sx={styles.productDetailsImage}
           />
         </Box>

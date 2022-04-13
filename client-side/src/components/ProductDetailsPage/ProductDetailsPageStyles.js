@@ -31,6 +31,7 @@ export const imageWrapper = {
 
 export const productDetailsImage = {
   width: "300px",
+  height: "300px",
   justifyContent: "center",
 };
 
