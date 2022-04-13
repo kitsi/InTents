@@ -50,7 +50,6 @@ function ProductsPage() {
       if (!allCategories.map((category) => category.title).includes(category)) {
         return navigate("/products");
       }
-      console.log(allCategories.filter((cat) => cat.title === category));
       setCategoryId(
         allCategories.filter((cat) => cat.title === category)[0].categoryId
       );
