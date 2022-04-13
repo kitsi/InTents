@@ -14,7 +14,7 @@ import {
   MenuItem
 } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
-
+import getCategories from "../../../api/getCategories";
 import * as styles from "./ProductEditDialogStyles";
 import axios from 'axios'
 import { useDispatch } from "react-redux";
@@ -33,6 +33,8 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
     category: "",
   });
 
+  const [categories, setCategories] = useState([]);
+
   const resetFormData = () => {
     setFormState({...product});
   }
@@ -44,6 +46,14 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
   const changeValueCategory = (event) => {
     setFormState({ ...formState, "category": event.target.value });
   };
+
+  useEffect(() => {
+    const refreshCategories = async () => {
+      setCategories(await getCategories());
+    }
+
+    refreshCategories();
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -61,8 +71,6 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
     dispatch(fetchProducts());
     toggleModal();
   }
-
-  const categories = ["tents", "cookware", "sleeping-bags", "fans", "emergency"];
 
   return (
     <Dialog maxWidth="lg" fullWidth open={isOpen} onClose={toggleModal}>
@@ -151,7 +159,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
             <Grid item xs={12}>
               <Select fullWidth value={formState.category} onChange={changeValueCategory}>
                 {categories.map(category => 
-                  <MenuItem key={category} value={category}>{category}</MenuItem>
+                  <MenuItem key={category.id} value={category.id}>{category.title}</MenuItem>
                 )}
               </Select>
             </Grid>
