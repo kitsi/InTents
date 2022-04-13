@@ -1,14 +1,12 @@
 package com.teksystems.intents.serverside.services;
 
+import com.teksystems.intents.serverside.models.Category;
 import com.teksystems.intents.serverside.models.Inventory;
 import com.teksystems.intents.serverside.models.Product;
 import com.teksystems.intents.serverside.repositories.CategoryRepository;
 import com.teksystems.intents.serverside.repositories.InventoryRepository;
 import com.teksystems.intents.serverside.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,15 +21,16 @@ public class ProductService {
     @Autowired
     private InventoryRepository inventoryRepo;
 
-    public List<Product> getProducts(Long categoryId) {
-        // Pageable pageable = PageRequest.of(pageNum, pageSize);
-        List<Product> products;
-        if(categoryId != null) {
-             products = productRepo.findAllByCategoryId(categoryId);
-        } else {
-             products = productRepo.findAll();
-        }
-        return products;
+    @Autowired
+    private CategoryRepository categoryRepo;
+
+    public List<Product> getProducts() {
+        return productRepo.findAll();
+    }
+
+    public List<Product> getProductsByCategory(Long categoryId) {
+        Optional<Category> category = categoryRepo.findById(categoryId);
+        return productRepo.findAllByCategory(category);
     }
 
 
