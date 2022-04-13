@@ -163,7 +163,7 @@ export default function ProductEditDialog({ isOpen, toggleModal, product, newPro
             <Grid item xs={12}>
               <Select fullWidth value={formState.category.categoryId} onChange={changeValueCategory}>
                 {categories.map(category => 
-                  <MenuItem key={category.id} value={category.id}>{category.title}</MenuItem>
+                  <MenuItem key={category.categoryId} value={category.categoryId}>{category.title}</MenuItem>
                 )}
               </Select>
             </Grid>
