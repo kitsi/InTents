@@ -15,3 +15,11 @@ export const productTilesContainer = {
   maxWidth: "1000px",
   margin: "0 auto",
 };
+
+export const error = {
+  textAlign: "center",
+  color: "error.main",
+  fontWeight: "bold",
+  fontSize: "1.5rem",
+  paddingY: "1rem",
+};

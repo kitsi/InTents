@@ -16,6 +16,7 @@ function ProductsPage() {
 
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [curPage, setCurPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -37,7 +38,8 @@ function ProductsPage() {
     const checkProducts = async () => {
       setIsLoading(true);
 
-      const { products, totalPages, pageNumber } = await getProducts(curPage, categoryId);
+      const { products, success, totalPages, pageNumber } = await getProducts(curPage, categoryId);
+      setError(!success);
       setProducts(products);
       setTotalPages(totalPages);
       setCurPage(Math.max(0, Math.min(pageNumber, totalPages - 1)));
@@ -49,7 +51,7 @@ function ProductsPage() {
     checkProducts();
   }, [category, categoryId, curPage, navigate]);
 
-  const productTiles = products.map((product) => {
+  const productTiles = products?.map((product) => {
       return <ProductTile key={product.productId} productData={product} />;
     });
 
@@ -74,21 +76,27 @@ function ProductsPage() {
       </Typography>
       <Divider />
 
-      <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
+      {error ?
+        <Typography sx={styles.error}>Error getting products. Cannot reach server.</Typography>
+      : (
+      <>
+        <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
 
-      <Box sx={styles.productTilesContainer}>
-        {isLoading ? (
-          <Loading />
-        ) : products.length === 0 ? (
-          <Typography variant="h3" sx={styles.alignCenter}>
-            No Products Available. Please check back again!
-          </Typography>
-        ) : (
-          <>{productTiles}</>
-        )}
-      </Box>
+        <Box sx={styles.productTilesContainer}>
+          {isLoading ? (
+            <Loading />
+          ) : products.length === 0 ? (
+            <Typography variant="h3" sx={styles.alignCenter}>
+              No Products Available. Please check back again!
+            </Typography>
+          ) : (
+            <>{productTiles}</>
+          )}
+        </Box>
 
-      <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
+        <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
+      </>
+      )}
     </div>
   );
 }

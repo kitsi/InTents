@@ -7,7 +7,10 @@ export default async function getProducts(pageNumber = 0, category = 0, limit = 
 
   await axios.get(`${baseUrl}/products/?pageNum=${pageNumber}&pageSize=${limit}` + (category !== 0 ? `&category=${category}` : ""))
     .then(res => data = res.data)
-    .catch(() => success = false);
+    .catch((err) => {
+      console.log("ERRPR:", err);
+      success = false;
+    });
 
   const products = data?.content;
   const totalPages = data?.totalPages;
