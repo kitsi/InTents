@@ -5,6 +5,7 @@ import ProductTile from "./ProductTile";
 import Loading from "../common/Loading";
 import * as styles from "./ProductsPageStyles";
 import getCategories from "../../api/getCategories";
+import getProducts from "../../api/getProducts";
 
 function ProductsPage() {
   const navigate = useNavigate();
@@ -26,7 +27,12 @@ function ProductsPage() {
       }
     }
 
+    const checkProducts = async () => {
+      getProducts();
+    }
+
     checkCategories();
+    checkProducts();
   }, [category, navigate]);
 
   const productTiles = products

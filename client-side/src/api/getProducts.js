@@ -6,11 +6,12 @@ export default async function getProducts(pageNumber = 0, limit = 10) {
   let success = true;
 
   await axios.get(`${baseUrl}/products/${pageNumber}/${limit}`)
-    .then(res => data = res.data)
+    // .then(res => data = res.data)
+    .then(res => console.log(res))
     .catch(() => success = false);
 
-  const products = data?.content;
-  const totalPages = data?.totalPages;
+  // const products = data?.content;
+  // const totalPages = data?.totalPages;
 
-  return { products, success, totalPages, pageNumber };
+  // return { products, success, totalPages, pageNumber };
 }
