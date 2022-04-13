@@ -33,7 +33,7 @@ export default function CartPage() {
 
   useEffect(() => {
     setCartList(cartItems.map((item) => {
-      const product = products.filter(product => product.id === item.id)[0];
+      const product = products.filter(product => product.productId === item.id)[0];
       return <CartProductTile key={item.id} cartProduct={item} product={product} />;
     }))
   }, [products, cartItems]);
