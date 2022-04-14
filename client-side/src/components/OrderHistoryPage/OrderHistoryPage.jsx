@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import getOrders from "../../api/getOrders";
 import Loading from "../common/Loading";
 import PaginationBar from "../common/PaginationBar";
+import SingleOrder from "./SingleOrder";
 import * as styles from "./OrderHistoryPageStyles";
 
 export default function OrderHistoryPage() {
@@ -45,6 +46,10 @@ export default function OrderHistoryPage() {
       </Box>
     );
   }
+
+  const orderList = orders.map(order => {
+    return <SingleOrder key={order.orderId} order={order} />;
+  });
   
   return (
     <Box sx={styles.container}>
@@ -52,7 +57,7 @@ export default function OrderHistoryPage() {
         <Typography variant="h4" sx={styles.header}>Order History</Typography>
         <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
 
-        
+        {orderList}
 
         <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
       </Paper>
