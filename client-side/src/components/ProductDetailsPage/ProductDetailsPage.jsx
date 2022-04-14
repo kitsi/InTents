@@ -31,7 +31,7 @@ function ProductDetailsPage() {
             setErrorMsg(`ERROR ${res.status}: ${res?.error} - ${res?.message}`);
           }
         })
-        .catch((err) => {
+        .catch(() => {
           setErrorMsg(`Error: Product with ID ${id} does not exist.`);
         });
     }
