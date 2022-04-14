@@ -19,8 +19,12 @@ function ProductDetailsPage() {
       await axios.get(`${baseUrl}/products/${id}`)
         .then(res => {
           if (res.status === 200) {
-            setErrorMsg();
-            setProduct(res.data)
+            if (res.data) {
+              setErrorMsg();
+              setProduct(res.data);
+            } else {
+              setErrorMsg(`Error: Product with ID ${id} does not exist.`);
+            }
           } else {
             setErrorMsg(`Error: ${res.message}`);
           }
