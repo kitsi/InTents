@@ -24,6 +24,7 @@ public class ProductControllerTest {
 
     private static final String productsUrl = "/products/?pageNum=0&pageSize=10";
     private static final String deleteProductUrl = "/products/admin/{id}";
+    private static final String oneProductUrl = "/products/{id}";
 
     @Autowired
     WebApplicationContext context;
@@ -44,7 +45,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void deleteProductEndpointHappyPath() throws Exception {
+    public void deleteProductEndpointGivenId2HappyPath() throws Exception {
         mvc.perform(delete(deleteProductUrl, 2))
                 .andExpect(status().isOk());
     }
@@ -53,5 +54,11 @@ public class ProductControllerTest {
     public void deleteProductEndpointWhenProductNotFound() throws Exception {
         mvc.perform(delete(deleteProductUrl, 1))
                 .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void GetRequestToIndividualProductEndPointShouldReturnCorrectResponseGivenId4() throws Exception {
+        mvc.perform(get(oneProductUrl,4))
+                .andExpect(status().isOk());
     }
 }

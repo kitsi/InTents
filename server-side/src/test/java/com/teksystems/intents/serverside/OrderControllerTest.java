@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class OrderControllerTest {
 
     private static final String ordersUrl = "/orders/?pageNum=0&pageSize=10";
-    private static final String deleteOrderUrl = "/orders/{id}";
+    private static final String oneOrderUrl = "/orders/{id}";
 
     @Autowired
     WebApplicationContext context;
@@ -45,7 +45,13 @@ public class OrderControllerTest {
 
     @Test
     public void deleteOrderEndpoint() throws Exception {
-        mvc.perform(delete(deleteOrderUrl, 1))
+        mvc.perform(delete(oneOrderUrl, 1))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void GetRequestToIndividualOrderEndPointShouldReturnCorrectResponseGivenId4() throws Exception {
+        mvc.perform(get(oneOrderUrl,4))
                 .andExpect(status().isOk());
     }
 }
