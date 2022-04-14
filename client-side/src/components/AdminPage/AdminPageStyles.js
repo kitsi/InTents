@@ -19,3 +19,11 @@ export const productTilesContainer = {
   margin: "2rem auto",
   padding: "0 2rem",
 };
+
+export const error = {
+  textAlign: "center",
+  color: "error.main",
+  fontWeight: "bold",
+  fontSize: "1.5rem",
+  paddingY: "1rem",
+};
