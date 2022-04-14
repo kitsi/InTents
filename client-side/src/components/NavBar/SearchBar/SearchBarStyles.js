@@ -1,7 +1,10 @@
 export const search = {
-  width: "50%",
-  margin: "1rem",
+  maxWidth: "1000px",
+  width: "100%",
+  margin: "1rem auto",
+  padding: "0 2rem",
   display: "flex",
+  justifyContent: "center",
 };
 
 export const styledInputBase = {

@@ -52,13 +52,7 @@ const NavBar = () => {
         pages={pages}
       />
       <Container maxWidth="xl">
-        <Toolbar
-          disableGutters
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
+        <Toolbar disableGutters>
           <Typography
             variant="h1"
             noWrap
