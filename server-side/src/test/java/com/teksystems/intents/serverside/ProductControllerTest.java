@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("unittest")
 public class ProductControllerTest {
 
-    private static final String productUrl = "/products/?pageNum=0&pageSize=10";
+    private static final String productsUrl = "/products/?pageNum=0&pageSize=10";
 
     @Autowired
     WebApplicationContext context;
@@ -35,10 +35,9 @@ public class ProductControllerTest {
 
     @Test
     public void GetRequestToProductsEndPointShouldReturnCorrectResponse() throws Exception {
-        mvc.perform(get(productUrl))
+        mvc.perform(get(productsUrl))
                 .andExpect(jsonPath("$.content",hasSize(10)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$['pageable']['paged']").value("true"));
     }
-
 }

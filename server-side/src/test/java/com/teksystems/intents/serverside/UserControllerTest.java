@@ -19,9 +19,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("unittest")
-public class OrderControllerTest {
+public class UserControllerTest {
 
-    private static final String ordersUrl = "/orders/?pageNum=0&pageSize=10";
+    private static final String usersUrl = "/users/?pageNum=0&pageSize=10";
 
     @Autowired
     WebApplicationContext context;
@@ -34,10 +34,11 @@ public class OrderControllerTest {
     }
 
     @Test
-    public void GetRequestToOrdersEndPointShouldReturnCorrectResponse() throws Exception {
-        mvc.perform(get(ordersUrl))
-                .andExpect(jsonPath("$.content",hasSize(3)))
+    public void GetRequestToUsersEndPointShouldReturnCorrectResponse() throws Exception {
+        mvc.perform(get(usersUrl))
+                .andExpect(jsonPath("$.content",hasSize(7)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$['pageable']['paged']").value("true"));
     }
+
 }

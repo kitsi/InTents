@@ -52,6 +52,4 @@ public class ControllerCreationTest {
     public void paymentControllerLoads() throws Exception {
         assertThat(paymentController).isNotNull();
     }
-
-
 }

@@ -16,12 +16,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("unittest")
-public class OrderControllerTest {
+public class CategoryControllerTest {
 
-    private static final String ordersUrl = "/orders/?pageNum=0&pageSize=10";
+    private static final String categoriesUrl = "/categories/?pageNum=0&pageSize=10";
 
     @Autowired
     WebApplicationContext context;
@@ -34,10 +35,11 @@ public class OrderControllerTest {
     }
 
     @Test
-    public void GetRequestToOrdersEndPointShouldReturnCorrectResponse() throws Exception {
-        mvc.perform(get(ordersUrl))
-                .andExpect(jsonPath("$.content",hasSize(3)))
+    public void GetRequestToCategoriesEndPointShouldReturnCorrectResponse() throws Exception {
+        mvc.perform(get(categoriesUrl))
+                .andExpect(jsonPath("$.content",hasSize(5)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$['pageable']['paged']").value("true"));
     }
 }
+
