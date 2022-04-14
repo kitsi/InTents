@@ -53,6 +53,14 @@ public class ProductService {
     }
 
 
+    public Page<Product> getProductsByTitleAndCategory(int pageNum, int pageSize, String title, Long categoryId) {
+        Pageable pageable = PageRequest.of(pageNum, pageSize);
+        Optional<Category> category = categoryRepo.findById(categoryId);
+        Page<Product> products = productRepo.findByTitleContainingAndCategory(title, category, pageable);
+        return products;
+    }
+
+
     public Optional<Product> getProduct(Long id) {
         Optional<Product> product = productRepo.findById(id);
         if(product.isEmpty()) {

@@ -27,7 +27,10 @@ public class ProductController {
             @RequestParam(value = "title", required = false) String title
 
     ) {
-        if(categoryId != null) {
+        if(categoryId != null && title != null) {
+            return productService.getProductsByTitleAndCategory(pageNum, pageSize, title, categoryId);
+        }
+        else if(categoryId != null) {
             return productService.getProductsByCategory(pageNum, pageSize, categoryId);
         } else if(title !=null) {
             return productService.getProductsByTitle(pageNum, pageSize, title);
