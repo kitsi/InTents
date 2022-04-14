@@ -1,5 +1,20 @@
 # InTents
-Team Cup'O'Javas Ecommerce site for Capstone 3
+Team Cup'O'Javas Ecommerce site for TEKsystems Capstone 3
+
+## Setup
+
+### Server
+1. Open up the "server-side" folder in **Intellij** to allow maven to download all server dependencies.
+2. Click the green "Run" button to launch the server.
+3. After the server is done starting, open up the products and orders SQL files found in the **src/main/resources** folder in **MySQL Workbench**.
+4. Run products.sql
+5. Run orders.sql
+
+### Client
+1. Open the **InTents** folder in **VSCode**.
+2. Open up a terminal and enter the command: `cd client-side`
+3. When running for the first time, enter the command: `npm i`
+4. To finally run the test server to run the application, use the command: `npm start`
 
 ## Contributors
 | [Mary Wenzel](https://github.com/Mary-Wenzel-TGS)                                                                                                                                | [Matthew Nordstrand](https://github.com/MatthewNordstrand)                                                                             | [Kit Sidhu](https://github.com/kitsi)                                                                                      | [Donavyn Haley](https://github.com/donavynhaley)                                                                                  | [Garrett Molle](https://github.com/gmolle)                                                                                  | [Pallavi Deshpande](https://github.com/)                                                                            | [Neo Maraisane](https://github.com/NeoElias)                                                                                |
