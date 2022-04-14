@@ -26,7 +26,7 @@ function ProductDetailsPage() {
               setErrorMsg(`Error: Product with ID ${id} does not exist.`);
             }
           } else {
-            setErrorMsg(`Error: ${res.message}`);
+            setErrorMsg(`ERROR ${res.status}: ${res?.error} - ${res?.message}`);
           }
         });
     }
