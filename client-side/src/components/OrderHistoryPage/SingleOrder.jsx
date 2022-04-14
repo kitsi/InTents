@@ -5,8 +5,8 @@ import * as styles from "./SingleOrderStyles";
 
 export default function SingleOrder({ order }) {
 
-  const productList = order.orderProducts.map(product => {
-    return <OrderProduct key={product.OrderProductId} product={product} />;
+  const productList = order.orderProducts.map(orderProduct => {
+    return <OrderProduct key={orderProduct.OrderProductId} orderProduct={orderProduct} />;
   });
 
   return (
