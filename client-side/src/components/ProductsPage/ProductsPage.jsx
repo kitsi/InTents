@@ -64,7 +64,7 @@ function ProductsPage() {
     }
 
     const { state } = location;
-
+    setSearchText("");
     if (state) {
       const {
         searchProducts,
@@ -73,6 +73,7 @@ function ProductsPage() {
         searchPageNumber,
         searchText,
       } = state;
+
       setProducts(searchProducts);
       setError(!searchSuccess);
       setTotalPages(searchTotalPages);
