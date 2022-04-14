@@ -137,29 +137,30 @@ function ProductsPage() {
         </Typography>
       ) : (
         <>
-          <PaginationBar
-            curPage={curPage}
-            totalPages={totalPages}
-            setCurPage={setCurPage}
-          />
-
-          <Box sx={styles.productTilesContainer}>
+          
             {isLoading ? (
               <Loading />
             ) : products.length === 0 ? (
               <Typography variant="h3" sx={styles.alignCenter}>
-                No Products Available. Please check back again!
+                No Products match your search query.
               </Typography>
             ) : (
-              <>{productTiles}</>
+              <>
+                <PaginationBar
+                  curPage={curPage}
+                  totalPages={totalPages}
+                  setCurPage={setCurPage}
+                />
+                <Box sx={styles.productTilesContainer}>
+                  {productTiles}
+                </Box>
+                <PaginationBar
+                  curPage={curPage}
+                  totalPages={totalPages}
+                  setCurPage={setCurPage}
+                />
+              </>
             )}
-          </Box>
-
-          <PaginationBar
-            curPage={curPage}
-            totalPages={totalPages}
-            setCurPage={setCurPage}
-          />
         </>
       )}
     </div>
