@@ -1,15 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Button, Container, Grid, TextField, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import adminLoginSchema from "./AdminLoginSchema";
 import * as styles from "./AdminLoginStyles";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setToken } from "./adminSlice";
-import { useNavigate } from "react-router-dom";
 function AdminLogin() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { token } = useSelector((state) => state.admin);
 
   const formik = useFormik({
     initialValues: {
@@ -22,18 +19,11 @@ function AdminLogin() {
     onSubmit: (values) => {
       // setup post req
       dispatch(setToken("Temp Token"));
-      return navigate("/admin");
     },
   });
 
   const { values, touched, errors, handleChange, handleBlur, handleSubmit } =
     formik;
-
-  useEffect(() => {
-    if (token) {
-      return navigate("/admin");
-    }
-  }, [token, navigate]);
 
   return (
     <Container sx={styles.loginContainer}>

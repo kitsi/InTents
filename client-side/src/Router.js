@@ -11,6 +11,7 @@ import CheckoutPageStripe from "./components/CheckoutPage/CheckoutPageStripe";
 import AdminLogin from "./components/AdminPage/AdminLogin/AdminLogin";
 import ProtectedRoute from "./utilities/ProtectedRoute";
 import { useSelector } from "react-redux";
+import OrderHistoryPage from "./components/OrderHistoryPage/OrderHistoryPage";
 
 function Router() {
   const { token } = useSelector((state) => state.admin);
@@ -26,6 +27,14 @@ function Router() {
         element={
           <ProtectedRoute admin={token}>
             <AdminPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/orderhistory"
+        element={
+          <ProtectedRoute admin={token}>
+            <OrderHistoryPage />
           </ProtectedRoute>
         }
       />

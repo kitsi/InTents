@@ -1,10 +1,11 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import AdminLogin from "../components/AdminPage/AdminLogin/AdminLogin";
 
-function ProtectedRoute({ admin, redirectPath = "/admin/login", children }) {
+function ProtectedRoute({ admin, children }) {
   if (!admin) {
-    return <Navigate to={redirectPath} replace></Navigate>;
+    return <AdminLogin />;
   }
+
   return children;
 }
 
