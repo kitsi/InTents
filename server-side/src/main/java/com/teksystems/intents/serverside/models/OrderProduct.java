@@ -34,14 +34,4 @@ public class OrderProduct {
     @Column(name = "qty")
     @Getter @Setter
     private int quantity;
-
-    @Override
-    public String toString() {
-        return "OrderProduct{" +
-                "orderProductId=" + orderProductId +
-                ", order=" + order +
-                ", product=" + product +
-                ", quantity=" + quantity +
-                '}';
-    }
 }

@@ -13,6 +13,9 @@ insert into users(first_name, last_name, username) values
 insert into users(first_name, last_name, username, is_admin) values
 ('Mary', 'Wenzel', 'sailor', true);
 
+insert into billing(order_id) values
+(1),(2),(3),(4),(5),(6),(7);
+
 insert into orders(user_id) values
 (6),(1),(4),(2),(5),(2),(5);
 
@@ -25,6 +28,10 @@ insert into order_products(order_id, product_id, qty) values
 (2, 7, 1),
 (7, 4, 1);
 
+-- desc billing;
+
+-- drop database intents;
 -- select * from users;
--- select * from orders;
+-- select * from billing;
 -- select * from order_products;
+-- select * from orders;

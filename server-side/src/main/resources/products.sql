@@ -57,4 +57,4 @@ insert into products(sku, title, description, price, category_id, inventory_id, 
 5.99,5,23,'https://cdn.shopify.com/s/files/1/0301/4023/5913/products/0141-17304.progressive.jpg?v=1618100949');
 
 -- drop database intents;
-select * from products;
+-- select * from products;

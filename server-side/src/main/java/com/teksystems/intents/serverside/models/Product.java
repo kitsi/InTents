@@ -1,9 +1,6 @@
 package com.teksystems.intents.serverside.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -12,6 +9,7 @@ import java.math.BigDecimal;
 @Table(name = "products")
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Product {
 
     @Id
@@ -49,17 +47,4 @@ public class Product {
     @JoinColumn(name = "inventory_id", referencedColumnName = "inventory_id")
     private Inventory inventory;
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "productId=" + productId +
-                ", sku='" + sku + '\'' +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", image='" + image + '\'' +
-                ", category=" + category +
-                ", inventory=" + inventory +
-                '}';
-    }
 }
