@@ -1,15 +1,14 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import * as styles from "./SearchBarStyles";
+import SearchIcon from "@mui/icons-material/Search";
 
 const SearchBar = () => {
   return (
     <Box sx={styles.search}>
-      <Box sx={styles.searchIconWrapper}>
-        <SearchIcon />
-      </Box>
-      <Box
+      <TextField
         sx={styles.styledInputBase}
+        variant="outlined"
         placeholder="Search…"
         inputProps={{ "aria-label": "search" }}
       />
