@@ -3,10 +3,10 @@ import { Box, Typography } from "@mui/material";
 
 import * as styles from "./FooterStyles";
 
-import TwitterIcon from '@mui/icons-material/Twitter';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from "@mui/icons-material/Twitter";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import InstagramIcon from "@mui/icons-material/Instagram";
 
 export default function Footer() {
   return (
@@ -18,9 +18,7 @@ export default function Footer() {
         <TwitterIcon />
         <InstagramIcon />
       </Box>
-      <Typography>
-        &copy; 2022 InTents
-      </Typography>
+      <Typography>&copy; 2022 InTents</Typography>
     </Box>
-  )
+  );
 }

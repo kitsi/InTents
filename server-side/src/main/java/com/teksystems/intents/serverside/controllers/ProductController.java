@@ -3,9 +3,11 @@ package com.teksystems.intents.serverside.controllers;
 import com.teksystems.intents.serverside.models.Product;
 import com.teksystems.intents.serverside.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http:localhost:3000")
@@ -20,9 +22,14 @@ public class ProductController {
     @CrossOrigin(origins = "http://localhost:3000")
     public Page<Product> getProducts(
             @RequestParam(value = "pageNum", defaultValue = "0", required = false) int pageNum,
-            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize
+            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize,
+            @RequestParam(value = "category", required = false) Long categoryId
     ) {
-        return productService.getProducts(pageNum, pageSize);
+        if(categoryId == null) {
+            return productService.getProducts(pageNum, pageSize);
+        } else {
+            return productService.getProductsByCategory(pageNum, pageSize, categoryId);
+        }
     }
 
     @GetMapping("/{id}")

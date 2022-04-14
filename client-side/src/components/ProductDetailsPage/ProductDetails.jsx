@@ -41,6 +41,7 @@ function ProductDetails({ product }) {
           <Box
             component="img"
             src={product.image}
+            alt={product.title}
             sx={styles.productDetailsImage}
           />
         </Box>
@@ -79,6 +80,7 @@ function ProductDetails({ product }) {
               variant="contained"
               color="primary"
               onClick={addToCart}
+              style={styles.addToCartBtn}
             >
               Add to cart
             </Button>

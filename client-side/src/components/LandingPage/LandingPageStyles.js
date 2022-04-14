@@ -1,9 +1,9 @@
 export const container = {
-  paddingBottom: "1rem",
+  paddingBottom: "2rem",
 };
 
 export const heroImage = {
-  backgroundImage: `url(${process.env.PUBLIC_URL + '/images/hero-image.jpg'})`,
+  backgroundImage: `url(${process.env.PUBLIC_URL + "/images/hero-image.jpeg"})`,
   width: "100%",
   height: "70vh",
   backgroundSize: "cover",
@@ -14,9 +14,9 @@ export const heroText = {
   fontSize: {
     xs: "2rem",
     sm: "3rem",
-    md: "4rem"
-  }
-}
+    md: "4rem",
+  },
+};
 
 export const heroTextWrapper = {
   display: "flex",
@@ -29,20 +29,20 @@ export const heroTextWrapper = {
   },
 
   marginLeft: {
-    lg: "10rem"
-  }
-}
+    lg: "10rem",
+  },
+};
 
 export const gridContainer = {
   gap: "30px",
   justifyContent: "center",
   padding: {
-    xs: "0 1rem"
+    xs: "0 1rem",
   },
   width: "100%",
   marginLeft: 0,
   maxWidth: "1000px",
-  margin: "2rem auto 0 auto"
+  margin: "2rem auto 0 auto",
 };
 
 export const gridItemContainer = {
@@ -52,14 +52,10 @@ export const gridItemContainer = {
 
 export const gridItem = {
   border: "2px solid",
-  borderColor: "primary.main",
+  borderColor: "primary.dark",
   borderRadius: "10px",
   textAlign: "center",
-  width: {
-    xs: "80vw",
-    sm: "150px",
-    md: "200px",
-  },
+  width: "100%",
   height: {
     sm: "150px",
     md: "200px",
@@ -74,16 +70,17 @@ export const gridItem = {
   "&:hover": {
     backgroundColor: "primary.dark",
     color: "white",
-  }
+  },
 };
 
 export const gridItemLink = {
   color: "#404040",
   textDecoration: "none",
   fontSize: "2.5rem",
-}
+  width: "100%",
+};
 
 export const gridItemCategory = {
   fontSize: "1.25rem",
   fontWeight: "bold",
-}
+};

@@ -1,12 +1,20 @@
 export const summaryContainer = {
   width: {
     xs: "100%",
-    lg: "60vw"
+    lg: "60vw",
   },
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyItems: "center",
+};
+
+export const summaryHeader = {
+  marginBottom: "0.25rem",
+};
+
+export const summaryDivider = {
+  marginBottom: "1rem",
 };
 
 export const contentContainer = {
@@ -49,6 +57,7 @@ export const quantity = {
 
 export const cardImage = {
   width: "20%",
+  height: "100px",
 };
 
 export const cardContentContainer = {

@@ -12,8 +12,9 @@ import getProductDataFromCart from "../../../api/getProductDataFromCart";
 
 function OrderSummary(props) {
   const { cartItems } = useSelector((state) => state.cart);
-  const { subTotalPrice, setSubTotalPrice, tax, setTax, total, setTotal } = props;
-  
+  const { subTotalPrice, setSubTotalPrice, tax, setTax, total, setTotal } =
+    props;
+
   const dispatch = useDispatch();
   const [cartList, setCartList] = useState([]);
   const [products, setProducts] = useState([]);
@@ -26,52 +27,64 @@ function OrderSummary(props) {
 
   useEffect(() => {
     const updateAllProducts = async () => {
-      const { products, removedCartItems } = await getProductDataFromCart(cartItems);
-      
+      const { products, removedCartItems } = await getProductDataFromCart(
+        cartItems
+      );
+
       for (let i = 0; i < removedCartItems.length; i++) {
         dispatch(removeProduct(removedCartItems[i]));
       }
-  
+
       setProducts(products);
       setLoading(false);
-    }
+    };
 
     updateAllProducts();
   }, [cartItems, dispatch]);
 
   useEffect(() => {
-    setCartList(cartItems.map((item) => {
-      const product = products.filter(product => product.productId === item.id)[0];
-      return <SummaryProductTile key={item.id} cartProduct={item} product={product} />;
-    }));
+    setCartList(
+      cartItems.map((item) => {
+        const product = products.filter(
+          (product) => product.productId === item.id
+        )[0];
+        return (
+          <SummaryProductTile
+            key={item.id}
+            cartProduct={item}
+            product={product}
+          />
+        );
+      })
+    );
   }, [products, cartItems]);
 
   useEffect(() => {
-    if(!isLoading) {
+    if (!isLoading) {
       let price = 0;
 
       cartItems.forEach((item) => {
-        const product = products.filter(product => product.productId === item.id)[0];
+        const product = products.filter(
+          (product) => product.productId === item.id
+        )[0];
         price += item.quantity * product.price;
       });
 
       setSubTotalPrice(price);
       setTax(0.08 * price);
       setTotal(price + 0.08 * price);
-    };
+    }
   }, [isLoading, products, cartItems, setSubTotalPrice, setTax, setTotal]);
 
   if (isLoading) {
-    return (
-      <Loading />
-    );
+    return <Loading />;
   }
 
   return (
     <Box sx={styles.summaryContainer}>
       <Paper elevation={3} sx={styles.contentContainer}>
-        <Typography>Order Summary</Typography>
-        <Divider />
+        <Typography style={styles.summaryHeader}>Order Summary</Typography>
+        <Divider style={styles.summaryDivider} />
         {cartList}
         <Divider />
         <Box sx={styles.totalsContainer}>
