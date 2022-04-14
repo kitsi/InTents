@@ -14,7 +14,6 @@ export const productTilesContainer = {
   padding: "1rem 2rem",
   maxWidth: "1000px",
   margin: "0 auto",
-  minHeight: "760px",
 };
 
 export const error = {

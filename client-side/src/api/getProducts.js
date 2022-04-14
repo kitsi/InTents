@@ -4,7 +4,8 @@ import { baseUrl } from "../utilities/strings";
 export default async function getProducts(
   pageNumber = 0,
   category = 0,
-  limit = 10
+  limit = 10,
+  title = ""
 ) {
   let data;
   let success = true;
@@ -12,7 +13,8 @@ export default async function getProducts(
   await axios
     .get(
       `${baseUrl}/products/?pageNum=${pageNumber}&pageSize=${limit}` +
-        (category !== 0 ? `&category=${category}` : "")
+        (category !== 0 ? `&category=${category}` : "") +
+        (title !== "" ? `&title=${title}` : "")
     )
     .then((res) => (data = res.data))
     .catch(() => (success = false));
