@@ -23,9 +23,6 @@ public class OrderService {
     @Autowired
     private OrderProductRepository orderProductRepo;
 
-    @Autowired
-    private UserRepository userRepo;
-
     public Page<Order> getOrders(int pageNum, int pageSize) {
         Pageable pageable = PageRequest.of(pageNum, pageSize);
         return orderRepo.findAll(pageable);
@@ -44,21 +41,32 @@ public class OrderService {
         orderToSave.setUser(order.getUser());
         orderRepo.save(orderToSave);
         List<OrderProduct> orderProducts = order.getOrderProducts();
-        for(OrderProduct orderProduct : orderProducts) {
-            OrderProduct orderProductToAdd = new OrderProduct();
-            orderProductToAdd.setProduct(orderProduct.getProduct());
-            orderProductToAdd.setQuantity(orderProduct.getQuantity());
-            orderProductToAdd.setOrder(orderToSave);
-            orderProductRepo.save(orderProductToAdd);
-        }
+        addOrderProducts(orderProducts, orderToSave);
         return orderRepo.save(orderToSave);
     }
 
     public Order updateOrder(Long id, Order orderDetails) {
         Order order = orderRepo.findById(id).get();
-        order.setOrderProducts(orderDetails.getOrderProducts());
+        removeOrderProducts(order);
+        List<OrderProduct> orderProducts = orderDetails.getOrderProducts();
+        addOrderProducts(orderProducts, order);
         order.setUser(orderDetails.getUser());
         order = orderRepo.findById(id).get();
         return orderRepo.save(order);
+    }
+
+    private void addOrderProducts(List<OrderProduct> orderProducts, Order order) {
+        for(OrderProduct orderProduct : orderProducts) {
+            OrderProduct orderProductToAdd = new OrderProduct();
+            orderProductToAdd.setProduct(orderProduct.getProduct());
+            orderProductToAdd.setQuantity(orderProduct.getQuantity());
+            orderProductToAdd.setOrder(order);
+            orderProductRepo.save(orderProductToAdd);
+        }
+    }
+
+    private void removeOrderProducts(Order order) {
+        List<OrderProduct> oldOrderProducts = orderProductRepo.findAllByOrder(order);
+        orderProductRepo.deleteAll(oldOrderProducts);
     }
 }

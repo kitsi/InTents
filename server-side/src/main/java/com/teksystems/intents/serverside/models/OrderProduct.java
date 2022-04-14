@@ -1,5 +1,6 @@
 package com.teksystems.intents.serverside.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class OrderProduct {
     @ManyToOne
     @JoinColumn(name = "order_id", referencedColumnName = "order_id")
     @Setter
+    @JsonIgnore
     private Order order;
 
     @OneToOne
