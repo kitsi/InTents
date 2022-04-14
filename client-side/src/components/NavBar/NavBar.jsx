@@ -45,7 +45,7 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar position="sticky">
+    <AppBar position="sticky" sx={{ height: "50%" }}>
       <SideDrawer
         isOpen={drawerOpen}
         toggleDrawer={toggleDrawer}
@@ -54,7 +54,10 @@ const NavBar = () => {
       <Container maxWidth="xl">
         <Toolbar
           disableGutters
-          sx={{ display: "flex", justifyContent: "space-between" }}
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
         >
           <Typography
             variant="h1"
@@ -70,7 +73,56 @@ const NavBar = () => {
           >
             InTents
           </Typography>
-          <SearchBar />
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              color="inherit"
+              onClick={toggleDrawer}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Box>
+          <Typography
+            variant="h1"
+            noWrap
+            sx={{
+              flexGrow: 1,
+              display: { xs: "flex", md: "none" },
+              ...styles.link,
+              ...styles.headerTitle,
+            }}
+            component={Link}
+            to="/"
+          >
+            InTents
+          </Typography>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              ...styles.linksContainer,
+            }}
+          >
+            <Button to="/products" end component={NavLink} sx={styles.link}>
+              All Products
+            </Button>
+            {pages.map((page) => (
+              <Button
+                to={`/products/categories/${page
+                  .split(" ")
+                  .join("-")
+                  .toLowerCase()}`}
+                key={page}
+                component={NavLink}
+                sx={styles.link}
+              >
+                {page}
+              </Button>
+            ))}
+          </Box>
+
           <Box sx={{ flexGrow: 0 }}>
             {token ? (
               <Button
@@ -97,56 +149,7 @@ const NavBar = () => {
           </Box>
         </Toolbar>
       </Container>
-
-      <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="menu-appbar"
-          color="inherit"
-          onClick={toggleDrawer}
-        >
-          <MenuIcon />
-        </IconButton>
-      </Box>
-      <Typography
-        variant="h1"
-        noWrap
-        sx={{
-          flexGrow: 1,
-          display: { xs: "flex", md: "none" },
-          ...styles.link,
-          ...styles.headerTitle,
-        }}
-        component={Link}
-        to="/"
-      >
-        InTents
-      </Typography>
-      <Box
-        sx={{
-          flexGrow: 1,
-          display: { xs: "none", md: "flex" },
-          ...styles.linksContainer,
-        }}
-      >
-        <Button to="/products" end component={NavLink} sx={styles.link}>
-          All Products
-        </Button>
-        {pages.map((page) => (
-          <Button
-            to={`/products/categories/${page
-              .split(" ")
-              .join("-")
-              .toLowerCase()}`}
-            key={page}
-            component={NavLink}
-            sx={styles.link}
-          >
-            {page}
-          </Button>
-        ))}
-      </Box>
+      <SearchBar />
     </AppBar>
   );
 };
