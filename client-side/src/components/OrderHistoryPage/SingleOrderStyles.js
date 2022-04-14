@@ -19,3 +19,11 @@ export const productsContainer = {
   width: "100%",
   border: "1px solid black",
 };
+
+export const label = {
+  fontWeight: "bold",
+};
+
+export const centerText = {
+  textAlign: "center",
+};
