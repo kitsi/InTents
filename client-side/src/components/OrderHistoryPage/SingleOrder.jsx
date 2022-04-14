@@ -14,8 +14,6 @@ export default function SingleOrder({ order }) {
     );
   });
 
-  console.log(order);
-
   return (
     <Paper sx={styles.paper}>
       <Box sx={styles.userContainer}>
