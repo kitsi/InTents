@@ -14,6 +14,7 @@ function AdminPage() {
 
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [curPage, setCurPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -23,7 +24,8 @@ function AdminPage() {
     const checkProducts = async () => {
       setLastPage(curPage);
 
-      const { products, totalPages, pageNumber } = await getProducts(curPage);
+      const { products, success, totalPages, pageNumber } = await getProducts(curPage);
+      setError(!success);
       setProducts(products);
       setTotalPages(totalPages);
       setCurPage(Math.max(0, Math.min(pageNumber, totalPages - 1)));
@@ -68,7 +70,7 @@ function AdminPage() {
     toggleModal();
   };
 
-  const productTiles = products.map((product) => {
+  const productTiles = products?.map((product) => {
     return (
       <AdminProduct
         key={product.productId}
@@ -94,6 +96,11 @@ function AdminPage() {
 
       <Divider />
 
+      {error ?
+        <Typography sx={styles.error}>Error getting products. Cannot reach server.</Typography>
+      : (
+      <>
+
       <Box sx={styles.addButton}>
         <Button
           size="large"
@@ -105,22 +112,23 @@ function AdminPage() {
         </Button>
       </Box>
 
-      <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
+        <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
 
-      <Box sx={styles.productTilesContainer}>
-        {isLoading ? (
-          <Loading />
-        ) : products.length === 0 ? (
-          <Typography variant="h3">
-            No Products Available. Please check back again!
-          </Typography>
-        ) : (
-          productTiles
-        )}
-      </Box>
+        <Box sx={styles.productTilesContainer}>
+          {isLoading ? (
+            <Loading />
+          ) : products.length === 0 ? (
+            <Typography variant="h3">
+              No Products Available. Please check back again!
+            </Typography>
+          ) : (
+            productTiles
+          )}
+        </Box>
 
-      <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
-
+        <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
+      </>
+      )}
     </Box>
   );
 }

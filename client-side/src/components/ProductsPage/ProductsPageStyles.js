@@ -23,3 +23,4 @@ export const error = {
   fontSize: "1.5rem",
   paddingY: "1rem",
 };
+
