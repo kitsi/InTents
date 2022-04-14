@@ -34,10 +34,11 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void getProductsShouldReturn10Products() throws Exception {
+    public void GetRequestToProductsEndPointShouldReturnCorrectResponse() throws Exception {
         mvc.perform(get(productUrl))
                 .andExpect(jsonPath("$.content",hasSize(10)))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$['pageable']['paged']").value("true"));
     }
 
 }
