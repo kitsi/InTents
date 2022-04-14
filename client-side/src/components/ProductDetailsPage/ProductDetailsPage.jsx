@@ -19,20 +19,19 @@ function ProductDetailsPage() {
       await axios
         .get(`${baseUrl}/products/${id}`)
         .then((res) => {
-          if (res.status === 200) {
-            if (res.data) {
-              console.log(res.data);
-              setErrorMsg();
-              setProduct(res.data);
-            } else {
-              setErrorMsg(`Error: Product with ID ${id} does not exist.`);
-            }
-          } else {
-            setErrorMsg(`ERROR ${res.status}: ${res?.error} - ${res?.message}`);
+          if (res.data) {
+            setErrorMsg();
+            setProduct(res.data);
           }
         })
-        .catch(() => {
-          setErrorMsg(`Error: Product with ID ${id} does not exist.`);
+        .catch((error) => {
+          if (!error.response) {
+            setErrorMsg("Error: Network Error");
+            return;
+          }
+          setErrorMsg(
+            `Error: ${error.response.status}: ${error.response.data.error} - ${error.response.data.message}`
+          );
         });
     }
 
