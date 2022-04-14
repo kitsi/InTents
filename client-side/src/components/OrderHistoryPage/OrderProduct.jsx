@@ -18,7 +18,7 @@ export default function OrderProduct({ orderProduct }) {
         <Typography sx={styles.title}>{product.title}</Typography>
         <Typography><span style={styles.label}>Price: </span>{formatCurrency(product.price)}</Typography>
         <Typography><span style={styles.label}>Quantity: </span>{orderProduct.quantity}</Typography>
-        <Typography><span style={styles.label}>Subtotal: </span>{formatCurrency(product.price * orderProduct.quantity)}</Typography>
+        <Typography><span style={styles.label}>Product Total: </span>{formatCurrency(product.price * orderProduct.quantity)}</Typography>
       </Box>
     </Box>
   );
