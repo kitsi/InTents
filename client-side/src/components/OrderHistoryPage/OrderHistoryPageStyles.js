@@ -9,6 +9,7 @@ export const container = {
 
 export const paper = {
   padding: "1rem",
+  marginTop: "1rem",
 };
 
 export const header = {

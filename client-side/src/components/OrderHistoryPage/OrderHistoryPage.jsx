@@ -1,11 +1,11 @@
-import { Paper, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Paper, Typography, Box, Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import getOrders from "../../api/getOrders";
 import Loading from "../common/Loading";
 import PaginationBar from "../common/PaginationBar";
 import SingleOrder from "./SingleOrder";
 import * as styles from "./OrderHistoryPageStyles";
+import { Link } from "react-router-dom";
 
 export default function OrderHistoryPage() {
   const [orders, setOrders] = useState();
@@ -53,6 +53,15 @@ export default function OrderHistoryPage() {
   
   return (
     <Box sx={styles.container}>
+      <Button
+        component={Link}
+        to="/admin"
+        size="large"
+        variant="contained"
+        color="primary"
+      >
+        Edit Products
+      </Button>
       <Paper sx={styles.paper}>
         <Typography variant="h4" sx={styles.header}>Order History</Typography>
         <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
