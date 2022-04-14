@@ -7,6 +7,7 @@ import ProductDetails from "./ProductDetails";
 import * as styles from "./ProductDetailsPageStyles";
 import { baseUrl } from "../../utilities/strings";
 import { Link } from "react-router-dom";
+import getProductById from "../../api/getProductById";
 
 function ProductDetailsPage() {
   const { id } = useParams();
@@ -16,23 +17,9 @@ function ProductDetailsPage() {
 
   useEffect(() => {
     async function getProduct() {
-      await axios
-        .get(`${baseUrl}/products/${id}`)
-        .then((res) => {
-          if (res.data) {
-            setErrorMsg();
-            setProduct(res.data);
-          }
-        })
-        .catch((error) => {
-          if (!error.response) {
-            setErrorMsg("Error: Network Error");
-            return;
-          }
-          setErrorMsg(
-            `Error: ${error.response.status}: ${error.response.data.error} - ${error.response.data.message}`
-          );
-        });
+      const { product, errorMessage } = await getProductById(id);
+      setErrorMsg(errorMessage);
+      setProduct(product);
     }
 
     getProduct();
