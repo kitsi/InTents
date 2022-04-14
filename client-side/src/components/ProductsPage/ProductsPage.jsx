@@ -13,45 +13,63 @@ function ProductsPage() {
 
   const { category } = useParams();
   const [categoryId, setCategoryId] = useState(0);
-
+  const [prevCategoryId, setPrevCategoryId] = useState();
   const [products, setProducts] = useState([]);
+  const [allCategories, setAllCategories] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [curPage, setCurPage] = useState(0);
+  const [prevPage, setPrevPage] = useState();
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     const checkCategories = async () => {
-      const categories = await getCategories();
-      
-      if (category) {
-        if (!categories.map(category => category.title).includes(category)) {
-          return navigate("/products");
-        }
+      setAllCategories(await getCategories());
+    };
+    checkCategories();
+  }, []);
 
-        setCategoryId(categories.filter(cat => cat.title === category)[0].categoryId);
-      } else {
-        setCategoryId(0);
-      }
-    }
-
+  useEffect(() => {
+    // Fetching products
     const checkProducts = async () => {
-      setIsLoading(true);
-
-      const { products, totalPages, pageNumber } = await getProducts(curPage, categoryId);
+      if (prevCategoryId !== categoryId) {
+        setIsLoading(true);
+      }
+      const { products, totalPages, pageNumber } = await getProducts(
+        curPage,
+        categoryId
+      );
       setProducts(products);
       setTotalPages(totalPages);
       setCurPage(Math.max(0, Math.min(pageNumber, totalPages - 1)));
 
       setIsLoading(false);
+    };
+
+    // Making sure category exists and setting the id in state
+    if (category && allCategories) {
+      if (!allCategories.map((category) => category.title).includes(category)) {
+        return navigate("/products");
+      }
+      setCategoryId(
+        allCategories.filter((cat) => cat.title === category)[0].categoryId
+      );
+    } else {
+      setCategoryId(0);
     }
-    
-    checkCategories();
-    checkProducts();
-  }, [category, categoryId, curPage, navigate]);
+
+    // Prevent multiple rerenders
+    if (prevCategoryId !== categoryId) {
+      checkProducts();
+      setPrevCategoryId(categoryId);
+    } else if (prevPage !== curPage) {
+      checkProducts();
+      setPrevPage(curPage);
+    }
+  }, [category, categoryId, curPage, prevCategoryId, allCategories, navigate]);
 
   const productTiles = products.map((product) => {
-      return <ProductTile key={product.productId} productData={product} />;
-    });
+    return <ProductTile key={product.productId} productData={product} />;
+  });
 
   const headingFormatter = (heading) => {
     let title = "";
@@ -74,7 +92,11 @@ function ProductsPage() {
       </Typography>
       <Divider />
 
-      <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
+      <PaginationBar
+        curPage={curPage}
+        totalPages={totalPages}
+        setCurPage={setCurPage}
+      />
 
       <Box sx={styles.productTilesContainer}>
         {isLoading ? (
@@ -88,7 +110,11 @@ function ProductsPage() {
         )}
       </Box>
 
-      <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
+      <PaginationBar
+        curPage={curPage}
+        totalPages={totalPages}
+        setCurPage={setCurPage}
+      />
     </div>
   );
 }
