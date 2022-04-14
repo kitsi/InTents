@@ -7,11 +7,13 @@ import * as styles from "./ProductsPageStyles";
 import getCategories from "../../api/getCategories";
 import getProducts from "../../api/getProducts";
 import PaginationBar from "../common/PaginationBar";
-
+import { useLocation } from "react-router-dom";
 function ProductsPage() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { category } = useParams();
+  const [searchText, setSearchText] = useState("");
   const [categoryId, setCategoryId] = useState(0);
   const [prevCategoryId, setPrevCategoryId] = useState();
   const [products, setProducts] = useState([]);
@@ -61,19 +63,47 @@ function ProductsPage() {
       setCategoryId(0);
     }
 
-    // Prevent multiple rerenders
-    if (prevCategoryId !== categoryId) {
-      checkProducts();
-      setPrevCategoryId(categoryId);
-    } else if (prevPage !== curPage) {
-      checkProducts();
-      setPrevPage(curPage);
+    const { state } = location;
+
+    if (state) {
+      const {
+        searchProducts,
+        searchSuccess,
+        searchTotalPages,
+        searchPageNumber,
+        searchText,
+      } = state;
+      setProducts(searchProducts);
+      setError(!searchSuccess);
+      setTotalPages(searchTotalPages);
+      setCurPage(Math.max(0, Math.min(searchPageNumber, searchTotalPages - 1)));
+      setSearchText(searchText);
+
+      setIsLoading(false);
+    } else {
+      // Prevent multiple rerenders
+      if (prevCategoryId !== categoryId) {
+        checkProducts();
+        setPrevCategoryId(categoryId);
+      } else if (prevPage !== curPage) {
+        checkProducts();
+        setPrevPage(curPage);
+      }
     }
-  }, [category, categoryId, curPage, prevPage, prevCategoryId, allCategories, navigate]);
+  }, [
+    category,
+    categoryId,
+    curPage,
+    prevPage,
+    prevCategoryId,
+    allCategories,
+    navigate,
+    location,
+  ]);
 
   const productTiles = products?.map((product) => {
-      return <ProductTile key={product.productId} productData={product} />;
-    });
+    return <ProductTile key={product.productId} productData={product} />;
+  });
 
   const headingFormatter = (heading) => {
     let title = "";
@@ -92,30 +122,44 @@ function ProductsPage() {
         variant="h2"
         sx={{ ...styles.productsPageHeader, ...styles.alignCenter }}
       >
-        {category ? headingFormatter(category) : "All Products"}
+        {category
+          ? headingFormatter(category)
+          : searchText
+          ? "Searched: " + headingFormatter(searchText)
+          : "All Products"}
       </Typography>
       <Divider />
 
-      {error ?
-        <Typography sx={styles.error}>Error getting products. Cannot reach server.</Typography>
-      : (
-      <>
-        <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
+      {error ? (
+        <Typography sx={styles.error}>
+          Error getting products. Cannot reach server.
+        </Typography>
+      ) : (
+        <>
+          <PaginationBar
+            curPage={curPage}
+            totalPages={totalPages}
+            setCurPage={setCurPage}
+          />
 
-        <Box sx={styles.productTilesContainer}>
-          {isLoading ? (
-            <Loading />
-          ) : products.length === 0 ? (
-            <Typography variant="h3" sx={styles.alignCenter}>
-              No Products Available. Please check back again!
-            </Typography>
-          ) : (
-            <>{productTiles}</>
-          )}
-        </Box>
+          <Box sx={styles.productTilesContainer}>
+            {isLoading ? (
+              <Loading />
+            ) : products.length === 0 ? (
+              <Typography variant="h3" sx={styles.alignCenter}>
+                No Products Available. Please check back again!
+              </Typography>
+            ) : (
+              <>{productTiles}</>
+            )}
+          </Box>
 
-        <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
-      </>
+          <PaginationBar
+            curPage={curPage}
+            totalPages={totalPages}
+            setCurPage={setCurPage}
+          />
+        </>
       )}
     </div>
   );
