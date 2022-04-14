@@ -6,6 +6,7 @@ import ProductEditDialog from "./ProductEditDialog/ProductEditDialog";
 import getProducts from "../../api/getProducts";
 import * as styles from "./AdminPageStyles";
 import PaginationBar from "../common/PaginationBar";
+import { Link } from "react-router-dom";
 
 function AdminPage() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -101,13 +102,22 @@ function AdminPage() {
       : (
       <>
 
-      <Box sx={styles.addButton}>
+      <Box sx={styles.buttonContainer}>
+        <Button
+          component={Link}
+          to="/orderhistory"
+          size="large"
+          variant="contained"
+          color="primary"
+        >
+          Order History
+        </Button>
         <Button
           size="large"
           variant="contained"
           color="primary"
           onClick={createProduct}
-          >
+        >
           Add Item
         </Button>
       </Box>
