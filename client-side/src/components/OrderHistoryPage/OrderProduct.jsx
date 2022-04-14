@@ -16,9 +16,9 @@ export default function OrderProduct({ orderProduct }) {
       />
       <Box sx={styles.infoContainer}>
         <Typography sx={styles.title}>{product.title}</Typography>
-        <Typography>Price: {formatCurrency(product.price)}</Typography>
-        <Typography>Quantity: {orderProduct.quantity}</Typography>
-        <Typography>Subtotal: {formatCurrency(product.price * orderProduct.quantity)}</Typography>
+        <Typography><span style={styles.label}>Price: </span>{formatCurrency(product.price)}</Typography>
+        <Typography><span style={styles.label}>Quantity: </span>{orderProduct.quantity}</Typography>
+        <Typography><span style={styles.label}>Subtotal: </span>{formatCurrency(product.price * orderProduct.quantity)}</Typography>
       </Box>
     </Box>
   );

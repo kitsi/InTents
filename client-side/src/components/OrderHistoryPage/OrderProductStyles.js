@@ -14,9 +14,14 @@ export const infoContainer = {
 };
 
 export const title = {
+  fontWeight: "bold",
   overflow: "hidden",
   textOverflow: "ellipsis",
   display: "-webkit-box",
   WebkitLineClamp: "1",
   WebkitBoxOrient: "vertical",
+};
+
+export const label = {
+  fontWeight: "bold",
 };
