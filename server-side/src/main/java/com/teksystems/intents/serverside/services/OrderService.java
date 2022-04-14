@@ -69,4 +69,8 @@ public class OrderService {
         List<OrderProduct> oldOrderProducts = orderProductRepo.findAllByOrder(order);
         orderProductRepo.deleteAll(oldOrderProducts);
     }
+
+    private void setUpBilling(Long orderId) {
+
+    }
 }

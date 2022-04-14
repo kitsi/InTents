@@ -1,9 +1,6 @@
 package com.teksystems.intents.serverside.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,6 +8,7 @@ import javax.persistence.*;
 @Table(name = "inventory")
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Inventory {
 
     @Id
@@ -26,12 +24,11 @@ public class Inventory {
     @Getter @Setter
     private Integer quantity;
 
-    @Override
-    public String toString() {
-        return "Inventory{" +
-                "inventoryId=" + inventoryId +
-                ", product=" + product +
-                ", quantity=" + quantity +
-                '}';
-    }
+//    public void addToQuantity(int num) {
+//        quantity += num;
+//    }
+//
+//    public void removeFromQuantity(int num) {
+//        quantity = (num <= quantity) ? (quantity - num) : quantity;
+//    }
 }
