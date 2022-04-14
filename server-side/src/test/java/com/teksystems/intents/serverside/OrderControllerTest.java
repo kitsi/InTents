@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -22,6 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class OrderControllerTest {
 
     private static final String ordersUrl = "/orders/?pageNum=0&pageSize=10";
+    private static final String deleteOrderUrl = "/orders/{id}";
 
     @Autowired
     WebApplicationContext context;
@@ -39,5 +41,11 @@ public class OrderControllerTest {
                 .andExpect(jsonPath("$.content",hasSize(3)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$['pageable']['paged']").value("true"));
+    }
+
+    @Test
+    public void deleteOrderEndpoint() throws Exception {
+        mvc.perform(delete(deleteOrderUrl, 1))
+                .andExpect(status().isOk());
     }
 }

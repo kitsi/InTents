@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -22,6 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ProductControllerTest {
 
     private static final String productsUrl = "/products/?pageNum=0&pageSize=10";
+    private static final String deleteProductUrl = "/products/admin/{id}";
 
     @Autowired
     WebApplicationContext context;
@@ -39,5 +41,17 @@ public class ProductControllerTest {
                 .andExpect(jsonPath("$.content",hasSize(10)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$['pageable']['paged']").value("true"));
+    }
+
+    @Test
+    public void deleteProductEndpointHappyPath() throws Exception {
+        mvc.perform(delete(deleteProductUrl, 2))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void deleteProductEndpointWhenProductNotFound() throws Exception {
+        mvc.perform(delete(deleteProductUrl, 1))
+                .andExpect(status().is4xxClientError());
     }
 }
