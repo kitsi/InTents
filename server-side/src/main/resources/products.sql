@@ -56,4 +56,5 @@ insert into products(sku, title, description, price, category_id, inventory_id, 
 ('55662868','SOL Fire Lite Tinder Cord 550, 30 ft.','The Fire Lite Tinder Cord in the Utility Grade makes it the perfect multi-purpose paracord that doubles as an easy-to-use fire starter. The diameter is small enough to easily tie your gear to packs or racks, yet durable enough to take on any adventure. The nylon outer sheath provides a rugged protective layer for the ignitable waxed cotton inner core. Whether you pack it in your emergency kit or wrap it around your water bottle, the Fire Lite™ Tinder Cord is a multi-purpose life-saving tool.',
 5.99,5,23,'https://cdn.shopify.com/s/files/1/0301/4023/5913/products/0141-17304.progressive.jpg?v=1618100949');
 
-
+-- drop database intents;
+-- select * from products;

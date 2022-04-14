@@ -1,9 +1,6 @@
 package com.teksystems.intents.serverside.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,6 +9,7 @@ import java.util.List;
 @Table(name = "orders")
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Order {
 
     @Id
@@ -29,19 +27,8 @@ public class Order {
     @Getter @Setter
     private List<OrderProduct> orderProducts;
 
-    @OneToOne(mappedBy = "order")
-    @JoinColumn(name = "billing_id")
-    @Setter
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Getter @Setter
     private Billing billing;
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "orderId=" + orderId +
-                ", user=" + user +
-                ", orderProducts=" + orderProducts +
-                ", billing=" + billing +
-                '}';
-    }
 
 }
