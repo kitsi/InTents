@@ -1,14 +1,15 @@
-import { Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState, useEffect } from "react";
 import getOrders from "../../api/getOrders";
 import Loading from "../common/Loading";
+import PaginationBar from "../common/PaginationBar";
 import * as styles from "./OrderHistoryPageStyles";
 
 export default function OrderHistoryPage() {
   const [orders, setOrders] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [curPage, setCurpage] = useState(0);
+  const [curPage, setCurPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
   const [success, setSuccess] = useState(true);
 
@@ -47,7 +48,14 @@ export default function OrderHistoryPage() {
   
   return (
     <Box sx={styles.container}>
-      Hello world.
+      <Paper sx={styles.paper}>
+        <Typography variant="h4" sx={styles.header}>Order History</Typography>
+        <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
+
+        
+
+        <PaginationBar curPage={curPage} totalPages={totalPages} setCurPage={setCurPage} />
+      </Paper>
     </Box>
   );
 }

@@ -1,11 +1,18 @@
 export const container = {
-  backgroundColor: "red",
   width: {
     xs: "100%",
     md: "70%",
   },
   margin: "auto",
   padding: "1rem",
+};
+
+export const paper = {
+  padding: "1rem",
+};
+
+export const header = {
+  textAlign: "center",
 };
 
 export const errorText = {

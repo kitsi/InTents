@@ -1,7 +1,7 @@
 import axios from "axios";
 import { baseUrl } from "../utilities/strings";
 
-export default async function getOrders(pageNumber = 0, limit = 10) {
+export default async function getOrders(pageNumber = 0, limit = 5) {
   let data;
   let success = true;
 
