@@ -13,10 +13,13 @@ export const styledInputBase = {
 };
 
 export const searchButton = {
-  color: "#FFF",
-  border: "1px solid #FFF",
+  color: "black",
+  border: "1px solid primary.main",
+  backgroundColor: "#FFF",
   marginLeft: "1rem",
   "&:hover": {
+    color: "white",
     border: "1px solid #FFF",
+    backgroundColor: "primary.light",
   },
 };

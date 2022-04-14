@@ -13,7 +13,8 @@ const SearchBar = () => {
     setSearchText(lowerCaseText);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const { products, success, totalPages, pageNumber } = await getProducts(
       0,
       0,
@@ -34,26 +35,25 @@ const SearchBar = () => {
         searchText,
       },
     });
+    setSearchText("");
   };
 
   return (
-    <Box sx={styles.search}>
-      <TextField
-        sx={styles.styledInputBase}
-        variant="outlined"
-        placeholder="Search…"
-        inputProps={{ "aria-label": "search" }}
-        onChange={handleChange}
-        value={searchText}
-      />
-      <Button
-        sx={styles.searchButton}
-        variant="outlined"
-        onClick={handleSubmit}
-      >
-        Search
-      </Button>
-    </Box>
+    <form onSubmit={handleSubmit}>
+      <Box sx={styles.search}>
+        <TextField
+          sx={styles.styledInputBase}
+          variant="outlined"
+          placeholder="Search…"
+          inputProps={{ "aria-label": "search" }}
+          onChange={handleChange}
+          value={searchText}
+        />
+        <Button sx={styles.searchButton} variant="outlined" type="submit">
+          Search
+        </Button>
+      </Box>
+    </form>
   );
 };
 
