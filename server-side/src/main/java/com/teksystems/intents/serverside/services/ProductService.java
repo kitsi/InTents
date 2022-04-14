@@ -46,6 +46,20 @@ public class ProductService {
         return products;
     }
 
+    public Page<Product> getProductsByTitle(int pageNum, int pageSize, String title) {
+        Pageable pageable = PageRequest.of(pageNum, pageSize);
+        Page<Product> products = productRepo.findByTitleContaining(title, pageable);
+        return products;
+    }
+
+
+    public Page<Product> getProductsByTitleAndCategory(int pageNum, int pageSize, String title, Long categoryId) {
+        Pageable pageable = PageRequest.of(pageNum, pageSize);
+        Optional<Category> category = categoryRepo.findById(categoryId);
+        Page<Product> products = productRepo.findByTitleContainingAndCategory(title, category, pageable);
+        return products;
+    }
+
 
     public Optional<Product> getProduct(Long id) {
         Optional<Product> product = productRepo.findById(id);
