@@ -16,10 +16,12 @@ function ProductDetailsPage() {
 
   useEffect(() => {
     async function getProduct() {
-      await axios.get(`${baseUrl}/products/${id}`)
-        .then(res => {
+      await axios
+        .get(`${baseUrl}/products/${id}`)
+        .then((res) => {
           if (res.status === 200) {
             if (res.data) {
+              console.log(res.data);
               setErrorMsg();
               setProduct(res.data);
             } else {
@@ -28,6 +30,9 @@ function ProductDetailsPage() {
           } else {
             setErrorMsg(`ERROR ${res.status}: ${res?.error} - ${res?.message}`);
           }
+        })
+        .catch((err) => {
+          setErrorMsg(`Error: Product with ID ${id} does not exist.`);
         });
     }
 
@@ -37,12 +42,18 @@ function ProductDetailsPage() {
   return (
     <Box sx={styles.productDetailsPage}>
       <Box sx={styles.productDetailsWrapper}>
-        {product ? <ProductDetails product={product} /> : errorMsg ? (
+        {product ? (
+          <ProductDetails product={product} />
+        ) : errorMsg ? (
           <Box sx={styles.errorContainer}>
             <Typography sx={styles.error}>{errorMsg}</Typography>
-            <Button component={Link} to="/products" variant="contained">Return to Products</Button>
+            <Button component={Link} to="/products" variant="contained">
+              Return to Products
+            </Button>
           </Box>
-        ) : <Loading />}
+        ) : (
+          <Loading />
+        )}
       </Box>
     </Box>
   );
