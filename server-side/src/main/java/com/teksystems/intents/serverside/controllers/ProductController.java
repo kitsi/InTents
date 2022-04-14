@@ -23,12 +23,20 @@ public class ProductController {
     public Page<Product> getProducts(
             @RequestParam(value = "pageNum", defaultValue = "0", required = false) int pageNum,
             @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize,
-            @RequestParam(value = "category", required = false) Long categoryId
+            @RequestParam(value = "category", required = false) Long categoryId,
+            @RequestParam(value = "title", required = false) String title
+
     ) {
-        if(categoryId == null) {
-            return productService.getProducts(pageNum, pageSize);
-        } else {
+        if(categoryId != null && title != null) {
+            return productService.getProductsByTitleAndCategory(pageNum, pageSize, title, categoryId);
+        }
+        else if(categoryId != null) {
             return productService.getProductsByCategory(pageNum, pageSize, categoryId);
+        } else if(title !=null) {
+            return productService.getProductsByTitle(pageNum, pageSize, title);
+        }
+        else {
+            return productService.getProducts(pageNum, pageSize);
         }
     }
 
