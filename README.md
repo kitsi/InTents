@@ -5,10 +5,11 @@ Team Cup'O'Javas Ecommerce site for TEKsystems Capstone 3
 
 ### Server
 1. Open up the "server-side" folder in **Intellij** to allow maven to download all server dependencies.
-2. Click the green "Run" button to launch the server.
-3. After the server is done starting, open up the products and orders SQL files found in the **src/main/resources** folder in **MySQL Workbench**.
-4. Run products.sql
-5. Run orders.sql
+2. Create an **application.properties** file in the **src/main/resources** folder and add the information presented in the readme in the **server-side** folder.
+3. Click the green "Run" button to launch the server.
+4. After the server is done starting, open up the products and orders SQL files found in the **src/main/resources** folder in **MySQL Workbench**.
+5. Run products.sql
+6. Run orders.sql
 
 ### Client
 1. Open the **InTents** folder in **VSCode**.
