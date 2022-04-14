@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import { Box, Typography, Button } from "@mui/material";
 import Loading from "../common/Loading";
 import ProductDetails from "./ProductDetails";
 import * as styles from "./ProductDetailsPageStyles";
-import { baseUrl } from "../../utilities/strings";
 import { Link } from "react-router-dom";
 import getProductById from "../../api/getProductById";
 
