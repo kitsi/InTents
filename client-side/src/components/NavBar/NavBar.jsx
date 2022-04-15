@@ -18,6 +18,7 @@ import { useSelector, useDispatch } from "react-redux";
 import * as styles from "./NavBarStyles";
 import { clearToken } from "../AdminPage/AdminLogin/adminSlice";
 import { useNavigate } from "react-router-dom";
+import SearchBar from "./SearchBar/SearchBar";
 // Add pages from wireframe
 const pages = ["Tents", "Cookware", "Sleeping Bags", "Fans", "Emergency"];
 
@@ -44,7 +45,7 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar position="sticky">
+    <AppBar position="sticky" sx={{ height: "50%" }}>
       <SideDrawer
         isOpen={drawerOpen}
         toggleDrawer={toggleDrawer}
@@ -66,7 +67,6 @@ const NavBar = () => {
           >
             InTents
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -116,6 +116,7 @@ const NavBar = () => {
               </Button>
             ))}
           </Box>
+
           <Box sx={{ flexGrow: 0 }}>
             {token ? (
               <Button
@@ -142,6 +143,7 @@ const NavBar = () => {
           </Box>
         </Toolbar>
       </Container>
+      <SearchBar />
     </AppBar>
   );
 };
