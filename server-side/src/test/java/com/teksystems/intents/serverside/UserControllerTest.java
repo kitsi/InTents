@@ -13,8 +13,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -22,6 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserControllerTest {
 
     private static final String usersUrl = "/users/?pageNum=0&pageSize=10";
+    private static final String oneUserUrl = "/users/{id}";
 
     @Autowired
     WebApplicationContext context;
@@ -39,6 +39,13 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.content",hasSize(7)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$['pageable']['paged']").value("true"));
+    }
+
+    @Test
+    public void GetRequestToIndividualUserEndPointShouldReturnCorrectResponseGivenUserId1() throws Exception {
+        mvc.perform(get(oneUserUrl,1))
+                .andExpect(content().contentType("application/json"))
+                .andExpect(status().isOk());
     }
 
 }

@@ -14,8 +14,7 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -44,7 +43,7 @@ public class OrderControllerTest {
     }
 
     @Test
-    public void deleteOrderEndpoint() throws Exception {
+    public void deleteOrderEndpointGivenOrderId() throws Exception {
         mvc.perform(delete(oneOrderUrl, 1))
                 .andExpect(status().isOk());
     }
@@ -52,6 +51,7 @@ public class OrderControllerTest {
     @Test
     public void GetRequestToIndividualOrderEndPointShouldReturnCorrectResponseGivenId4() throws Exception {
         mvc.perform(get(oneOrderUrl,4))
+                .andExpect(content().contentType("application/json"))
                 .andExpect(status().isOk());
     }
 }
