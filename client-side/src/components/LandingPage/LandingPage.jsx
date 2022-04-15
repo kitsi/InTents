@@ -11,7 +11,7 @@ export default function LandingPage() {
       <Box sx={styles.heroImage}>
         <Box sx={styles.heroTextWrapper}>
           <Typography variant="h1" sx={styles.heroText}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, ea!
+            Be wild and live free.<br />It's InTents.
           </Typography>
         </Box>
       </Box>
